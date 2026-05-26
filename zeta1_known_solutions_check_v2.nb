@@ -1,0 +1,222 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+Notebook[{
+Cell["Check of the two known solutions for zeta1(x)", "Title"],
+
+Cell["This notebook checks the derivation of the two bounded/Laplace-transform solutions zeta11 and zeta12. It is written defensively: symbolic steps are kept separate, and the expensive checks are wrapped with TimeConstrained so an unevaluated identity does not stop the notebook.", "Text"],
+
+Cell["0. Setup", "Section"],
+Cell[BoxData["
+ClearAll[\"Global`*\"];
+$Assumptions = Element[{x, s, lam}, Reals] && x > 0 && s > 0 && lam > 0;
+
+odeX[y_] := x^2 D[y, {x, 4}] + 4 x (1 + I x) D[y, {x, 3}] +
+   2 x (5 I - 2 x) D[y, {x, 2}] - 2 (I + 2 x) D[y, x] - lam^2 y;
+
+coefA[s_] := s^2 (s^2 + 4 I s - 4);
+coefB[s_] := 2 s (2 s^2 + 7 I s - 6);
+coefC[s_] := -(lam^2 + 4 - 2 I s);
+opS[y_] := coefA[s] D[y, {s, 2}] + coefB[s] D[y, s] + coefC[s] y;
+
+safeSimplify[expr_, sec_: 30] := TimeConstrained[
+   FullSimplify[PowerExpand[FunctionExpand[expr]], Assumptions -> $Assumptions],
+   sec,
+   expr
+];
+"], "Input"],
+
+Cell["1. Boundary relation at x = 0", "Section"],
+Cell["Insert a generic Taylor jet. The constant term of the ODE must vanish if zeta1 and its derivatives are finite at x=0+.", "Text"],
+Cell[BoxData["
+jet = z0 + z1 x + z2 x^2/2 + z3 x^3/6 + z4 x^4/24;
+constantTermAt0 = Series[odeX[jet], {x, 0, 0}] // Normal // FullSimplify
+boundaryRelation = Solve[constantTermAt0 == 0, z0] // FullSimplify
+boundaryCheck = FullSimplify[constantTermAt0 /. z0 -> -2 I z1/lam^2]
+"], "Input"],
+
+Cell["Expected: constantTermAt0 = -lam^2 z0 - 2 I z1, so -2 I zeta1'(0) = lam^2 zeta1(0).", "Text"],
+
+Cell["2. Derive the Laplace-transformed equation", "Section"],
+Cell["Let LL[s] be LaplaceTransform[zeta1[x],x,s]. The rules used are L[x f] = -d_s L[f] and L[x^2 f] = d_s^2 L[f].", "Text"],
+Cell[BoxData["
+ClearAll[LL, ic];
+ic[0] = z0; ic[1] = z1; ic[2] = z2; ic[3] = z3;
+
+lapD[n_Integer] := If[n == 0, LL[s], s^n LL[s] - Sum[s^(n - 1 - j) ic[j], {j, 0, n - 1}]];
+lapX[expr_] := -D[expr, s];
+lapX2[expr_] := D[expr, {s, 2}];
+
+lapEquationRaw =
+   lapX2[lapD[4]] +
+   4 lapX[lapD[3]] + 4 I lapX2[lapD[3]] +
+   10 I lapX[lapD[2]] - 4 lapX2[lapD[2]] -
+   2 I lapD[1] - 4 lapX[lapD[1]] -
+   lam^2 lapD[0];
+
+lapEquation = Collect[Expand[lapEquationRaw], {LL''[s], LL'[s], LL[s], z0, z1}, FullSimplify]
+
+expectedLapEquation =
+   s^2 (s^2 + 4 I s - 4) LL''[s] +
+   2 s (-6 + 7 I s + 2 s^2) LL'[s] +
+   (-lam^2 + 2 I s - 4) LL[s] +
+   2 (z1 + 2 I z0 + z0 s);
+
+lapEquationCheck = FullSimplify[lapEquation - expectedLapEquation]
+"], "Input"],
+
+Cell["Expected: lapEquationCheck = 0. This confirms the transformed equation in the PDF.", "Text"],
+
+Cell["3. Apply the boundary relation and shift the transform", "Section"],
+Cell["Using z0 = -2 I z1/lam^2, the equation has a constant particular solution. Shifting LL[s] = LLt[s] + 2 z1/lam^2 leaves a homogeneous equation for LLt.", "Text"],
+Cell[BoxData["
+boundedLapEquation = FullSimplify[expectedLapEquation /. z0 -> -2 I z1/lam^2]
+
+expectedBoundedLapEquation =
+   coefA[s] LL''[s] + coefB[s] LL'[s] + coefC[s] LL[s] +
+   (2 z1/lam^2) (lam^2 + 4 - 2 I s);
+
+boundedEquationCheck = FullSimplify[boundedLapEquation - expectedBoundedLapEquation]
+
+shiftRules = {
+   LL[s] -> LLt[s] + 2 z1/lam^2,
+   Derivative[1][LL][s] -> Derivative[1][LLt][s],
+   Derivative[2][LL][s] -> Derivative[2][LLt][s]
+};
+
+shiftedEquation = boundedLapEquation /. shiftRules;
+shiftCheck = FullSimplify[shiftedEquation - opS[LLt[s]]]
+"], "Input"],
+
+Cell["Expected: boundedEquationCheck = 0 and shiftCheck = 0.", "Text"],
+
+Cell["4. Check the transformed homogeneous basis", "Section"],
+Cell["The Legendre basis is included for comparison, but the power basis is the one used for inverse Laplace transforms.", "Text"],
+Cell[BoxData["
+lPlus[s_] := (1 - I lam - I s) (2 - I s)^(I lam/2) (I s)^(-I lam/2 - 1);
+lMinus[s_] := (1 + I lam - I s) (2 - I s)^(-I lam/2) (I s)^(I lam/2 - 1);
+
+lPlusResidual = safeSimplify[opS[lPlus[s]]/lPlus[s], 30]
+lMinusResidual = safeSimplify[opS[lMinus[s]]/lMinus[s], 30]
+
+pBasis = LegendreP[1, I lam, 1 - I s]/s;
+pExplicit = (1 - I lam - I s) (2 - I s)^(I lam/2) (I s)^(-I lam/2)/(s Gamma[2 - I lam]);
+pBasisCheck = safeSimplify[pBasis - pExplicit, 30]
+"], "Input"],
+
+Cell["Expected: lPlusResidual = 0 and lMinusResidual = 0. pBasisCheck should also reduce to 0 on the chosen branch.", "Text"],
+
+Cell["5. Inverse Laplace transform checks", "Section"],
+Cell["These are the inverse transforms claimed in the PDF. If InverseLaplaceTransform itself returns a different form, the transform-back check is the more useful certification.", "Text"],
+Cell[BoxData["
+invPlusClaim =
+   -I Exp[Pi lam/2] ((1 - I lam) LaguerreL[I lam/2, -2 I x] +
+      I lam Hypergeometric1F1[1 - I lam/2, 2, -2 I x]);
+
+invMinusClaim =
+   -I Exp[-Pi lam/2] ((1 + I lam) LaguerreL[-I lam/2, -2 I x] -
+      I lam Hypergeometric1F1[1 + I lam/2, 2, -2 I x]);
+
+directInvPlus = TimeConstrained[
+   InverseLaplaceTransform[lPlus[s], s, x, GenerateConditions -> False],
+   60,
+   \"InverseLaplaceTransform timed out\"
+];
+
+directInvMinus = TimeConstrained[
+   InverseLaplaceTransform[lMinus[s], s, x, GenerateConditions -> False],
+   60,
+   \"InverseLaplaceTransform timed out\"
+];
+
+transformBackPlus = TimeConstrained[
+   FullSimplify[
+     PowerExpand[LaplaceTransform[invPlusClaim, x, s, GenerateConditions -> False] - lPlus[s]],
+     Assumptions -> $Assumptions],
+   60,
+   \"LaplaceTransform check timed out\"
+];
+
+transformBackMinus = TimeConstrained[
+   FullSimplify[
+     PowerExpand[LaplaceTransform[invMinusClaim, x, s, GenerateConditions -> False] - lMinus[s]],
+     Assumptions -> $Assumptions],
+   60,
+   \"LaplaceTransform check timed out\"
+];
+
+{directInvPlus, directInvMinus, transformBackPlus, transformBackMinus}
+"], "Input"],
+
+Cell["Expected: transformBackPlus and transformBackMinus should be 0. If they time out, continue; the next sections verify the final functions directly.", "Text"],
+
+Cell["6. Define the two candidate solutions", "Section"],
+Cell[BoxData["
+f0[mu_] := Gamma[1 + I mu/2] (1 - I mu)^(-1) (2 I)^(-I mu/2);
+
+zeta11 =
+   f0[lam] ((1 - I lam) LaguerreL[I lam/2, -2 I x] +
+      I lam Hypergeometric1F1[1 - I lam/2, 2, -2 I x]);
+
+zeta12 =
+   f0[-lam] ((1 + I lam) LaguerreL[-I lam/2, -2 I x] -
+      I lam Hypergeometric1F1[1 + I lam/2, 2, -2 I x]);
+
+{zeta11, zeta12} // TraditionalForm
+"], "Input"],
+
+Cell["7. Direct substitution in the original fourth-order ODE", "Section"],
+Cell["The symbolic identity is hard for Mathematica because it requires hypergeometric contiguous relations. The notebook tries it, then performs high-precision numerical tests.", "Text"],
+Cell[BoxData["
+res11 = odeX[zeta11];
+res12 = odeX[zeta12];
+
+symbolicResidual11 = safeSimplify[res11, 90]
+symbolicResidual12 = safeSimplify[res12, 90]
+"], "Input"],
+
+Cell[BoxData["
+numericResiduals[expr_, lamValue_] := Block[{$MaxExtraPrecision = 1000},
+   Table[
+    N[expr /. {lam -> SetPrecision[lamValue, 80], x -> SetPrecision[xValue, 80]}, 50],
+    {xValue, {1/10, 1, 3, 10, 25}}
+   ]
+];
+
+Chop[numericResiduals[res11, 59/50], 10^-35]
+Chop[numericResiduals[res12, 59/50], 10^-35]
+"], "Input"],
+
+Cell["Expected: symbolicResidual11 and symbolicResidual12 may or may not reduce to 0 depending on Mathematica version. The numerical residual lists should be zeros after Chop.", "Text"],
+
+Cell["8. Boundary relation for the two solutions", "Section"],
+Cell["This checks -2 I zeta'(0+) = lam^2 zeta(0+). Series is used instead of one-sided Limit to avoid Direction-option issues.", "Text"],
+Cell[BoxData["
+series11 = Series[zeta11, {x, 0, 1}] // Normal // FunctionExpand;
+series12 = Series[zeta12, {x, 0, 1}] // Normal // FunctionExpand;
+
+z11At0 = FullSimplify[series11 /. x -> 0, Assumptions -> lam > 0];
+z11PrimeAt0 = FullSimplify[D[series11, x] /. x -> 0, Assumptions -> lam > 0];
+
+z12At0 = FullSimplify[series12 /. x -> 0, Assumptions -> lam > 0];
+z12PrimeAt0 = FullSimplify[D[series12, x] /. x -> 0, Assumptions -> lam > 0];
+
+boundaryCheck11 = FullSimplify[-2 I z11PrimeAt0 - lam^2 z11At0, Assumptions -> lam > 0]
+boundaryCheck12 = FullSimplify[-2 I z12PrimeAt0 - lam^2 z12At0, Assumptions -> lam > 0]
+"], "Input"],
+
+Cell["Expected: boundaryCheck11 = 0 and boundaryCheck12 = 0.", "Text"],
+
+Cell["9. Large-x normalization", "Section"],
+Cell["The symbolic limit is branch-sensitive, so the numerical tables are the practical check.", "Text"],
+Cell[BoxData["
+Table[N[(zeta11/x^(I lam/2)) /. {lam -> 59/50, x -> X}, 30], {X, {50, 100, 200, 500, 1000}}]
+Table[N[(zeta12/x^(-I lam/2)) /. {lam -> 59/50, x -> X}, 30], {X, {50, 100, 200, 500, 1000}}]
+"], "Input"],
+
+Cell["Conclusion", "Section"],
+Cell["The essential certifications are: lapEquationCheck = 0, shiftCheck = 0, lPlusResidual = lMinusResidual = 0, transformBackPlus = transformBackMinus = 0 if Mathematica can finish them, numerical ODE residuals equal zero after Chop, and boundaryCheck11 = boundaryCheck12 = 0. Together these confirm the procedure for the two known bounded solutions.", "Text"]
+},
+WindowSize -> {1100, 850},
+WindowMargins -> {{Automatic, 80}, {Automatic, 40}},
+StyleDefinitions -> "Default.nb"
+]

@@ -1,0 +1,1497 @@
+% ****** Start of file aipsamp.tex ******
+%
+%   This file is part of the AIP files in the AIP distribution for REVTeX 4.
+%   Version 4.2a of REVTeX, December 2014
+%
+%   Copyright (c) 2014 American Institute of Physics.
+%
+%   See the AIP README file for restrictions and more information.
+%
+% TeX'ing this file requires that you have AMS-LaTeX 2.0 installed
+% as well as the rest of the prerequisites for REVTeX 4.2
+%
+% It also requires running BibTeX. The commands are as follows:
+%
+%  1)  latex  aipsamp
+%  2)  bibtex aipsamp
+%  3)  latex  aipsamp
+%  4)  latex  aipsamp
+%
+% Use this file as a source of example code for your aip document.
+% Use the file aiptemplate.tex as a template for your document.
+\documentclass[%
+ aip,
+ jmp,%
+ amsmath,amssymb,
+%preprint,%
+ reprint,%
+%author-year,%
+%author-numerical,%
+]{revtex4-2}
+
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{ulem}
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+
+\begin{document}
+
+
+
+\preprint{AIP/123-QED}
+
+\title[Bogoliubov transformation]{Bogoliubov transformation:\\ Analytical solution on a multi-field inflation model}% Force line breaks with \\
+
+\author{Javier Huenupi}
+\homepage{https://www.cec.uchile.cl/~javier.huenupi/}
+\email{huenupi1@sas.upenn.edu}
+\affiliation{ 
+Department of Physics and Astronomy, University of Penssylvania, 209 S 33rd St, Philadelphia, United States.%\\This line break forced with \textbackslash\textbackslash
+}%
+\author{Claudio Muñoz}%
+\affiliation{%
+Departamento de Ingeniería Matemática and Centro de Modelamiento Matemático (UMI
+2807 CNRS), Universidad de Chile, Casilla 170 Correo 3, Santiago, Chile.%\\This line break forced% with \\
+}%
+\author{Gonzalo Palma}
+\affiliation{ 
+Departamento de Física, FCFM, Universidad de Chile, Blanco Encalada 2008, Santiago, Chile%\\This line break forced with \textbackslash\textbackslash
+}%
+\author{Spyros Sypsas}
+\affiliation{
+Centro de Ciencias Exactas, Facultad de Ciencias, Universidad del Bío-Bío, Chillán, Chile.
+}
+\affiliation{
+High Energy Physics Research Unit, Faculty of Science, Chulalongkorn University, Bangkok 10330, Thailand.
+}
+ %\email{Second.Author@institution.edu.}
+
+
+
+ %\homepage{http://www.Second.institution.edu/~Charlie.Author.}
+
+
+\date{\today}% It is always \today, today,
+             %  but any date may be explicitly specified
+
+\begin{abstract}
+%Queremos encontrar las soluciones analiticas de los coeficientes de Bogoliubov asociados a los campos primordiales de curvatura $\zeta$ y al campo de isocurvatura $\psi$, imponiendo condiciones iniciales correspondientes.
+%
+
+We \sout{are trying to obtain} obtained analytical solutions of Bogoliubov coefficients associated to the primordial curvature perturbation $\zeta$ and the isocurvature perturbation $\psi$, imposing corresponding initial conditions and considering a constant coupling $\lambda$.
+\end{abstract}
+
+\keywords{inflation, Bogoliubov, multi-field inflation}%Use showkeys class option if keyword
+                              %display desired
+\maketitle
+
+\newcommand{\z}{\zeta}
+\newcommand{\p}{\psi}
+\newcommand{\Pm}{\mathcal{P}}
+\newcommand{\Mm}{\mathcal{M}}
+\newcommand\myatop[2]{\left[{{#1}\atop#2}\right]}
+\newcommand{\mycomment}[1]{}
+\newcommand{\Le}{\mathcal{L}_\epsilon}
+
+
+
+%\section{\label{sec:Introduccion}Introducci\'on}
+
+%\subsection{Ecuaciones de movimiento de los campos}\label{subs1p1}
+
+%Sean $\psi=\psi(N)$ y $\zeta=\zeta(N)$, donde $N=\ln{(a(t))}=Ht$, con $H$ constante. Las ecuaciones (14) y (15) de Palma et al. \cite{Palma_2020} en estas nuevas variables se escriben
+% \begin{equation} \label{eq: or_psi}
+%     \psi''+3\psi'+(\sigma e^{-2N}-\lambda^2)\psi+\lambda \zeta'=0\,,
+% \end{equation}
+% y
+% \begin{equation} \label{eq: or_zeta}
+%    \zeta''+3\zeta'+\sigma e^{-2N}\zeta-\lambda \psi'-3\lambda\psi=0\,,
+% \end{equation}
+%donde definimos $\sigma=(k/H)^2$ constante. El tiempo en estas expresiones puede ser cualquier real, $t\in \mathbb R$.
+%Denotamos las derivadas son con respecto a e-folds $N$ como
+%\begin{equation*}
+%    \dv[n]{\zeta}{N}=\zeta^{(n)}\,,
+%\end{equation*}
+%donde $N=Ht\in \mathbb R$. Derivando las ecuaciones \eqref{eq: or_psi}-\eqref{eq: or_zeta} y reemplazando según corresponda para obtener EDOs desacopladas, pasamos de EDOs de segundo orden acopladas a EDOs de cuarto orden desacopladas para $\psi$ y $\zeta$:
+%\begin{equation*} %\label{eq: psi-descop}
+%    \begin{aligned}
+%        \psi^{(4)} & + 8\psi^{(3)}+ \left(2\sigma e^{-2N}+21\right)\psi''  +\left(18+4\sigma e^{-2N}\right)\psi' \\
+%        &~{} +\left(-\lambda^2\sigma e^{-2N}+\sigma^2 e^{-4N}\right)\psi=0\,,
+%\end{aligned}
+%\end{equation*}
+%y
+%\begin{equation*} %\label{eq: zeta-desacop}
+%    \begin{aligned}
+%        & \left(\lambda^2 e^{2N} -\sigma \right)e^{2N}\zeta^{(4)}  + \left(  -5 \sigma e^{2N} + 6\lambda^2 e^{4N}+-3\sigma^2 e^{2N}\right)\zeta^{(3)}\\
+%        & \quad + \left(-15\sigma e^{2N}+ 2\lambda^2\sigma e^{2N} + 9\lambda^2 e^{4N}  \right)\zeta'' + \left(6\sigma^2-6\lambda^2\sigma e^{2N} + 6\lambda^4 e^{4N}\right)\zeta'\\
+%        & \quad + \left(6\sigma^2+2\lambda^2\sigma^2-\sigma^3 e^{-2N}-2\lambda^2\sigma e^{2N}-\lambda^4\sigma e^{2N}\right)\zeta=0\,.
+%    \end{aligned}
+%\end{equation*}
+
+\section{Bogoliubov coefficients}
+
+Mode functions of the fields $\zeta$ and $\psi$ can be written in function of Bogoliubov coefficients. We define the independent variable $t$ in function of $e$-folds
+\begin{equation}
+    t:=N-N_k,
+\end{equation}
+with  $N_k=\ln{(k/H)}$ constant during inflation, and $k$ the wavenumber. The ODEs which describe the evolution of these coefficients are:
+\begin{equation}\label{Bogo}
+\begin{aligned}
+    \zeta_1'= &~{} \frac{\lambda}{2}\left(1+i e^{t}\right)\psi_1 + \frac{\lambda}{2}\left(1-i e^{t}\right)e^{-2i e^{-t}}\psi_2, \\
+    \zeta_2'= &~{}  \frac{\lambda}{2}\left(1+i e^{t}\right)e^{+2i e^{-t}}\psi_1 + \frac{\lambda}{2}\left(1-i e^{t}\right)\psi_2, \\
+    \psi_1'= &~{}  -\frac{\lambda}{2}\left(1-i e^{t}\right)\zeta_1 + \frac{\lambda}{2}\left(1-i e^{t}\right)e^{-2i e^{-t}}\zeta_2, \\
+    \psi_2'=&~{}  \frac{\lambda}{2}\left(1+i e^{t}\right)e^{+2i e^{-t}}\zeta_1 - \frac{\lambda}{2}\left(1+i e^{t}\right)\zeta_2.
+\end{aligned}
+\end{equation}
+where the derivatives ($'$) are taken with respect to the time $t$. Additionally, the intial conditions, imposed at $t = - \infty$ are [\textbf{Check this, I don't remember where I got it}]
+\begin{equation}
+    (\zeta_1, \zeta_2, \psi_1, \psi_2)(t=-\infty) = (1,0,0,0).
+\end{equation}
+
+We can decouple the equations of Eq.~\eqref{Bogo} passing them to 4th order ODEs (check Appendix). This is
+\begin{equation} \label{eq: zeta_1-4order}
+    \begin{aligned}
+        \zeta_1^{(4)} & + \left(2-4i e^{-t}\right)\zeta_1^{(3)} + \left(-1-2i e^{-t} - 4 e^{-2t}\right)\zeta_1''\\
+        &\qquad  + \left(-2+4i e^{-t}\right)\zeta_1'  -\lambda^2 e^{-2t}\zeta_1=0,
+    \end{aligned}
+\end{equation}
+\begin{equation} %\label{eq: zeta_2-4order}
+    \begin{aligned}
+        \zeta_2^{(4)} & + \left(2+4i e^{-t}\right)\zeta_2^{(3)}+ \left(-1+2i e^{-t} - 4 e^{-2t}\right)\zeta_2''\\
+        & \qquad + \left(-2-4i e^{-t}\right)\zeta_2' -\lambda^2 e^{-2t}\zeta_2=0,
+    \end{aligned}
+\end{equation}
+\begin{equation} 
+    \begin{aligned}
+        \left(i+ e^{t}\right)^3 e^{2t}\psi_1^{(4)} & + \left(i+e^t\right)\left(4i e^t + 6 e^{2t} - 4i e^{3t} - 2 e^{4t}\right)\psi_1^{(3)}\\
+        & + \left(i+e^t\right)\left(4-6i e^t - 11 e^{2t} + 2i e^{3t} + e^{4t}\right)\psi_1''\\
+        & + \left(-4 e^{t} + 2i e^{2t} + 6 e^{3t}\right)\psi_1' + \lambda^2\left(i+e^t\right)^3\psi_1=0,
+    \end{aligned}
+\end{equation}
+and finally
+\begin{equation} 
+    \begin{aligned}
+        \left(-i+ e^{t}\right)^3 e^{2t}\psi_2^{(4)} & + \left(-i+e^t\right)\left(-4i e^{t}+6e^{2t}+4i e^{3t} - 2 e^{4t}\right)\psi_2^{(3)}\\
+        & + \left(-i+e^t\right)\left(4 + 6i e^{t} - 11 e^{2t} - 2i e^{3t}+e^{4t}\right)\psi_2''\\
+        & + \left(-4 e^{t}-2i e^{2t}+6 e^{3t}\right)\psi_2'  +\lambda^2\left(-i+e^t\right)^3\psi_2=0.
+    \end{aligned}
+\end{equation}
+%Recordar que estos tiempos son $t=N-N_k\in(-\infty,\infty)$.
+From the previous equations, apparently, the one related to $\zeta_1$, Eq.~\eqref{eq: zeta_1-4order}, seems the most manageable. Therefore, we perform the usual change of variable $x=e^{-t}>0$ in Eq.~\eqref{eq: zeta_1-4order}, to obtain:
+\begin{equation}\label{eq:zeta_1(x)}
+\boxed{\begin{aligned}
+& x^2\zeta_1^{(4)}(x) + 4x(1+ ix)\zeta_1^{(3)}(x) \\
+& \quad + 2x (5i-2x)\zeta_1''(x) - 2(i+2x)\zeta_1'(x) - \lambda^2\zeta_1(x)=0.
+\end{aligned}}
+\end{equation}
+This is going to be the main equation of this work. Additionally, if we assume that $\lim_{x\to 0}\zeta_1^{(k)}(x)$ exists for each value of $k=0,1,2,3, 4$, then necessarily we would have the relation
+
+
+\begin{equation}\label{cond_imp}
+-2i \zeta_1'(0) = \lambda^2 \zeta_1(0).%
+\end{equation}
+Is important to note that 
+\begin{enumerate}
+\item[(a)]  $t\to+\infty$ is equivalent to $x\to 0$ (unknown final behaviour), and
+
+\item[(b)]  $t\to-\infty$ is equivalent to $x\to +\infty$.
+\end{enumerate}
+However, we know some solutions are not finite in this limit, and Eq.~\eqref{cond_imp} does not hold in that case. In what follows, we will be assuming that  $\lambda \in \mathbb{R}^+$. 
+
+
+\section{\label{sec:Condiciones iniciales}Initial conditions and asymptotics}
+
+If we work with the $\zeta_1$'s 4th-order ODE, we will need the initial conditions for $\zeta_1$ and its derivatives. A simple asymptotic analysis (using \texttt{Mathematica}) reveal that the linearly independent solutions $\zeta_{1,j}$, $j=1,2,3,4$,  have the following oscillatory behavior when $x\to +\infty$:
+\begin{equation}
+\begin{aligned}
+\zeta_{1,1}(x,\lambda) =&~{} x^{ \frac12 i \lambda}+ \hbox{l.o.t.},\\
+\zeta_{1,2}(x,\lambda) =&~{} \zeta_{1,1}(x,-\lambda) = x^{- \frac12 i \lambda}+ \hbox{l.o.t.},\\
+\zeta_{1,3}(x,\lambda) =&~{} x^{-1+ \frac12 i \lambda}+ \hbox{l.o.t.},\\
+\zeta_{1,4}(x,\lambda) =&~{} \zeta_{1,3}(x,-\lambda) =x^{-1- \frac12 i \lambda}+ \hbox{l.o.t.}
+\end{aligned}
+\end{equation}
+Here, l.o.t. means terms decaying to zero as $x\to +\infty$, as fast as $x^{-1}$ in absolute value with respect to the previous member of the expansion. Additionally, $\zeta_{1,1}(x,0)=\zeta_{1,2}(x,0)$. Let $\zeta_{1,0}(x,\lambda)$ be the {\bf scattering or Jost} solution of Eq.~\eqref{eq:zeta_1(x)} such that 
+\begin{equation}
+\lim_{x\to +\infty} |\zeta_{1,0}(x,\lambda) - x^{ \frac12 i \lambda} | =0.
+\end{equation}
+Notice that $\zeta_{1,0}(x,\lambda) = \zeta_{1,1}(x,\lambda) + c_1 \zeta_{1,3}(x,\lambda) +c_2 \zeta_{1,4}(x,\lambda)$, and this solution has two free parameters coming from $\zeta_{1,3}(x,\lambda)$ and $\zeta_{1,4}(x,\lambda) $. We want to analyze the behavior of this solution as $x\to 0$. First of all, notice that the Wronskian $W(x,\lambda)$ of $\{\zeta_{1,j}(x,\lambda)\}_{j=1,\ldots,4}$ satisfies
+\begin{equation}
+W(x,\lambda) = \frac{e^{-4ix}}{x^4}.
+\end{equation}
+Notice that $W$ does not depend on $\lambda$, but it does depend on $x$, natural from the singular behavior of the ODE at $x=0$. This also reveals that there exists unbounded solutions to Eq.~\eqref{eq:zeta_1(x)} as $x\to 0$. The analysis around zero reveals the behavior of the four linearly independent solutions as follows:
+\begin{equation}\label{eq:asymptotic-behaviour-x-zero}
+\begin{aligned}
+\zeta_{1,1}^0(x,\lambda) =&~{} \frac6x + 6i \log x -33i -3\lambda^2 x\log x+ \hbox{l.o.t.},\\
+\zeta_{1,2}^0(x,\lambda) =&~{} 2-4ix +\frac13 (4+\lambda^2) x^2 \log x+ \hbox{l.o.t.},\\
+\zeta_{1,3}^0(x,\lambda) =&~{} x +\frac13ix^2\log x + \hbox{l.o.t.},\\
+\zeta_{1,4}^0(x,\lambda) =&~{} x^2 + \hbox{l.o.t.}.%
+\end{aligned}
+\end{equation}
+Notice that $\zeta_{1,1}$ is not equal to $\zeta_{1,1}^0$ and so on. The purpose next is to find $\zeta_{1,1}$ and $\zeta_{1,2}$, which will be related to $\zeta_{1,2}^0$.
+
+%\medskip
+%
+%{\color{red}
+%Initially we just know that
+%%Si trabajamos con la EDO de cuarto orden de $\z_1$, necesitamos las condiciones iniciales para $\z_1$ y sus derivadas. Inicialmente solo sabemos que
+%\begin{equation}\label{CIs0}
+%    \z_1=1,\quad \z_2=\p_1=\p_2=0, \quad x\to +\infty.
+%\end{equation}
+%Therefore, to find the values of $\zeta_1$ and its derivatives at $x\to +\infty$, we need to use the complete ODEs system.
+%%Entonces para conocer los valores en $x\to +\infty$ para las derivadas de $\z_1$ necesitamos usar el sistema de EDOs completo. 
+%%\textbf{Ojo} que hay que tener cuidado con los límites.
+%%\subsection{Condiciones iniciales}
+%%Las condiciones iniciales, en $t=-\infty$, para estos coeficientes son:
+%%\begin{equation}\label{inicio}
+%%    \z_1=1\,,\quad \z_2=\p_1=\p_2=0\,.
+%%\end{equation}
+%In what follows, we will prove that at $x\to +\infty$, using the initial conditions Eq.~\eqref{CIs0} and the ODEs system Eq.~\eqref{Bogo}, we have
+%%En lo que sigue, probaremos que para $x\to +\infty$, y usando \eqref{CIs0} más las ecuaciones, tendremos
+%\begin{equation}\label{CIs}
+% \boxed{
+%    \z_1=1,\quad \z_1'=\z_1''=\z_1^{(3)}=0.
+%    }
+%\end{equation}
+%In fact, recalling that the system, with $x=e^{-t}$, is:
+%%En efecto, recordemos que el sistema, con $x=e^{-t}$, es:
+%\begin{equation}\label{eqCI:zeta'}
+%\begin{aligned}
+%    \zeta_1'= &~{} \frac{i\lambda }{2x^2} \left( \left(ix- 1\right)\psi_1 +\left(ix+ 1\right)e^{-2i x}\psi_2 \right), \\
+%    \zeta_2'=&~{}  \frac{i\lambda}{2x^2} \left( \left(ix-1\right)e^{2i x}\psi_1 + \left(ix+ 1\right)\psi_2 \right), \\
+%    \psi_1'= &~{}  \frac{i\lambda}{2x^2} \left(- \left(ix + 1\right)\zeta_1 +\left(ix + 1\right)e^{-2i x}\zeta_2 \right), \\
+%    \psi_2'=&~{}  \frac{i\lambda}{2x^2} \left( \left(ix - 1\right)e^{2i x}\zeta_1 - \left(ix - 1\right)\zeta_2 \right),
+%\end{aligned}
+%\end{equation}
+%where now the derivates are taken as $' = \dv{x}$.
+%
+%Entonces de \eqref{eqCI:zeta'} es fácil notar que tenemos la condición inicial
+%\begin{equation}\label{eq:CI-coeficientes-1-prima}
+%    \lim_{x\to +\infty} \z_1'(x) = \lim_{x\to +\infty} \z_2'(x)=  \lim_{x\to +\infty} \psi_1'(x)=  \lim_{x\to +\infty} \psi_2'(x)= 0.
+%\end{equation}
+%Para $\z_1''$ derivamos la primera ecuación de \eqref{eqCI:zeta'} una vez
+%\begin{equation}\label{eqCI:zeta_1''}
+%\begin{aligned}
+%    \zeta_1''(x) &= -\frac{\lambda}{2 x^2} (x+i) \psi_1'(x) - \frac{\lambda  e^{-2 i x}}{2 x^2} (x-i) \psi_2'(x)\\
+%    &\qquad + \frac{\lambda}{2 x^3} (x+2 i) \psi_1(x) + \frac{\lambda  e^{-2 i x}}{2 x^3} \left(2 i x^2+3 x-2 i\right) \psi_2(x)
+%\end{aligned}
+%\end{equation}
+%y por condiciones iniciales y \eqref{eq:CI-coeficientes-1-prima} sabemos que
+%\begin{equation}\label{eq:CIp1p2p1'p2'}
+%    \lim_{x \to +\infty} \qty(\psi_1(x), \psi_2(x), \psi_1'(x), \psi_2'(x)) = \qty(0,0,0,0)
+%\end{equation}
+%con lo que tenemos la condición inicial
+%\begin{equation}
+%   \lim_{x \to +\infty} \z_1''(x)=0\,.
+%\end{equation}
+%Nos faltaría la C.I. para $\z_1^{(3)}$, por lo que derivamos (\ref{eqCI:zeta_1''}) una vez
+%\begin{equation}
+%\begin{aligned}
+%    \zeta_1^{(3)}(x) &= -\frac{\lambda}{2 x^2} (x+i) \psi_1''(x) - \frac{\lambda  e^{-2 i x}}{2 x^2} (x-i) \psi_2''(x)\\
+%    &\qquad +\frac{\lambda}{x^3} (x+2 i) \psi_1'(x) - \frac{\lambda  e^{-2 i x}}{2 x^3} \left(-4 i x^2-6 x+4 i\right) \psi_2'(x)\\
+%    &\qquad -\frac{\lambda}{x^4} (x+3 i) \psi_1(x)- \frac{\lambda  e^{-2 i x}}{2 x^4} \left(-4 x^3+8 i x^2+10 x-6 i\right) \psi_2(x)
+%\end{aligned}
+%\end{equation}
+%donde por \eqref{eq:CIp1p2p1'p2'} vemos que de la segunda tiende a $0$ en $x \to +\infty$, así que nos falta conocer el límite de $\p_i''$ en $x\to+\infty$. Derivemos la ecuación de $\psi_1'(x)$ de \eqref{eqCI:zeta'}:
+%\begin{equation}
+%    \begin{aligned}
+%        \p_1''(x)=&\,-\frac{i \lambda  (-1+i x) }{2 x^2}\z_1'(x)+\frac{i \lambda  e^{-2 i x} (1+i x) }{2 x^2}\z_2'(x)\\
+%        &+\left(\frac{\lambda }{2 x^2}+\frac{i \lambda  (-1+i x)}{x^3}\right)\z_1(x) \\
+%        & + \left(-\frac{i \lambda  e^{-2 i x} (1+i x)}{x^3}+\frac{\lambda  e^{-2 i x} (1+i x)}{x^2}-\frac{\lambda  e^{-2 i x}}{2 x^2}\right)\z_2(x).
+%    \end{aligned}
+%\end{equation}
+%Por condiciones iniciales y \eqref{eq:CI-coeficientes-1-prima} sabemos que
+%\begin{equation}\label{eq:CIz1z2z1'z2'}
+%    \lim_{x \to +\infty}\qty(\zeta_1(x),\zeta_2(x),\zeta'_1(x),\zeta'_2(x)) = (1,0,0,0),
+%\end{equation}
+%por lo que tenemos que
+%\begin{equation}
+%    \lim_{x \to +\infty} \psi_1''(x) = 0.
+%\end{equation}
+%y para analizar el comportamiento de $\p_2''$ derivemos una vez la ecuación de $\psi_2'(x)$ de \eqref{eqCI:zeta'}:
+%\begin{equation}
+%    \begin{aligned}
+%        \p_2''(x)=&\,\frac{i \lambda  e^{2 i x} (-1+i x)}{2 x^2}\z_1'(x)-\frac{i \lambda  (-1+i x) }{2 x^2}\z_2'(x)\\
+%        &+\Bigg(-\frac{i \lambda  e^{2 i x} (-1+i x)}{x^3}-\frac{\lambda  e^{2 i x} (-1+i x)}{x^2}-\frac{\lambda  e^{2 i x}}{2 x^2}\Bigg)\z_1(x) \\
+%        & +\left(\frac{\lambda }{2 x^2}+\frac{i \lambda  (-1+i x)}{x^3}\right)\z_2(x)\,,
+%    \end{aligned}
+%\end{equation}
+%que por \eqref{eq:CIz1z2z1'z2'} tendríamos
+%\begin{equation}
+%   \lim_{x \to +\infty} \p_2''(x) = 0.
+%\end{equation}
+%Así que concluimos que la condición inicial restante es:
+%\begin{equation}
+% \lim_{x\to +\infty}   \z_1^{(3)}(x)=0\,,
+%\end{equation}
+%y juntando todo, nuestras condiciones iniciales para el coeficiente $\z_1$ son precisamente \eqref{CIs}.
+%
+%[\textcolor{orange}{JH: estos cálculos fueron comprobados el 20/04/2024}]
+%
+%}
+%
+
+
+
+
+\section{Bounded solutions and the Laplace transform}
+
+In what follows for this section, we will assume that both $\zeta_1$ and its derivatives until 4th order are functions that grow slower than the exponential, i.e. exist $C_k, b_k\geq 0$, $k=0,1,\ldots, 4$ such that
+\begin{equation}
+|\zeta_1^{(k)}(x)| \le C_k e^{b_k x}, \quad x\ge 0, \quad k=0,1,2,\ldots, 4.
+\end{equation}
+%En lo que sigue, asumiremos que tanto $\zeta_1$ como sus derivadas hasta orden 4 son funciones de crecimiento a lo m\'as exponencial, es decir existen $C_k, b_k\geq 0$, $k=0,1,\ldots, 4$ tales que
+%\[
+%|\zeta_1^{(k)}(x)| \le C_k e^{b_k x}, \quad x\ge 0, \quad k=0,1,2,\ldots, 4.
+%\]
+
+Note that this condition implies that $\zeta_1$ and its derivatives are defined at $x = 0$ and they are finite. In this  case, is possible to apply the Laplace Transform (LT) on Eq.~\eqref{eq:zeta_1(x)}. Recall that the definition of LT is the following:
+\begin{equation}\label{Laplace}
+    \mathcal{L}\left[f(x)\right](s)=\int_0^\infty f(x)e^{-sx}\dd{x}.
+\end{equation}
+\newtheorem*{remark}{Remark}
+\begin{remark}
+Note that in principle Eq.~\eqref{Laplace} is defined for $f$ fulfilling for some $C,\eta>0$,
+\begin{equation}\label{eq:condition-LT}
+|f(x)| \leq \frac{C}{x^{1-\eta}}, \quad x\to 0.
+\end{equation}
+Nevertheless, we will use this condition for the second part of this work.
+\end{remark}
+
+Computing the LT of Eq.~\eqref{eq:zeta_1(x)}, using Eq.~\eqref{Laplace} and basic properties (integration by parts), we obtain the following 2nd-order ODE for the LT $L_1(s)$:
+\begin{equation}\label{EDO2}
+s^2 \left(s^2+4is -4\right)L_1'' + 2s \left(-6+7is+2s^2\right)L_1' + \left(-\lambda^2+2is-4\right)L_1+2\left(b+2ai+as\right) = 0 ,
+\end{equation}
+where 
+\begin{equation}
+L_1(s)\equiv\mathcal{L}_{x\to s}\left[\zeta_1(x)\right](s)
+\end{equation}
+represents the $\zeta_1(x)$ LT, and
+\begin{equation}\label{def_a_y_b}
+    a:=\zeta_1(0)\quad \textnormal{y}\quad b:=\zeta_1'(0).
+\end{equation}
+Due to Eq.~\eqref{cond_imp}, there is a relation between the constants defined in Eq.~\eqref{def_a_y_b},
+\begin{equation*}
+    a= -\frac{2i}{\lambda^2} b,
+\end{equation*}
+thus Eq.~\eqref{EDO2} changes to
+\begin{equation}\label{EDO3}
+\begin{aligned}
+& s^2 \left(s^2+4is -4\right)L_1''(s) + 2s \left(2s^2+7is-6\right)L_1'(s) \\
+& \quad - \left(\lambda^2+4 -2is\right)L_1(s)+ \frac{2b}{\lambda^2} \left( \lambda^2 +4  -2i s\right)=0\,.
+\end{aligned}
+\end{equation}
+Notably, defining
+\begin{equation}
+\widetilde L_1(s):=   L_1(s) -  \frac{2b}{\lambda^2},
+\end{equation}
+from Eq.~\eqref{EDO3} we obtain the following homogeneous ODE for $\widetilde L_1$:
+\begin{equation}\label{EDO4}
+    \boxed{
+    s^2 \left(s^2+4is -4\right) \widetilde L_1''(s) + 2s \left(2s^2+7is-6\right) \widetilde L_1'(s) - \left(\lambda^2+4 -2is\right)\widetilde L_1(s)=0.
+    }
+\end{equation}
+
+The solution of Eq.~\eqref{EDO4} is explicit, given by
+\begin{equation}\label{eq:L1}
+    \widetilde L_1(s) = \frac{c_1}{s}P_1^{i \lambda }(1-i s) + \frac{c_2}{s} Q_1^{i \lambda }(1-i s)
+\end{equation}
+where $P^\alpha_\beta(x)$ and $Q^\alpha_\beta(x)$ represent the Legendre polynomials of first and second kind, respectively. It is not difficult to note that\footnote{We had to try different values of $\lambda$ and use \texttt{Mathematica}'s functions to find this expression.} for $\lambda >0$
+\begin{equation}\label{eq: P_1ilambda}
+    P_1^{i\lambda}(1-is)=\frac{1}{ \Gamma (2-\lambda i)} (1-\lambda i-i s) (2-i s)^{i\frac{\lambda}{2} } (i s)^{-i\frac{\lambda}{2}},%\qquad \forall \lambda,
+\end{equation}
+while $Q_1^{i\lambda}(1-is)$ can be written in function of the previous result for $P_1^{i\lambda}$, Eq.~\eqref{eq: P_1ilambda}, as follows:
+\begin{equation} \label{eq: Q_1ilambda}
+    \begin{aligned}
+    Q_1^{i\lambda}(1-is)= &~{} f_1(\lambda)P_1^{-i \lambda }(1-i s) + g_1(\lambda) P_1^{i \lambda }(1-i s), \quad \lambda>0.
+    \end{aligned}
+\end{equation}
+Here,
+\begin{equation}\label{eq:f_1 and g_1}
+    f_1(\lambda):= \frac{ \Gamma (2+i \lambda)}{2 \Gamma (2-i \lambda )}i \pi  \text{cosech}(\pi  \lambda ), \quad g_1(\lambda) := -\frac{i \pi}{2}   \text{cotanh} (\pi  \lambda ),
+\end{equation}
+where $\Gamma$ is the classic Gamma function, that is meromorphe except in non positives integers. Note that to compute the inverse LT, we are interested just in the terms depending on $s$, the rest is constant. That is why we can conclude from Eqs.~\eqref{eq:L1}, \eqref{eq: P_1ilambda} and \eqref{eq: Q_1ilambda}, that
+\begin{align}
+\widetilde L_1(s)= &~{} f_0(\lambda) (1-\lambda i-i s) (2-i s)^{i\frac{\lambda}{2} } (i s)^{-i\frac{\lambda}{2}-1}  + g_0(\lambda) (1+ \lambda i-i s) (2-i s)^{-i\frac{\lambda}{2} } (i s)^{i\frac{\lambda}{2}-1} \notag \\
+= : &~{} f_0(\lambda) \widetilde L_{1,\lambda}(s) +  g_0(\lambda) \widetilde L_{1,-\lambda}(s),\label{L1_final}
+\end{align}
+is the general solution of Eq.~\eqref{EDO4}, where
+\begin{equation}\label{singular}
+    \widetilde{L}_{1,\pm\lambda} := (1 \mp \lambda i-i s) (2-i s)^{\pm i\frac{\lambda}{2} } (i s)^{\mp i\frac{\lambda}{2}-1}.
+\end{equation}
+
+
+\subsection{Inverse Laplace transform}
+
+We need to find the inverse LT of Eq.~\eqref{L1_final}. In addition, it is important to emphasize that we have a integrand with complex values but well defined and of exponential type for any $s > 0$.
+%Queremos encontrar la funci\'on que realiza \eqref{L1_final}. Para ello, usaremos la Transformada de Laplace Inversa, recalcando que tenemos un integrando a valores complejos pero bien definido y de tipo exponencial para cualquier $s>0$.
+From Eq.~\eqref{L1_final}, we have
+\begin{equation}\label{eq:L1_final-2}
+    (1-\lambda i-i s) (2-i s)^{i\frac{\lambda}{2} } (i s)^{-i\frac{\lambda}{2}-1} = (1-\lambda i) (2-i s)^{i\frac{\lambda}{2} } (i s)^{-i\frac{\lambda}{2}-1} -  (2-i s)^{i\frac{\lambda}{2} } (i s)^{-i\frac{\lambda}{2}}.
+\end{equation}
+Then
+\begin{equation}\label{importante}
+\begin{aligned}
+& \mathcal L^{-1}\left(\widetilde L_{1,\lambda} (s) \right)(x) =  -i e^{\frac{\pi  \lambda}{2}}  \left( (1-\lambda i)  L_{i \lambda/2}(-2 i x)  + i\lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \right),
+\end{aligned}
+\end{equation}
+where $L_\lambda$ denotes the Laguerre function, and $\,_1F_1$ is the confluent Kummer hypergeometric function. Similarly, 
+\begin{equation}
+\begin{aligned}
+& \mathcal L^{-1}\left(\widetilde L_{1,-\lambda} (s) \right)(x) = -i  e^{-\frac{\pi  \lambda}{2}}   \left( (1+ \lambda i)L_{-i \lambda/2}(-2 i x) - i\lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x \right) \right).
+\end{aligned}
+\end{equation}
+Finally, note that $\mathcal L[\delta] =1$, where $\delta$ is the Dirac delta centered at the origin. We conclude, then, redefining $f_0$ and $g_0$, and using Eq.~\eqref{cond_imp},
+\begin{equation}
+\begin{aligned}
+\zeta_1(x)= &~{}i \zeta_1(0)\delta(x) \\
+&~{} + f_0(\lambda) \left(  (1-\lambda i)  L_{i \lambda/2}(-2 i x)  + i\lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \right)\\
+&~{} + g_0(\lambda) \left( (1+ \lambda i)L_{-i \lambda/2}(-2 i x) - i\lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x \right)\right).
+\end{aligned}
+\end{equation}
+Therefore, since $g_0(\lambda)=f_0(-\lambda)$,
+\begin{equation}\label{eq:sol-zeta1(x)}
+\begin{aligned}
+\zeta_1(x)= &~{}i \zeta_1(0)\delta(x) \\%  \frac{2\zeta_1'(0)}{\lambda^2}\delta(x) \\% i \zeta_1(0)\delta(x) \\ %\frac{2\zeta_1'(0)}{\lambda^2}\delta(x)
+&~{} + f_0(\lambda) \left(  (1-\lambda i)  L_{i \lambda/2}(-2 i x)  + i\lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \right)\\
+&~{} + f_0(-\lambda) \left( (1+ \lambda i)L_{-i \lambda/2}(-2 i x) - i\lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x \right)\right).
+\end{aligned}
+\end{equation}
+Furthermore, because we are considering $x = e^{-t} > 0$, we can just ignore the Dirac delta function contribution from Eq.~\eqref{eq:sol-zeta1(x)}.\\
+
+Finally, considering the new definition of $f_0(\lambda)$,
+\begin{equation}
+f_0(\lambda):= \Gamma(1+\frac12i\lambda)  (1-\lambda i)^{-1}(2i)^{-i\lambda/2},
+\end{equation}
+from Eq.~\eqref{eq:sol-zeta1(x)} we identify
+\begin{equation}\label{eq:sol-zeta1(x)_xpos}
+\begin{aligned}
+\zeta_{1,1}(x) := &~{} f_0(\lambda) \left(  (1-\lambda i)  L_{i \lambda/2}(-2 i x)+ i \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \right),\\
+\zeta_{1,2}(x) : =  &~{}  f_0(-\lambda) \left( (1+ \lambda i)L_{-i \lambda/2}(-2 i x) -i \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x \right)\right),
+\end{aligned}
+\end{equation}
+are linearly independent solutions of the ODE of Eq.~\eqref{eq:zeta_1(x)}.\\
+
+Briefly analyzing the functions of Eq.~\eqref{eq:sol-zeta1(x)_xpos}, we know that
+\begin{equation*}
+    \lim_{x\to 0}\,_1F_1\qty(1-\frac{\lambda}{2}i;2;-2ix)=1, \quad  \lim_{x\to\infty}\,_1F_1\qty(1-\frac{\lambda}{2}i;2;-2ix)=0\,, \quad \forall \lambda,
+\end{equation*}
+and
+\begin{equation*}
+    \lim_{x\to 0}L_{i\lambda/2}(-2ix)=1,\quad   \lim_{x\to\infty} \Gamma \left( 1+\frac12i\lambda \right) (2i)^{-i\lambda/2} L_{i\lambda/2}(-2ix) x^{-\frac12i\lambda}=1,\quad \lambda>0\,.
+\end{equation*}
+Moreover, since Eq.~\eqref{cond_imp} holds, one needs to check that $-2i \zeta_1'(0^+) = \lambda^2 \zeta_1(0^+)$. This is, indeed, satisfied for $\zeta_{1,1}$ and $\zeta_{1,2}$.\\
+
+We can prove that Eq.~\eqref{eq:sol-zeta1(x)_xpos} are L.I. solutions replacing them into Eq.~\eqref{eq:zeta_1(x)}. Doing this, we obtain
+\begin{equation}
+\begin{aligned}
+    \text{ODE}\qty[\zeta_{1,1}] &= \frac{1}{x}\Bigg[ x(1-i \lambda )(\lambda^2 -2 i\lambda)\, _1F_1\left(1-\frac{i \lambda }{2};3;-2 i x\right)\\
+    &\qquad\:\:\: +2 (1-i \lambda )(\lambda +4 x-4 i) L_{\frac{i \lambda }{2}+1}(-2 i x)\\
+    &\qquad\:\:\: -2 (4+\lambda  (\lambda -3 i)) (2 x-i) \, _1F_1\left(-\frac{i \lambda }{2}-1;2;-2 i x\right)\Bigg],
+\end{aligned}
+\end{equation}
+which, using the relation
+\begin{equation*}
+L_\nu (z) = \,_1F_1(-\nu;1;z)
+\end{equation*}
+can be written purely in terms of $\,_1 F_1$ functions as
+\begin{equation}\label{eq:ODE[zeta_11]}
+\begin{aligned}
+    \text{ODE}\qty[\zeta_{1,1}] &= x(1-i \lambda )(\lambda^2 -2 i\lambda)\, _1F_1\left(1-\frac{i \lambda }{2};\,3;-2 i x\right)\\
+    &\quad +2 (1-i \lambda )(\lambda +4 x-4 i) \,_1F_1\qty(-1 - \frac{i\lambda}{2};\,1;-2ix)\\
+    &\quad -2 (4+\lambda  (\lambda -3 i)) (2 x-i) \, _1F_1\left(-1 - \frac{i \lambda }{2};\,2;-2 i x\right),
+\end{aligned}
+\end{equation}
+where since $x>0$ we can ignore the $1/x$ term. Apparently, this expression is non-zero, nevertheless, plotting Eq.~\eqref{eq:ODE[zeta_11]} with a \textit{non-particular} value for $\lambda$, we obtain the following figure:
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/ODE-applied-zeta11.pdf}
+    \caption{Plot of $\text{ODE}[\zeta_{1,1}(x)]$ versus $x$, Eq.~\eqref{eq:ODE[zeta_11]}, for $\lambda = 1.18$.}
+    \label{fig:ODE-applied-zeta11}
+\end{figure}
+
+As we can see in FIG.~\ref{fig:ODE-applied-zeta11} is just numerical error, implying $\zeta_{1,1}(x)$ is actually a solution of Eq.~\eqref{eq:zeta_1(x)}. Moreover, we can do the same for $\zeta_{1,2}(x)$, obtaining the same result.
+
+In conclusion, with the Laplace Transform method and using the assumption of Eq.~\eqref{cond_imp}, we were able to obtain two linearly independent solutions for $\zeta_1(x)$. 
+
+\section{Unbounded solutions}
+
+We already have two out of four solutions of Eq.~\eqref{eq:zeta_1(x)}, and from Eq.~\eqref{eq:asymptotic-behaviour-x-zero} we know the remaining solutions are not finite at $x = 0$, thus we cannot use the very useful relation Eq.~\eqref{cond_imp} that we used to obtain Eq.~\eqref{EDO3}. Additionally, to use the LT, the solutions have to fulfill Eq.~\eqref{eq:condition-LT}. Therefore, we have to find a different method to compute these two remaining solutions.
+
+Notably, we can see that the solutions Eq.~\eqref{eq:sol-zeta1(x)_xpos} are of the form
+\begin{equation} \label{eq:zeta_one-one-two-1F1}
+    \zeta_{1,\{1,2\}}(x) = (1 \pm i \lambda) \,_1 F_1\qty(\pm \frac{i \lambda}{2}; 1, - 2 i x) - i \dv{x} \,_1 F_1 \qty(\pm \frac{i \lambda}{2}; 1; -2 i x),
+\end{equation}
+where $\,_1 F_1(q;1;z)$ is one of the solutions of the Kummer's equation,
+\begin{equation}
+    \mathcal{K}_q[w] \equiv z w'' + (1 - z) w' - q w = 0,%
+    \label{eq:Kummer-equation}
+\end{equation}
+with $q \in \mathbb{C}$ a free constant. Additionally, this equation has another L.I. solution
+\begin{equation}
+    w(z) = U(q,1,z),
+\end{equation}
+the Tricomi's confluent hypergeometric function. Therefore, it is reasonable to expect that, perhaps, since Eq.~\eqref{eq:zeta_one-one-two-1F1} is in terms of the same hypergeometic function, the remaining solutions are giving by the same combination but using $U(q,1,z)$ instead of $\,_1 F_1(q;1;z)$.
+
+To confirm this, we propose the following ansatz, inspired by the form of Eq.~\eqref{eq:zeta_one-one-two-1F1}:
+\begin{equation}
+    \zeta(x) = (1 + 2 q) w(x) - i \dv{w(x)}{x},
+\end{equation}
+or, in terms of $z = -2 i x$,
+\begin{equation}
+    \zeta(x) = (1 + 2 q) w(z) - 2 \dv{w(z)}{z},%
+    \label{eq:ansatz-remaining-sol}
+\end{equation}
+where we anticipate $q = \pm i \lambda/2$. Now, performing the same change of variable $z = - 2 i x$ in Eq.~\eqref{eq:zeta_1(x)}, we have
+\begin{equation}
+    z^2 \zeta^{(4)}(z) + (4 z - 2 z^2) \zeta^{(3)}(z) + (z^2 - 5 z) \zeta''(z) + (1 + z) \zeta'(z) + \frac{\lambda^2}{4} \zeta(z) = 0, 
+\end{equation} 
+where we have to replace the ansatz and write the higher order derivatives of $w$ in terms of lower orders using the Kummer's equation, Eq.~\eqref{eq:Kummer-equation}. Doing this, we obtain
+\begin{equation}
+    \qty(\frac{\lambda^2}{4} + q^2) \qty[(1 + 2 q) w(z) - 2 w'(z)] = \qty(\frac{\lambda^2}{4} + q^2) \zeta(z) = 0,
+\end{equation}
+which is zero for an arbitrary $z$ if and only if $q = \pm i \lambda/2$, as we expected. Therefore, we confirm Eq.~\eqref{eq:ansatz-remaining-sol} is a solution for every $w(z)$ which satisfies the Kummer's equation, Eq.~\eqref{eq:Kummer-equation}. 
+
+In particular, choosing $\,_1 F_1(q;1;z)$ for $w(z)$, we obtain the already known solutions,
+\begin{align}
+    \zeta(z) & = \qty(1 \pm i \lambda) \,_1 F_1 \qty(\pm \frac{i \lambda}{2}; 1; z) - 2 \dv{z} \,_1 F_1 \qty(\pm \frac{i \lambda}{2}; 1; z) \notag \\
+    & = \qty(1 \pm i \lambda) L_{\mp i \lambda/2} (z) \mp i \lambda \, _1 F_1 \qty(1 \pm \frac{i \lambda}{2}; 2; z),
+\end{align}
+and the two new solutions are given by choosing $U(q,1,z)$ for $w(z)$,
+\begin{align}
+    \zeta(z) & = \qty(1 \pm i \lambda) U\qty(\pm \frac{i \lambda}{2}, 1, z) - 2 \dv{z} U\qty(\pm \frac{i \lambda}{2}, 1, z) \notag \\
+    & = \qty(1 \pm i \lambda) U\qty(\pm \frac{i \lambda}{2}, 1, z) \pm i \lambda U\qty(1 \pm \frac{i \lambda}{2}, 2, z).
+\end{align}
+which we identify as $\zeta_{1,3}$ and $\zeta_{1,4}$
+\begin{align}
+    \zeta_{1,3}(x) & := \qty(1 - i \lambda) U\qty(- \frac{i \lambda}{2}, 1, -2 i x) - i \lambda U\qty(1 - \frac{i \lambda}{2}, 2, -2 i x), \\
+    \zeta_{1,4}(x) & := \qty(1 + i \lambda) U\qty( \frac{i \lambda}{2}, 1, -2 i x) + i \lambda U\qty(1 + \frac{i \lambda}{2}, 2, -2 i x).
+\end{align}
+Actually, we confirm they are solutions replacing them directly into Eq.~\eqref{eq:zeta_1(x)}, where now \texttt{Mathematica} can simplify completely the resulting expression and show the result is zero (without the necessity of plotting numerically).
+
+In fact, we can analyze the asymptotic behavior of these solutions at $x = 0$,
+\begin{align}
+    \lim_{x \to 0^+} \zeta_{1,3}(x) & = \frac{i}{\Gamma\qty(- \frac{i \lambda}{2})} \qty(\frac{1}{x} + i \log(x)) + \dotso \\
+    \lim_{x \to 0^+} \zeta_{1,4}(x) & = \frac{i}{\Gamma\qty( \frac{i \lambda}{2})} \qty(\frac{1}{x} + i \log(x)) + \dotso,
+\end{align}
+and, defining the following linear combination
+\begin{equation}
+    \zeta_{1,1}^{0}(x) := a \zeta_{1,4}(x) + \qty[- 6 i \Gamma\qty(- \frac{i \lambda}{2}) - a \frac{\Gamma\qty(- \frac{i \lambda}{2})}{\Gamma\qty( \frac{i \lambda}{2})}] \zeta_{1,3}(x),
+\end{equation}
+its asymptotic behavior at $x = 0$ is
+\begin{equation}
+    \lim_{x \to 0^+} \zeta_{1,1}^{0}(x) = \frac{6}{x} + 6 i \log(x) - 3 \lambda^2 x \log(x) + \dotso
+\end{equation}
+which is exactly the same behaviour as the first function in Eq.~\eqref{eq:asymptotic-behaviour-x-zero}.\footnote{We still have the freedom to choose $a$ in order to match with the constant value $- 33 i$.}
+
+Therefore, finally we conclude the four independent solutions of Eq.~\eqref{eq:zeta_1(x)} are:
+\begin{align}
+\zeta_{1,1}(x) & =   (1-\lambda i)  L_{i \lambda/2}(-2 i x)+ i \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) ,\\
+\zeta_{1,2}(x) & =   (1+ \lambda i)L_{-i \lambda/2}(-2 i x) -i \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x \right) ,\\  
+\zeta_{1,3}(x) & =  (1 - i \lambda) U\qty(- \frac{i \lambda}{2}, 1, -2 i x) - i \lambda U\qty(1 - \frac{i \lambda}{2}, 2, -2 i x),\\
+\zeta_{1,4}(x) & =  (1 + i \lambda) U\qty( \frac{i \lambda}{2}, 1, -2 i x) + i \lambda U\qty(1 + \frac{i \lambda}{2}, 2, -2 i x).
+\end{align}
+
+\section{Computing the rest of the system}
+
+Now we have the full solution for $\zeta_1(x)$, and, hopefully, we can use this to compute $\zeta_2$, $\psi_1$, and $\psi_2$. First, writing Eq.~\eqref{Bogo} in terms of $x = e^{-t}$, we have
+\begin{align}
+    \zeta_1'(x) & = \frac{i \lambda}{2 x^2} \qty[(i x - 1) \psi_1(x) + (i x + 1) e^{- 2 i x} \psi_2(x)], \label{eq:zeta_1_prime-x}\\
+    \zeta_2'(x) & = \frac{i \lambda}{2 x^2} \qty[(i x - 1) e^{2 i x} \psi_1(x) + (ix + 1) \psi_2(x)], \label{eq:zeta_2_prime-x}\\
+    \psi_1'(x) & = \frac{i \lambda}{2 x^2} \qty[- (i x + 1) \zeta_1(x) + (i x + 1) e^{- 2 i x} \zeta_2(x)], \label{eq:psi_1_prime-x}\\
+    \psi_2'(x) & = \frac{i \lambda}{2 x^2} \qty[(i x - 1) e^{2 i x} \zeta_1(x) - (i x - 1) \zeta_2(x)], \label{eq:psi_2_prime-x}.
+\end{align}
+Now, differentiating Eq.~\eqref{eq:zeta_1_prime-x} once, and replacing $\psi_1'$ and $\psi_2'$ with their expressions from Eqs.~\eqref{eq:psi_1_prime-x} and \eqref{eq:psi_2_prime-x}, we get
+\begin{equation}
+    \zeta_1''(x) = \frac{e^{- 2 i x} \lambda}{2 x^3} \qty[(2 i + x) e^{2 i x} \psi_1(x) + (- 2 i + 3 x + 2 i x^2) \psi_2(x)],%
+    \label{eq:zeta_1_pp-psi-one-and-two}
+\end{equation}
+where the $\zeta_2$-dependence has disappeared. Now, using this equation and Eq.~\eqref{eq:zeta_1_prime-x} we can solve for $\psi_1$ and $\psi_2$:
+\begin{align}
+    \psi_1(x) & = \frac{1}{x \lambda} \qty[(2 + 3 i x - 2 x^2) \zeta_1'(x) + x (1 + i x) \zeta_1''(x)], \label{eq:psi_1-in-terms-of-zeta-1}\\
+    \psi_2(x) & = \frac{e^{2 i x}}{x \lambda} \qty[(2 - i x) \zeta_1'(x) + x (1 - i x) \zeta_1''(x)] \label{eq:psi_2-in-terms-of-zeta-2}.
+\end{align}
+We want to do something similar to get $\zeta_2$ in terms of $\zeta_1$ and its derivatives. Differentiating Eq.~\eqref{eq:zeta_1_pp-psi-one-and-two} again and using Eqs.~\eqref{eq:psi_1-in-terms-of-zeta-1}, \eqref{eq:psi_2-in-terms-of-zeta-2}, \eqref{eq:psi_1_prime-x}, and \eqref{eq:psi_2_prime-x}, we get
+\begin{equation}
+    \zeta_2(x) = \frac{e^{2 i x}}{\lambda^2} \qty[\lambda^2 \zeta_1(x) - 2 i x^2 \zeta_1^{(3)}(x) + 4 x (x - i) \zeta_1''(x) + 4 (x + i) \zeta_1'(x)]. %
+    \label{eq:zeta_2-in-terms-of-zeta_1}
+\end{equation}
+Therefore, to obtain all the remaining coefficients, we just have to choose one $\zeta_1$'s solution, for instance $\zeta_{1,1}$, and replace it into the previous equations.
+
+Replacing with the four solutions we have for $\zeta_1$, the final solution is given by
+\begin{equation}
+    \vb*{V}(x) = \sum_{j = 1}^4 c_j \vb*{V}_j(x), \quad \vb*{V}_j(x) = \qty(\zeta_{1,j}(x), \zeta_{2,j}(x), \psi_{1,j}(x), \psi_{2,j}(x)),
+\end{equation}
+where, for instance, $\zeta_{2,j}(x)$ is the $\zeta_2$'s solution obtained by replacing $\zeta_{1,j}$ into Eq.~\eqref{eq:zeta_2-in-terms-of-zeta_1}, and the same for $\psi_{1,j}$ and $\psi_{2,j}$. Therefore, imposing initial conditions at $x^* = \infty$, which corresponds to $t^* = -\infty$, we can solve for the coefficients $c_j$ as
+\begin{align}
+    \vb*{V}(x^*) = (1,0,0,0) & = c_1 \vb*{V}_1(x^*) + c_2 \vb*{V}_2(x^*) + c_3 \vb*{V}_3(x^*) + c_4 \vb*{V}_4(x^*) \notag \\
+    & = \begin{pmatrix}
+        c_1 & c_2 & c_3 & c_4
+    \end{pmatrix} \begin{pmatrix}
+        \zeta_{1,1}(x^*) & \zeta_{2,1}(x^*) & \psi_{1,1}(x^*) & \psi_{2,1}(x^*) \\
+        \zeta_{1,2}(x^*) & \zeta_{2,2}(x^*) & \psi_{1,2}(x^*) & \psi_{2,2}(x^*) \\
+        \zeta_{1,3}(x^*) & \zeta_{2,3}(x^*) & \psi_{1,3}(x^*) & \psi_{2,3}(x^*) \\
+        \zeta_{1,4}(x^*) & \zeta_{2,4}(x^*) & \psi_{1,4}(x^*) & \psi_{2,4}(x^*)
+    \end{pmatrix},
+\end{align}
+which is
+\begin{equation}
+    \begin{pmatrix}
+        c_1 & c_2 & c_3 & c_4
+    \end{pmatrix} = \begin{pmatrix}
+        1 & 0 & 0 & 0
+    \end{pmatrix} \begin{pmatrix}
+        \zeta_{1,1}(x^*) & \zeta_{2,1}(x^*) & \psi_{1,1}(x^*) & \psi_{2,1}(x^*) \\
+        \zeta_{1,2}(x^*) & \zeta_{2,2}(x^*) & \psi_{1,2}(x^*) & \psi_{2,2}(x^*) \\
+        \zeta_{1,3}(x^*) & \zeta_{2,3}(x^*) & \psi_{1,3}(x^*) & \psi_{2,3}(x^*) \\
+        \zeta_{1,4}(x^*) & \zeta_{2,4}(x^*) & \psi_{1,4}(x^*) & \psi_{2,4}(x^*)
+    \end{pmatrix}^{-1}.
+\end{equation}
+
+
+
+
+
+%%%%% ---------------------- Inicio seccion comentada ------------------------------
+
+%%%%%%%%%%%%%%% INTENTOS PREVIOS QUE NO FUNCTIONARON %%%%%%%%%%%%%%%
+% \mycomment{
+% \section{Remaining solutions: explicit singular behavior [did not work]}
+% Noticing that with integral methods we will only obtain two linearly independent solutions, we will proceed to find the remaining two by other methods. Actually, when we perform the change of variable $x = e^{-t}$, from Eq.~\eqref{eq: zeta_1-4order}, we obtain
+% \begin{equation}
+% x^2\qty[x^2\zeta_1^{(4)}(x) + 4x(1+ ix)\zeta_1^{(3)}(x) + 2x (5i-2x)\zeta_1''(x) - 2(i+2x)\zeta_1'(x) - \lambda^2\zeta_1(x)]=0,
+% \end{equation}
+% where the ODE inside the square parenthesis is the ODE that we have been working on, Eq.~\eqref{eq:zeta_1(x)}.\\
+
+% In terms of distributions, the equation $x^2f(x)=0$ has solutions $f(x)= a \delta + b\delta'$, with $a,b$ free parameters\footnote{These $a$ and $b$ are not related, a priori, with the initial conditions defined in Eq.~\eqref{def_a_y_b}.}.  Therefore, we have to solve the new ODE
+% \begin{equation}
+% \begin{aligned}
+% x^2\zeta_1^{(4)}(x) + 4x(1+ ix)\zeta_1^{(3)}(x) + 2x (5i-2x)\zeta_1''(x)&\\
+% - 2(i+2x)\zeta_1'(x) - \lambda^2\zeta_1(x) &= a\delta(x) + b\delta'(x).
+% \end{aligned}
+% \end{equation}
+% This is equivalent to lift the condition $\zeta_1$ bounded at zero (with its derivatives). Assume $x>0$. Taking again Laplace transform, we get (see Eq.~\eqref{EDO2})
+% \begin{equation}\label{EDO5}
+% \begin{aligned}
+% & s^2 \left(s^2+4is -4\right)L_1'' + 2s \left(-6+7is+2s^2\right)L_1' + \left(-\lambda^2+2is-4\right)L_1 = a +b s.
+% \end{aligned}
+% \end{equation}
+% Recall that $a$, $b$ are free parameters and the 2-family solution to the kernel equation ($a=b=0$) was already found in previous sections. Consequently, a particular solution to Eq.~\eqref{EDO5} will constitute (to be proved), in conjunction with previous solutions, a linearly independent 4-family of solutions. Additionally, we know from Eqs.~\eqref{singular} and \eqref{EDO5} itself that solutions to Eq.~\eqref{EDO5} may have a singular behavior at $s=0$. For this reason we will only seek for solution in the region $s>0$.\\
+
+% The associated Wronskian can be computed easily from Eq.~\eqref{L1_final}, and we get
+% \[
+% W[\tilde L_{1,\lambda},\tilde L_{1,-\lambda}](s)=\frac{(s-2i)}{s^3(s^2+4)}. %\frac{|s|(s-2i)}{s^4(s^2+4)}.
+% \]
+% Consequently, the remaining two solutions are
+% \begin{equation}\label{zeta13_final}
+% \zeta_{1,3} (x)=\mathcal L^{-1} \left( \tilde L_{1,\lambda} (s)\int_0^s  \frac{\tilde s^3(\tilde s^2+4)}{(\tilde s-2i)} \tilde L_{1,-\lambda}(\tilde s)d\tilde s -  \tilde L_{1,-\lambda} (s)\int_0^s  \frac{\tilde s^3(\tilde s^2+4)}{(\tilde s-2i)} \tilde L_{1,\lambda}(\tilde s)d\tilde s\right),
+% \end{equation}
+% and
+% \begin{equation}\label{zeta14_final}
+% \zeta_{1,4} (x)=\mathcal L^{-1} \left( \tilde L_{1,\lambda}(s) \int_0^s  \frac{\tilde s^4(\tilde s^2+4)}{(\tilde s-2i)} \tilde L_{1,-\lambda} (\tilde s)d\tilde s - \tilde L_{1,-\lambda}(s) \int_0^s  \frac{s^4(s^2+4)}{(s-2i)} \tilde L_{1,\lambda} (s)ds \right).
+% \end{equation}
+% It is clear that we should only compute two terms: for $s>0$
+% \[
+% \int_0^{s}  \frac{\tilde s^3(\tilde s^2+4)}{(\tilde s-2i)} \tilde L_{1,-\lambda}(\tilde s)d\tilde s , \quad \int_0^s  \frac{\tilde s^4(\tilde s^2+4)}{(\tilde s-2i)} \tilde L_{1,-\lambda}(\tilde s)d\tilde s.
+% \]
+
+% Indeed, in order to perform the inverse LT of Eqs.~\eqref{zeta13_final} and Eq.~\eqref{zeta14_final}, we have two options:
+% \begin{itemize}
+%     \item Option 1: Compute the inverse LT of the integral expressions and the homogeneous solutions, $\tilde{L}_{1,\pm \lambda}$, independently. Then, use convolution theorem to compute the final inverse LT,
+
+%     \item Option 2: Compute directly the inverse LT of the whole product.
+% \end{itemize}
+
+% \subsection{Option 1} 
+% We have, up to harmless constants given by
+% \[
+% \begin{aligned}
+% C_1(\lambda):= &~{} \frac1{24} e^{-\frac{1}{2} (\pi  \lambda)} \lambda (\lambda-2 i) (\lambda+2 i) (\lambda-4 i)  ; \\ 
+% C_2(\lambda):= &~{} \frac1{120}e^{-\frac{1}{2} (\pi  \lambda)} \lambda (\lambda-2 i) (\lambda+2 i) (\lambda-4 i) (\lambda-6 i),
+% \end{aligned}
+% \]
+% %\[
+% %(1-\lambda i-i s) (2-i s)^{i\frac{\lambda}{2} } (i s)^{-i\frac{\lambda}{2}-1}
+% %\]
+% one has
+% \begin{equation}\label{convo1}
+% \begin{aligned}
+% & \mathcal L^{-1} \left( \int_0^s  \frac{\tilde s^3(\tilde s^2+4)}{(\tilde s-2i)} \tilde L_{1,-\lambda}(\tilde s)d\tilde s \right) \\
+% & \quad = \frac{C_1}{x^2}  \left(4 \, _1F_1\left(\frac{i \lambda}{2}+3;4;-2 i x\right)-(4+(\lambda-i) x) \, _1F_1\left(\frac{i \lambda}{2}+3;5;-2 i x\right)\right),
+% \end{aligned}
+% \end{equation}
+% and
+% \begin{equation}\label{convo2}
+% \begin{aligned}
+% & \mathcal L^{-1} \left( \int_0^s  \frac{\tilde s^4(\tilde s^2+4)}{(\tilde s-2i)} \tilde L_{1,-\lambda}(\tilde s)d\tilde s \right) \\
+% & \quad = \frac{C_2}{x^2} \left(5 \, _1F_1\left(\frac{i \lambda}{2}+4;5;-2 i x\right)-(5+(\lambda-i) x) \, _1F_1\left(\frac{i \lambda}{2}+4;6;-2 i x\right)\right).
+% \end{aligned}
+% \end{equation}
+% Both inverse Laplace terms behave as $1/x$ as $x\to 0$.\\
+
+% As we stated previously, the final result is obtained via convolution of Eq.~\eqref{convo1} with Eq.~\eqref{importante}:
+% \[
+% \begin{aligned}
+% \zeta_{1,3} (x)= &~{} \mathcal L^{-1} \left( \tilde L_{1,\lambda} (s)\right) * \mathcal L^{-1} \left( \int_0^s  \frac{\tilde s^3(\tilde s^2+4)}{(\tilde s-2i)} \tilde L_{1,-\lambda}(\tilde s)d\tilde s \right) \\
+% &~{} -  \mathcal L^{-1} \left( \tilde L_{1,-\lambda} (s)\right) * \mathcal L^{-1} \left( \int_0^s  \frac{\tilde s^3(\tilde s^2+4)}{(\tilde s-2i)} \tilde L_{1,\lambda}(\tilde s)d\tilde s\right)\\
+% =&~{} \left( (1-\lambda i)  L_{i \lambda/2}(-2 i x)  + i\lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \right) \\
+% &~{} *  \frac{1}{x^2}  \left(4 \, _1F_1\left(\frac{i \lambda}{2}+3;4;-2 i x\right)-(4+(\lambda-i) x) \, _1F_1\left(\frac{i \lambda}{2}+3;5;-2 i x\right)\right) \\
+% &~{} - \{ \hbox{same quantity with $-\lambda$} \}.
+% \end{aligned}
+% \]
+% Similarly, using Eq.~\eqref{convo2} and Eq.~\eqref{importante}:
+% \[
+% \begin{aligned}
+% \zeta_{1,4} (x)=&~{} \mathcal L^{-1} \left( \tilde L_{1,\lambda}(s) \right) * \mathcal L^{-1} \left( \int_0^s  \frac{\tilde s^4(\tilde s^2+4)}{(\tilde s-2i)} \tilde L_{1,-\lambda} (\tilde s)d\tilde s \right)\\
+%  &~{}- \mathcal L^{-1}\left(\tilde L_{1,-\lambda}(s)\right) * \mathcal L^{-1} \left( \int_0^s  \frac{s^4(s^2+4)}{(s-2i)} \tilde L_{1,\lambda} (s)ds \right)\\
+%  =&~{} \left( (1-\lambda i)  L_{i \lambda/2}(-2 i x)  + i\lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \right) \\
+% &~{} *  \frac{1}{x^2} \left(5 \, _1F_1\left(\frac{i \lambda}{2}+4;5;-2 i x\right)-(5+(\lambda-i) x) \, _1F_1\left(\frac{i \lambda}{2}+4;6;-2 i x\right)\right) \\
+% &~{} - \{ \hbox{same quantity with $-\lambda$} \}.
+% \end{aligned}
+% \]
+
+% \subsection{Option 2}\label{sec:option2}
+% In this case, we first solve the integrals and simplify the result,
+% \begin{equation}\label{convo3}
+% \begin{aligned}
+%  \tilde L_{1,\lambda}(s) \int_0^s  \frac{\tilde s^3(\tilde s^2+4)}{(\tilde s-2i)} \tilde L_{1,-\lambda}(\tilde s)d\tilde s =&~{}  -i (1-\lambda i-i s) s^2 (s+2 i)^2  \\
+%  &~{} +16 (4 \lambda+i)  \tilde L_{1,\lambda}(s) B_{\frac{i s}{2}}\left(\textcolor{blue}{3 + }\frac{ i \lambda}{2},2-\frac{i \lambda}{2}\right).
+% \end{aligned}
+% \end{equation}
+% Here $B_z(a,b)$ is the \href{https://reference.wolfram.com/language/ref/Beta.html}{incomplete beta function}, defined as
+% \begin{equation}\label{eq25}
+%     B_z(b,c)=\int_0^{z}(1-u)^{c-1}u^{b-1}\dd{u}.
+% \end{equation}
+% Also,
+% \begin{equation}\label{convo4}
+% \begin{aligned}
+%  \tilde L_{1,\lambda}(s) \int_0^s  \frac{\tilde s^4(\tilde s^2+4)}{(\tilde s-2i)} \tilde L_{1,-\lambda}(\tilde s)d\tilde s =&~{} \frac{i}{6} (1-\lambda i-i s)  s^3 (s+2 i)^2  \\
+%  &~{} + \frac{16}{3} (-2+5 i \lambda)  \tilde L_{1,\lambda}(s) B_{\frac{i s}{2}}\left(4+\frac{i \lambda}{2},2-\frac{i \lambda}{2}\right).
+% \end{aligned}
+% \end{equation}\\
+
+% In view of Eqs.~\eqref{zeta13_final} and \eqref{zeta14_final}, let us subtract the first terms in Eqs.~\eqref{convo3} and \eqref{convo4}. Notice that 
+% \[
+% \begin{aligned}
+% & \mathcal L^{-1} \left( -i (1-\lambda i-i s) s^2 (s+2 i)^2  -i (1+ \lambda i-i s) s^2 (s+2 i)^2 \right) \\
+% & = -2i \left(-4 \delta ''(x)+8 i \delta ^{(3)}(x)+5 \delta ^{(4)}(x)-i \delta ^{(5)}(x)\right).  %-i \left(4 i \lambda \delta ''(x)+4 \lambda \delta ^{(3)}(x)-i \lambda \delta ^{(4)}(x)-4 \delta ''(x)+8 i \delta ^{(3)}(x)+5 \delta ^{(4)}(x)-i \delta ^{(5)}(x)\right)
+% \end{aligned}
+% \]
+% Similarly,
+% \[
+% \begin{aligned}
+% & \mathcal L^{-1} \left( -i (1-\lambda i-i s) s^3 (s+2 i)^2 -i (1+ \lambda i-i s) s^3 (s+2 i)^2 \right) \\
+% & = \frac{1}{3} i \left(-4 \delta ^{(3)}(x)+8 i \delta ^{(4)}(x)+5 \delta ^{(5)}(x)-i \delta ^{(6)}(x)\right). %\frac{1}{6} i \left(4 i \lambda \delta ^{(3)}(x)+4 \lambda \delta ^{(4)}(x)-i \lambda \delta ^{(5)}(x)-4 \delta ^{(3)}(x)+8 i \delta ^{(4)}(x)+5 \delta ^{(5)}(x)-i \delta ^{(6)}(x)\right)
+% \end{aligned}
+% \]
+% These terms do not contribute in the case $x>0$, so they will be discarded. \\
+% %----------------------------------------
+
+% Now, we shall compute
+% \[
+% \mathcal L^{-1}\left( B_{\frac{i s}{2}}\left(\textcolor{blue}{3+ }\frac{i \lambda}{2},2-\frac{i \lambda}{2}\right) \right), \quad \mathcal L^{-1}\left(B_{\frac{i s}{2}}\left(4+\frac{i \lambda}{2},2-\frac{i \lambda}{2}\right)\right),
+% \]
+% terms needed since they come from products that appear in Eqs.~\eqref{convo3} and \eqref{convo4}. 
+
+% \subsubsection{Incomplete Beta function inverse Laplace Transform}
+
+% Suppose $f$ be such that %y si encontramos una función $f(x)$ tal que
+% \begin{equation*}
+%     \mathcal{L}\{f(x)\}(s)=B_{as}(b,c), \implies     f(x)=\mathcal{L}^{-1}\{B_{as}(b,c)\}\,.
+% \end{equation*}
+% Since from Eq.~\eqref{eq25}, one has%Notemos que conocemos la derivada de la Beta incompleta
+% \begin{equation*}
+%     \pdv{s}B_{as}(b,c)=\pdv{s}\mathcal{L}\{f(x)\}(s)=a (1-as)^{c-1}(as)^{b-1}, 
+% \end{equation*}
+% and $\pdv{s}\mathcal{L}\{f(x)\}(s)=-\mathcal{L}\{x f(x) \}$, one gets  $\mathcal{L}\{xf(x)\}(s)=-a(1-as)^{c-1}(as)^{b-1}.$ Notice that %donde la transformada inversa del lado derecho está dado por
+% \begin{equation*}
+% \begin{aligned}
+%    &  \mathcal{L}^{-1}\{-a(1-as)^{c-1}(as)^{b-1}\}(x)=
+%    %(\Gamma(-b - c + 2))^{-1}
+%    (-1)^{-c} a^{b+c-1} x^{1 - b-c} \,_1 \tilde F_1\left(1 - c;-b - c + 2;\frac{x}{a}\right)\,.
+% \end{aligned}
+% \end{equation*}
+% Here, $_1\tilde F_1$ is the Regularized Confluent Hypergeometric $_1 F_1$, formally defined as the quotient $_1 \tilde F_1 (a,b,c)= {}_1 F_1(a,b,c) /\Gamma(b)$. 
+% %\[
+% %a^{b-1} \left(-\left(-\frac{1}{a}\right)^{1-c}\right) x^{1-b} \left(\frac{1}{x}\right)^c \, _1\tilde{F}_1\left(1-c;-b-c+2;\frac{x}{a}\right)
+% %\]
+% Therefore
+% \[
+% \begin{aligned}
+%     xf(x)= & ~{} (-1)^{-c} a^{b+c-1} x^{1 - b-c} \,_1 \tilde F_1\left(1 - c;-b - c + 2;\frac{x}{a}\right),\\
+%     \implies &~{}  \mathcal{L}^{-1}\{B_{as}(b,c)\}= (-1)^{-c} a^{b+c-1} x^{- b - c} \,_1 \tilde F_1\left(1 - c;-b - c + 2;\frac{x}{a}\right). %\label{eq:beta-incomplete-inverse}
+% \end{aligned}    
+% \]%end{gather}
+% Let $a=\frac{i}2$, $b=\textcolor{blue}{3+}\frac{i\lambda}2$ and $c=2-\frac{i \lambda}{2}$. 
+% %%We conclude that 
+% %\[
+% %\mathcal L^{-1} \left( B_{\frac{i s}{2}}\left(\frac{3+i \lambda}{2},2-\frac{i \lambda}{2}\right) \right) = C(\lambda)  x^{- 7/2} \,_1 \tilde F_1\left(-1 + \frac{i \lambda}{2};- \frac32 ;-2i x\right).
+% %\]
+% %On the other hand, one obtains that
+% %\[
+% %\begin{aligned}
+% %& \,_1 \tilde F_1\left(-1 + \frac{i \lambda}{2};- \frac32  ;-2i x\right)  = C(\lambda) \, x^5 \, _1F_1\left(4+\frac{i \lambda}{2};6;-2 i x\right).
+% %\end{aligned}
+% %\]
+% Therefore,
+% \begin{equation}\label{final parece que si 0}
+% \mathcal L^{-1} \left( B_{\frac{i s}{2}}\left(\textcolor{blue}{3+}\frac{i \lambda}{2},2-\frac{i \lambda}{2}\right) \right) = C_1(\lambda) \, _1F_1\left(\frac{i \lambda }{2}+3;5;-2 i x\right),
+% \end{equation}
+% with
+% \begin{equation}
+% C_1(\lambda) := \frac{1}{384} e^{-\frac{1}{2} (\pi  \lambda )} \lambda  (\lambda -2 i) (\lambda +2 i) (\lambda -4 i),
+% \end{equation}
+% Let now $a=\frac{i}2$, $b=4+\frac{i\lambda}2$ and $c=2-\frac{i \lambda}{2}$. We conclude that 
+% \[
+% \mathcal L^{-1} \left( B_{\frac{i s}{2}}\left(4+\frac{i \lambda}{2},2-\frac{i \lambda}{2}\right) \right) = \frac{i}{32}(-1)^{\frac{i \lambda}{2}}  x^{- 6} \,_1 \tilde F_1\left(-1 + \frac{i \lambda}{2};-4  ;-2i x\right).
+% \]
+% On the other hand, one obtains that
+% \[
+% \begin{aligned}
+% & \,_1 \tilde F_1\left(-1 + \frac{i \lambda}{2};-4  ;-2i x\right) \\
+% & =\frac{2}{15} \left(-1+\frac{i \lambda}{2}\right) \left(1+\frac{i \lambda}{2}\right) \left(2+\frac{i \lambda}{2}\right) \left(3+\frac{i \lambda}{2}\right) \lambda \, x^5 \, _1F_1\left(4+\frac{i \lambda}{2};6;-2 i x\right).
+% \end{aligned}
+% \]
+% Therefore,
+% \begin{equation}\label{final parece que si}
+% \mathcal L^{-1} \left( B_{\frac{i s}{2}}\left(\frac{i \lambda}{2}+4,2-\frac{i \lambda}{2}\right) \right) = \frac{C_2(\lambda)}{x} \,_1 F_1\left(4+ \frac{i \lambda}{2} ;6;-2 i x\right).
+% \end{equation}
+% with 
+% \[
+% C_2(\lambda):= \frac{i}{15} \frac1{16}(-1)^{\frac{i \lambda}{2}} \left(-1+\frac{i \lambda}{2}\right) \left(1+\frac{i \lambda}{2}\right) \left(2+\frac{i \lambda}{2}\right) \left(3+\frac{i \lambda}{2}\right) \lambda.
+% \]
+% It is not difficult to see that $ \frac{C_2(\lambda)}{x} \,_1 F_1\left(4+ \frac{i \lambda}{2} ;6;-2 i x\right)$ has bounded imaginary part, but the real part is singular around $x=0$.  The final result is obtained via convolution of Eq.~\eqref{convo1} with Eq.~\eqref{importante}.\\
+
+% Having the inverse LT of the Beta incomplete function, the solution of $\zeta_{1,3}(x)$ is then obtained via convolution of Eq.~\eqref{final parece que si 0} with Eq.~\eqref{importante}:
+% \begin{align}
+% \zeta_{1,3} (x)= &~{} \mathcal L^{-1} \left( (4 \lambda+i)\tilde L_{1,\lambda} (s)\right) *\mathcal L^{-1} \left( B_{\frac{i s}{2}}\left(\textcolor{blue}{3+}\frac{i \lambda}{2},2-\frac{i \lambda}{2}\right) \right) \notag \\
+% &~{} -  \mathcal L^{-1} \left( (-4 \lambda+i)\tilde L_{1,-\lambda} (s)\right) *\mathcal L^{-1} \left( B_{\frac{i s}{2}}\left(\textcolor{blue}{3}-\frac{i \lambda}{2},2 + \frac{i \lambda}{2}\right) \right) \notag \\
+% =&~{} C_3(\lambda) \left( (1-\lambda i)  L_{i \lambda/2}(-2 i x)  + i\lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \right)  *  \, _1F_1\left(\frac{i \lambda }{2}+3;5;-2 i x\right) \notag \\
+% &~{} - \{ \hbox{same quantity with $-\lambda$} \} \label{eq:conv-zeta_13},
+% \end{align}
+% where
+% \begin{equation}
+% C_3(\lambda) := (4\lambda + i)C_1(\lambda).
+% \end{equation}
+% Similarly, using Eqs.~\eqref{final parece que si} and \eqref{importante}:
+% \begin{align}
+% \zeta_{1,4} (x)= &~{} \mathcal L^{-1} \left( \tilde L_{1,\lambda} (s)\right) *\mathcal L^{-1} \left( B_{\frac{i s}{2}}\left(\frac{i \lambda}{2}+4,2-\frac{i \lambda}{2}\right) \right)  \notag\\
+% &~{} -  \mathcal L^{-1} \left( \tilde L_{1,-\lambda} (s)\right) *\mathcal L^{-1} \left( B_{\frac{i s}{2}}\left(-\frac{i \lambda}{2}+4,2 + \frac{i \lambda}{2}\right) \right)  \notag\\
+% =&~{} \left( (1-\lambda i)  L_{i \lambda/2}(-2 i x)  + i\lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \right) *   \frac{1}{x} \,_1 F_1\left(4+ \frac{i \lambda}{2} ;6;-2 i x\right) \notag\\
+% &~{} - \{ \hbox{same quantity with $-\lambda$} \} \label{eq:conv-zeta_14}.
+% \end{align}
+
+% \subsubsection{Performing the convolutions}
+
+% Before trying to solve the convolutions of \ref{sec:option2} with a general $\lambda$, we can try to solve them for the specific value $\lambda = 2i$, where we already know the exact solution. In this case, we have the ODE
+% \begin{equation}
+% x^2\zeta_1^{(4)}(x) + 4x(1+ ix)\zeta_1^{(3)}(x) + 2x (5i-2x)\zeta_1''(x) - 2(i+2x)\zeta_1'(x) + 4\zeta_1(x)=0,
+% \end{equation}
+% that can be solved with \texttt{Mathematica},
+% \begin{equation}\label{eq:zeta_1(x)-sol-lambda=2i}
+% \begin{aligned}
+% \zeta_1(x,2i) &= c_1(1 - 2ix)\\
+% &\quad + c_2 e^{-2 i x}\\
+% &\quad + c_3 \frac{e^{-2 i x}}{x} \left[-4 e^{2 i x} (1 - 2ix) x \text{Ei}(-2 i x) + 3x + 4i\right]\\
+% &\quad + c_4 \frac{e^{-2 i x}}{x \,  \text{sgn}(x-1)} \left[(2-2 i) e^{2 i x} x (1 - 2ix) \text{Ei}(-2 i x)+ix - 2i - 2)\right],
+% \end{aligned}
+% \end{equation}
+% where $\text{sign}(x)$ gives -1, 0, or 1 depending on whether $x$ is negative, zero, or positive.\\
+
+% It is important to note that replacing $\lambda = 2i$ in Eq.~\eqref{eq:sol-zeta1(x)_xpos} (ignoring $f_0(\lambda)$)
+% \begin{equation*}
+% \begin{aligned}
+% \zeta_{1,1}(x,2i) &= e^{-2ix},\\
+% \zeta_{1,2}(x,2i) &= 1-2ix.\\
+% \end{aligned}
+% \end{equation*}
+% Therefore, we conclude, again, that our solutions specified in Eq.~\eqref{eq:sol-zeta1(x)_xpos} are correct.
+
+
+
+% \section{Remaining solutions: Particular values of $\lambda$ [did not work]}
+
+% Inspired in the solution for $\lambda = 2i$, Eq.~\eqref{eq:zeta_1(x)-sol-lambda=2i}, we may try to find other $\lambda$ values whose solution is easier to obtain. From Eq.~\eqref{eq:zeta_1(x)} we cannot deduce any interesting value of $\lambda$. Nevertheless, using our known solutions from Eq.~\eqref{eq:sol-zeta1(x)_xpos} are in function of
+% \begin{equation}
+% L_{\pm i \lambda/2}(-2 i x)\quad \text{and}\quad \, _1F_1\left(1 \mp i\frac{\lambda}{2} ;2;-2 i x \right)
+% \end{equation}
+% and we know from Wolfram \cite{WolframLaguerreL}
+% \begin{equation}
+% L_n(z) = \sum_{k = 0}^n \frac{(-n)_k z^k}{{k!}^2}, \quad n \in \mathbb{N},
+% \end{equation}
+% where $n$ delimits the maximum power of $z$. For $n = 1$ we have a 1-degree polynomial expression for $L_1(z)$; a 2-degree polynomial for $n=2$, and so on. Meanwhile, $\,_1 F_1$ is represented in the general case as
+% \begin{equation}\label{eq:formal-general-def-1F1}
+% \,_1F_1(a;b;z) = \sum_{k = 0}^{\infty} \frac{(a)_k z^k}{(b)_kk!},
+% \end{equation}
+% where $(\dotso)_k$ represents the Pochammer symbol \cite{Pochammer_symbol}, defined as
+% \begin{equation}
+% (x)_k = \frac{\Gamma(x + k)}{\Gamma(x)} = x(x + 1)\dotsb (x + n - 1),
+% \end{equation}
+% with a future useful property \cite{Pochammer_symbol} 
+% \begin{equation}
+% (-x)_k = (-1)^k(x - k  + 1)_k.
+% \end{equation}
+% From \eqref{eq:formal-general-def-1F1} we note
+% \begin{equation}
+% \,_1F_1(a; 1; z) = \sum_{n = 0}^{\infty} \frac{(a)_n z^n}{{n!}^2} = L_{-a}(z).
+% \end{equation}
+% The key point is that our system (at least our solutions) is \textit{easier} for particular a particular set of non-trivial $\lambda$ values:
+% \begin{equation}
+% \lambda = 2ik,\quad k \in \mathbb{Z}.
+% \end{equation}
+% Considering this value, we will have
+% \begin{equation}
+% L_{k}(-2ix)\quad\text{and}\quad \,_1F_1\qty(1 - k; 2 ; -2ix),
+% \end{equation}
+% therefore
+% \begin{equation}
+% \begin{aligned}
+% \zeta_{12}(x,2ik) &= (1 - 2k)L_{k}(-2 i x) + 2k \, _1F_1\left(1 - k ; 2 ;-2 i x \right)\\
+% &= (1 - 2k)\sum_{n = 0}^\infty \frac{(-k)_n (-2ix)^n}{{n!}^2} + 2k \sum_{n = 0}^\infty \frac{(1 - k)_n (-2ix)^n}{(2)_n n!}\\
+% &= \sum_{n = 0}^{\infty} \qty[(1 + n)(1 - 2k)(-1)^n(k - n + 1)_n + 2k(1 - k)_n]\frac{(-2ix)^n}{(1 + n){n!}^2}
+% \end{aligned}
+% \end{equation}
+
+% \section{Proposing a general solution}
+
+% Before continuing with the previous recursion, let us analyze the concrete case $\lambda = 4i$. With this coupling, Mathematica is unable to solve the ODE directly (using \texttt{DSolve}), but we can use the solution we already know, $\zeta_{1,1}$ and $\zeta_{1,2}$, to obtain the other ones.\\
+
+% Let us propose a new solution $\zeta_{1,N}$ of the form
+% \begin{equation}
+% \zeta_{1,N}(x,\lambda) \equiv \zeta_{1,1}(x,\lambda)v_N(x,\lambda),
+% \end{equation}
+% with $N\in\{2,3,4\}$. Replacing it in Eq.~\eqref{eq:zeta_1(x)}, evaluated at $\lambda = 4i$, we obtain
+% \begin{equation}
+% x^2 v_N^{(4)}(x) + (4x - 4 i x^2) v_N^{(3)}(x) - 2 (2 x^2 + 7 i x) v_N''(x) - 2 (6 x+i) v_N'(x) = 0.
+% \end{equation}
+% Then, defining an auxiliary variable $u_N(x)\equiv v_N'(x)$
+% \begin{equation}
+% x^2 u_N^{(3)}(x) + (4x - 4 i x^2) u_N''(x) - 2 (2 x^2 + 7 i x) u_N'(x) - 2 (6 x+i) u_N(x) = 0,
+% \end{equation}
+% which Mathematica can \textit{solve directly}\footnote{Actually, Mathematica gives us 2 closed solutions and 1 solution in function of unsolved integrals.}, providing 3 solutions for $u_N(x)$ from where we can obtain the other $\zeta_{1,N}(x,4i)$ solutions.
+
+% Nevertheless, some solutions are slightly complicated to integrate. Therefore, let us focus on the simplest one, which we will identify as $N = 3$:
+% \begin{equation}
+% \begin{aligned}
+% \zeta_{1,3}(x,4i) &= \frac{e^{-2 i x} }{x}\big[x (6 x+i) (4+116 i) \text{Ei}(2 i x)\\
+% &\qquad\qquad +e^{2 i x} (x^2 (3 x-4 i) (14+16 i) + x(-341+20 i) + (4+116 i))\big].
+% \end{aligned}
+% \end{equation}
+% Indeed, we can do the same procedure for the known case $\lambda = 2i$. In this case we obtain:
+% \begin{equation}\label{eq:zeta_13-other-methodlambda=2i}
+% \zeta_{1,3}(x,2i) = \frac{e^{-2 i x}}{x} \big[4 i x \,\text{Ei}(2 i x) + e^{2 i x} (x (2 x+i) (-3 - i) + 4)\big],
+% \end{equation}
+% that is slightly different from Eq.~\eqref{eq:zeta_1(x)-sol-lambda=2i} (note the sign in $\text{Ei}(\pm 2ix)$ function), but all of them are actual solutions.
+
+% Moreover, comparing these two solutions we identify a clear pattern. Let us call $\lambda = 2ik$ with $k\in\{1,2,\dotso\}$, and propose the following general solution
+% \begin{align}
+% \zeta_{1,3}(x,2ik) &= \frac{e^{-2ix}}{x}\qty[\qty(a_1 x + a_2 x^2 + \dotso + a_k x^k) \, \text{Ei}(2 i x) + e^{2ix}\qty(b_0 + b_1 x + \dotso + b_{k+1}x^{k+1})]\notag\\
+% &= \sum_{j = 1}^k \qty[e^{-2ix}a_j x^{j-1} \, \text{Ei}(2 i x) + b_{j-1} x^{j-2}] + b_{k}x^{k-1} + b_{k+1}x^{k}\notag\\
+% &= \frac{e^{-2ix}}{x}\qty[\sum_{j = 1}^k a_j x^j \, \text{Ei}(2 i x) + e^{2ix}\sum_{j = 0}^{k + 1} b_j x^j] \notag\\
+% &\equiv \zeta_{1,3}^{{\rm half} \, 1}(x,2ik) + \zeta_{1,3}^{{\rm half} \, 2}(x,2ik)\label{eq:general-zeta-proposal}
+% \end{align}
+% where $a_j,\,b_j$ are just constants to be determined, and we defined:
+% \begin{align}
+% \zeta_{1,3}^{{\rm half} \, 1}(x,2ik) &\equiv \frac{e^{-2ix}}{x}\text{Ei}(2ix)\sum_{j=1}^k a_j x^j, \\
+% \zeta_{1,3}^{{\rm half} \, 2}(x,2ik) &\equiv \frac{1}{x}\sum_{j = 0}^{k + 1} b_j x^j.
+% \end{align} \\
+
+% For example, when $\lambda = 2i \Leftrightarrow k = 1$, we propose
+% \begin{equation}\label{eq:proposal-lambda2i}
+% \zeta_{1,3}(x,2i) = \frac{e^{-2ix}}{x}\qty[a_1 x \text{Ei}(2 i x) + e^{2ix}(b_0 + b_1 x + b_2 x^2)],
+% \end{equation}
+% which when is replaced in Eq.~\eqref{eq:zeta_1(x)}, evaluated at $\lambda =2i$, we obtain an algebraic equation
+% \begin{equation}
+% b_0 + i a_1 + x^2 (b_2 + 2 i b_1) = 0,
+% \end{equation}
+% from where is easy to see that, in order to solve the ODE,
+% \begin{equation}\label{eq:parameters-conditions-lambda2i}
+% a_1 = ib_0,\quad b_2 = -2ib_1,
+% \end{equation}
+% where $b_0,\,b_1$ are free constant parameters. To double check this result, let us do the identification of each parameter from Eq.~\eqref{eq:proposal-lambda2i} with Eq.~\eqref{eq:zeta_13-other-methodlambda=2i}:
+% \begin{equation}
+% a_1 = 4i,\quad b_0 = 4,\quad b_1 = -3i + 1,\quad b_2 = - 6 - 2i,
+% \end{equation}
+% which clearly fulfill the conditions Eq.~\eqref{eq:parameters-conditions-lambda2i}.\\
+
+% As a second example, for the case $\lambda = 4i$ we obtain the following algebraic equation:
+% \begin{equation}
+% (a_1 - i b_0) + x (6 b_0 - a_2) + x^2 (8 b_1 - i b_2 - 4 i a_2) + x^3 (6 b_2 + 8 i b_3) + x^2 e^{-2 i x} \text{Ei}(2 i x) (6 a_1 - i a_2) = 0,
+% \end{equation}
+% that, assuming each function of $x$ is independent from the others, can be translated as an algebraic equation system
+% \begin{equation}
+% \begin{aligned}
+% a_1 - ib_0 &= 0,\\
+% 6b_0 - a_2 &= 0,\\
+% 8b_1 - ib_2 - 4ia_2 &= 0,\\
+% 6b_2 + 8ib_3 &= 0, \\
+% 6a_1 - ia_2 &= 0,
+% \end{aligned}
+% \end{equation}
+% which gives us the result:
+% \begin{equation}
+% a_1 = ib_0,\quad a_2 = 6b_0,\quad b_2 = -24 b_0 - 8i b_1,\quad b_3 = -18i b_0 + 6 b_1,
+% \end{equation}
+% where, again, $b_0,\, b_1$ are just free constant parameters.\\
+
+% Having done these two concrete cases, we would like to obtain $a_j,\,b_j$ for a general $k$. Therefore, we have to replace Eq.~\eqref{eq:general-zeta-proposal} in Eq.~\eqref{eq:zeta_1(x)}, and factorize by powers of $x$ to obtain an algebraic equation like
+% \begin{equation}\label{eq:picture-eq}
+% \sum_{m = 0}^{k + 1} w_m(\{a_j\},\{b_j\})x^m + w(\{a_j\},\{b_j\})e^{-2ix}\text{Ei}(2ix) = 0,
+% \end{equation}
+% where we have to impose
+% \begin{equation}
+% w(\{a_j\},\{b_j\}) = 0,\quad w_m(\{a_j\},\{b_j\}) = 0\quad \forall m\in\{0,\dotso,k+1\}.
+% \end{equation}
+% % In \eqref{eq:general-zeta-proposal} we have three type of functions
+% % \begin{equation}
+% % e^{-2ix}x^j \text{Ei}(2ix);\quad \frac{1}{x};\quad  x^j.
+% % \end{equation}
+% % It is clear that
+% % \begin{equation}
+% % \dv[n]{x^j}{x} = j(j-1)\dotsb(j-n + 1)x^{j-n},\quad  \dv[n]{x^{-1}}{x} = (-1)^n n!\, x^{-1-n}.
+% % \end{equation}
+% The contribution to the ODE from the first term in \eqref{eq:general-zeta-proposal} is
+% % \begin{equation}
+% % \begin{aligned}
+% % &\text{ODE}[e^{-2ix}x^{j-1}\text{Ei}(2ix)] \\
+% % &= x^{-3+j}\Big[4 j^3-18 j^2+22 j-6 + (8 i-8 i j) x\\
+% % &\qquad\qquad -e^{-2ix}\text{Ei}(2ix)\qty(-j^4+6 j^3-11 j^2+6 j + x (4 i j^3-10 i j^2+4 i j+2 i) + x^2 \left(4 j^2+\lambda ^2\right)) \big]
+% % \end{aligned}
+% % \end{equation}
+% \begin{equation}\label{eq:ExpIn-contribution}
+% \begin{aligned}
+% &\text{ODE}[e^{-2ix}x^{j-1}\text{Ei}(2ix);\lambda] \\
+% &= x^{-3+j}\qty(4 j^3-18 j^2+22 j-6) + x^{-2+j}\qty(8 i-8 i j)\\
+% &\quad -e^{-2ix}x^{-3+j}\text{Ei}(2ix)\qty[-j^4+6 j^3-11 j^2+6 j + x (4 i j^3-10 i j^2+4 i j+2 i) + x^2 \left(4 j^2+\lambda ^2\right)]
+% \end{aligned}
+% \end{equation}
+% and for $x^{j-2}$
+% \begin{equation}\label{eq:x^j-2contribution}
+% \begin{aligned}
+% \text{ODE}[x^{j-2};\lambda] &= x^{-4+j}\qty(j^4-10 j^3+35 j^2-50 j+24)\\
+% &\quad + x^{-3+j}\qty(4 i j^3-26 i j^2+52 i j-32 i) \\
+% &\quad + x^{-2+j}\qty(-4 j^2+16 j-\lambda ^2-16).
+% \end{aligned}
+% \end{equation}
+% Replacing \eqref{eq:ExpIn-contribution} and \eqref{eq:x^j-2contribution} in $\text{ODE}\qty[\zeta_{1,3}(x,2ik);\lambda] = 0$, that is actually solving the ODE, we obtain
+% \begin{equation}\label{eq:full-exp-orders-x}
+% \begin{aligned}
+% 0 = &\sum_{j = 1}^k x^{-4+j}\Big[b_{j-1} j^4-10 b_{j-1} j^3+35 b_{j-1} j^2-50 b_{j-1} j+24 b_{j-1}\\
+% &\qquad\qquad\quad + x\qty(4 a_{j} j^3-18 a_{j} j^2+22 a_{j} j-6 a_{j}+4 i b_{j-1} j^3-26 i b_{j-1} j^2+52 i b_{j-1} j-32 i b_{j-1})\\
+% &\qquad\qquad\quad + x^2\qty(-8 i a_{j} j+8 i a_{j}-4 b_{j-1} j^2+16 b_{j-1} j-b_{j-1} \lambda ^2-16 b_{j-1})\Big]\\
+% & -e^{-2ix}\text{Ei}(2ix)\sum_{j=1}^k a_jx^{-3+j}\qty[-j^4+6 j^3-11 j^2+6 j + x (4 i j^3-10 i j^2+4 i j+2 i) + x^2 \left(4 j^2+\lambda ^2\right)]\\
+% & + b_{k}x^{-3+k}\qty[-6 k + 11 k^2 - 6 k^3 + k^4 + x\qty(4 i k^3-14 i k^2+12 i k-2 i) + x^2\qty(-4 k^2-\lambda ^2+8 k-4)]\\
+% & + b_{k+1}x^{-2+k}\qty[k^4-2 k^3-k^2+2 k + x\qty(4 i k^3-2 i k^2-4 i k) + x^2\qty(-4 k^2-\lambda ^2)],
+% \end{aligned}
+% \end{equation}
+% where the last term inside the last square parenthesis is exactly $0$ for all $k$, which implies that our highest degree would be $x^{-1 + k}$.
+
+% We have to organize this equation factorizing by powers of $x$ to get something like \eqref{eq:picture-eq}. Then, diagrammatically we can rewrite \eqref{eq:full-exp-orders-x} as
+% \begin{equation}
+% \begin{aligned}
+% 0 &= \sum_{j=1}^k \qty[\omega^1_{j}x^{-4+j} + \omega^2_{j}x^{-3+j} + \omega^3_{j} x^{-2+j}] - e^{-2ix}\text{Ei}(2ix)\sum_{j = 1}^k a_j  \qty[\omega^4_jx^{-3 + j} + \omega^5_j x^{-2 + j} + \omega^6_j x^{-1 + j}]\\
+% &\quad + b_k \qty[\omega^7x^{-3 + k} + \omega^8 x^{-2 + k} + \omega^9 x^{-1 + k}] + b_{k+1}\qty[\omega^{10}x^{-2+k} + \omega^{11}x^{-1+k}],
+% \end{aligned}
+% \end{equation}
+% where $\omega^{12} = 0$ $\forall k$ and
+% \begin{equation}
+% \begin{aligned}
+% \omega_j^1 &= b_{j-1} j^4-10 b_{j-1} j^3+35 b_{j-1} j^2-50 b_{j-1} j+24 b_{j-1}\\
+% \omega_j^2 &= 4 a_{j} j^3-18 a_{j} j^2+22 a_{j} j-6 a_{j}+4 i b_{j-1} j^3-26 i b_{j-1} j^2+52 i b_{j-1} j-32 i b_{j-1}\\
+% \omega_j^3 &= -8 i a_{j} j+8 i a_{j}-4 b_{j-1} j^2+16 b_{j-1} j-b_{j-1} \lambda ^2-16 b_{j-1}\\
+% \omega_j^4 &= -j^4+6 j^3-11 j^2+6 j\\
+% \omega_j^5 &= 4 i j^3-10 i j^2+4 i j+2 i\\
+% \omega_j^6 &= 4 j^2+\lambda ^2\\
+% \omega^7 &= -6 k + 11 k^2 - 6 k^3 + k^4\\
+% \omega^8 &= 4 i k^3-14 i k^2+12 i k-2 i\\
+% \omega^9 &= -4 k^2-\lambda ^2+8 k-4\\
+% \omega^{10} &= k^4-2 k^3-k^2+2 k\\
+% \omega^{11} &= 4 i k^3-2 i k^2-4 i k.
+% \end{aligned}
+% \end{equation}
+% Following $x$'s degrees we have the first equations
+% \begin{equation}\label{eq:first-equations-b_j}
+% \begin{aligned}
+% x^{-1 + k} \longrightarrow b_{k+1}\omega^{11} + b_k\omega^9 &= 0\\
+% x^{-2 + k} \longrightarrow b_{k + 1}\omega^{10} + b_k\omega^8 + \omega_k^3 &= 0\\
+% x^{-3 + k} \longrightarrow b_k \omega^7 + \omega_{k-1}^3 + \omega_k^2 &= 0\\
+% x^{-4 + k} \longrightarrow \omega_{k-2}^3 + \omega_{k-1}^2 + \omega_{k}^1 &= 0.
+% \end{aligned}
+% \end{equation}
+% From this last expression we guess the following relations
+% \begin{equation}\label{eq:eq-polynomial-1}
+% \omega_{j-2}^3 + \omega_{j-1}^2 + \omega_j^1 = 0\quad \forall j \leq k.
+% \end{equation}
+% Now we have to deal with the $a_j$ coefficients in the second summation. It is trivial to note that
+% \begin{equation}
+% \begin{aligned}
+% a_k \omega_k^6 &= 0\\
+% a_{k-1}\omega_{k-1}^6 + \omega_k^5 a_k &= 0\\
+% a_{k-2}\omega_{k-2}^6 + a_{k-1}\omega_{k-1}^5 + a_k \omega_k^4 &= 0,
+% \end{aligned}
+% \end{equation}
+% and we generalize the last one
+% \begin{equation}\label{eq:eq-polynomial-2}
+% a_{j-2}\omega_{j-2}^6 + a_{j-1}\omega_{j-1}^5 + a_j \omega_j^4 = 0\quad \forall j \leq k.
+% \end{equation}
+% Let us check if this relations are correct in the case $\lambda = 2i\Leftrightarrow k=1$, where $\omega_0 = a_0 = b_{\mathbb{Z}^-} = 0$. We would have
+% \begin{equation}
+% \begin{aligned}
+% b_{2}\omega^{11} + b_1 \omega^9 &= 0\\
+% b_{2} \omega^{10} + b_k \omega^8 + \omega_1^3 &= 0\\
+% b_1 \omega^7 + \omega_1^2 &= 0\\
+% \omega^1_1 &= 0
+% \end{aligned}
+% \end{equation}
+% and
+% \begin{equation}
+% \begin{aligned}
+% \omega_1^6 = \omega_1^5 = \omega_1^4 = 0.
+% \end{aligned}
+% \end{equation}
+% Where
+% \begin{equation}
+% \begin{aligned}
+% \omega^{11} &= \qty[4ik^3 - 2ik^2 - 4ik]_{k = 1} = -2i\\
+% \omega^{10} &= \qty[k^4 - 2k^3 - k^2 + 2k]_{k = 1} = 0\\
+% \omega^{9} &= \qty[-4k^2 - \lambda^2 + 8k - 4]_{k = 1} = 4\\
+% \omega^{8} &= \qty[4ik^3 - 14ik^2 + 12ik - 2i]_{k = 1} = 0\\
+% \omega^7 &= \qty[-6k + 11k^2 - 6k^3 + k^4]_{k = 1} = 0\\
+% \omega^3_1 &= 0\\
+% \omega^2_1 &= 2a_1 - 2ib_0\\
+% \omega^1_1 &= 0\\
+% \omega^6_1 &= \omega^5_1 = \omega^4_1 = 0
+% \end{aligned}
+% \end{equation}
+% so
+% \begin{equation}
+% \begin{aligned}
+% -2ib_{2}+ 4b_1 &= 0\\
+% 2a_1 - 2ib_0 &= 0,
+% \end{aligned}
+% \end{equation}
+% which gives us
+% \begin{equation}
+% a_1 = ib_0,\quad b_2 = -2ib_1,
+% \end{equation}
+% then, it's correct!
+
+% Now, we want a general expression for $a_j,\, b_j$ solving \eqref{eq:eq-polynomial-1} and \eqref{eq:eq-polynomial-2}, which explicitly are:
+% \begin{equation}\label{eq:full-exp-relation-a-b}
+% \begin{aligned}
+% 0 &=\omega_{j-2}^3 + \omega_{j-1}^2 + \omega_j^1\\
+% \Leftrightarrow 0 &= a_{j-2}\qty[-8 i (j-2) + 8 i]\\
+% &\quad + a_{j-1}\qty[4 (j-1)^3 - 18 (j-1)^2 + 22 (j-1) - 6]\\
+% &\quad + b_{j-3}\qty[- 4 (j-2)^2 + 16 (j - 2) - \lambda ^2 - 16]\\
+% &\quad + b_{j-2}\qty[4 i (j-1)^3 - 26 i (j-1)^2 + 52 i (j-1) - 32 i]\\
+% &\quad + b_{j-1}\qty[j^4 - 10 j^3 + 35 j^2 - 50 j + 24]% = 0,
+% \end{aligned}
+% \end{equation}
+% from where we see that for $j = 1$
+% \begin{equation}
+% \Rightarrow b_0\times 0 = 0,
+% \end{equation}
+% therefore $b_0$ is free. 
+
+% For $a_j$ we have
+% \begin{equation}\label{eq:eq-for-a_j}
+% \begin{aligned}
+% 0 &= a_{j-2}\omega_{j-2}^6 + a_{j-1}\omega_{j-1}^5 + a_j \omega_j^4\\
+% \Leftrightarrow 0 &= a_{j-2}\qty[4 (j-2)^2 + (2ik)^2]\\
+% &\quad + a_{j-1}\qty[4 i (j-1)^3 - 10 i (j-1)^2 + 4 i (j-1) + 2 i]\\
+% &\quad + a_j\qty[-j^4 + 6 j^3 - 11 j^2 + 6 j].
+% \end{aligned}
+% \end{equation}
+% Using \texttt{RSolve} from Mathematica, we can solve \eqref{eq:eq-for-a_j}
+% \begin{equation}\label{eq:full-exp-a_j}
+% \begin{aligned}
+% a_j(k) &= -\frac{i c_1 i^j 2^{j-1} j (2 j k+j-2 k) (j-k-1)!}{9 (k+1) (j!)^2 (-k)!} - \frac{i c_2 i^j 2^{j-1} j (2 j k-j-2 k) (j+k-1)!}{9 (k-1) (j!)^2 k!}\\
+% &\equiv c_1 a_{j}^1 + c_2 a_{j}^2
+% \end{aligned}
+% \end{equation}
+% where there is a problem with the first term due to the $(-k)! = \Gamma(-k)$, which is infinite for $k\in\mathbb{N}$ [\textbf{this is not actually a problem, see next sections}]. Therefore, we will take $c_1 = 0$ when $k\in\mathbb{Z}^+$ and $c_1 = 0$ when $k\in\mathbb{Z}^-$.
+
+% As we have defined
+% \begin{equation}
+% a_{j}^2 := - \frac{i^{j + 1} 2^{j-1} j (2 j k-j-2 k) (j+k-1)!}{9 (k-1) (j!)^2 k!}
+% \end{equation}
+% and we will take
+% \begin{equation}
+% c_2 = -9 i b_0 (k-1)
+% \end{equation}
+% in order to have $a_1^2 = ib_0$ $\forall k$.
+
+% So, we already have the half of our solution $\zeta_{1,3}(x,2ik)$
+% \begin{equation}
+% \begin{aligned}
+% \zeta_{1,3}^{{\rm half}\,1}(x,2ik) &\equiv \frac{e^{-2ix}}{x}\text{Ei}(2 i x)\sum_{j = 1}^k c_2 a_j^2 x^{j}\\
+% &= \frac{e^{-2ix}}{x}\text{Ei}(2ix) \frac{b_0}{2k!} \sum_{j = 1}^k \frac{ (2i)^{j} j (- 2 j k + j + 2 k) (j+k-1)!}{ (j!)^2}\,  x^j.
+% \end{aligned}
+% \end{equation}
+% Magically, we can rewrite this expression in terms of hypergeometric functions
+% \begin{equation}
+% \begin{aligned}
+% \sum_{j=1}^k \% &= \frac{(2 i)^{k+1} (2 k+1)}{((k+1)!)^2} \left(k^2-1\right) (2 k)! x^{k+1} \, _2F_2(1,2 k+1;k+2,k+2;2 i x)\\
+% &-\frac{8(2i)^{k}}{((k+2)!)^2} \left(2 k^2-1\right) (2 k+1)! x^{k+2} \, _2F_2(2,2 k+2;k+3,k+3;2 i x)\\
+% &+ \frac{2^{k+3}}{((k+2)!)^2} 2^{k+1} (2 k-1) (2 k+1)! i^k x^{k+2} \, _3F_3(2,2,2 k+2;1,k+3,k+3;2 i x)\\
+% &+ \frac{2^{k+3}}{((k+2)!)^2} i k! ((k+2)!)^2 x ((2 k-1) \, _1F_1(k+1;1;2 i x)-2 k \, _1F_1(k+1;2;2 i x)),
+% \end{aligned}
+% \end{equation}
+% therefore
+% \begin{equation}\label{eq:zeta_{1,3}^1-final}
+% \boxed{\begin{aligned}
+% &\zeta_{1,3}^{{\rm half}\,1}(x,2ik)\\
+% &= 2 b_0 e^{-2 i x} \text{Ei}(2 i x) \Bigg[-\frac{i}{2} \left(\left(2k-1\right) \, _1F_1(k+1;1;2 i x) - 2k \, _1F_1(k+1;2;2 i x)\right)\\
+% &\qquad + \frac{8^k}{\sqrt{\pi }} \Gamma \left(k+\frac{3}{2}\right) \Big(i^{k+1} \left(k^2-1\right) x^k \, _2\tilde{F}_2(1,2 k+1;k+2,k+2;2 i x)\\
+% &\qquad\qquad\qquad\qquad\qquad + 2 x (i x)^k \Big[((3-2 k (2 k+1)) \, _2\tilde{F}_2(2,2 k+2;k+3,k+3;2 i x)\\
+% &\qquad\qquad\qquad\qquad\qquad -8 i \left(2 k^2+k-1\right) x \, _2\tilde{F}_2(3,2 k+3;k+4,k+4;2 i x)\Big]\Big)\Bigg],
+% \end{aligned}}
+% \end{equation}
+% an expression we \textit{can}, eventually, analytically continue to $k \in \mathbb{C}$.
+
+% We can confirm this is the correct solution evaluating \eqref{eq:zeta_{1,3}^1-final}, with Mathematica, different cases for $k$. For example, when $k=1,2$, respectively:
+% \begin{equation}
+% \begin{aligned}
+% \zeta_{1,3}^{{\rm half}\,1}(x,2i) &= \frac{e^{-2ix}}{x}ib_0x\text{Ei}(2ix)\\
+% \zeta_{1,3}^{{\rm half}\,1}(x,4i) &= \frac{e^{-2ix}}{x}\qty(ib_0 x + 6b_0 x^2) \text{Ei}(2ix),
+% \end{aligned}
+% \end{equation}
+% expressions that are the same we obtained previously.
+
+% \subsection{Complete solution for $a_j$}
+
+% Actually, I think the correct way to deal with \eqref{eq:full-exp-a_j} is to consider both expressions, $a_{j}^{1}$ and $a_j^2$, as independent solutions equally valid.
+
+% Thus, it yields a new way to write and work with \eqref{eq:general-zeta-proposal}
+% \begin{equation}
+% \begin{aligned}
+% \zeta_{1,3}(x,k)&\equiv c_{1}\frac{e^{-2ix}}{x}\qty[\text{Ei}(2ix)\sum_{j=1}^{k}a_{j}^1x^j + e^{2ix}\sum_{j=0}^{k+1}b_{j}^1x^j],\\
+% \zeta_{1,4}(x,k) &\equiv c_{2}\frac{e^{-2ix}}{x}\qty[\text{Ei}(2ix)\sum_{j=1}^{k}a_{j}^2x^j + e^{2ix}\sum_{j=0}^{k+1}b_{j}^2x^j],
+% \end{aligned}
+% \end{equation}
+% where we are guessing that $b_j$ will be separated into two independent contributions, each one depending on their respective $a_j^{i}$ coefficient.
+
+% % Up to this point, replacing this expression in our 4th order ODE we should impose the conditions
+% % \begin{equation}
+% % \begin{aligned}
+% % \text{ODE}[\zeta_{1,3}(x,2ik);\lambda] &= 0\\
+% % \text{ODE}[\zeta_{1,4}(x,2ik);\lambda] &= 0
+% % \end{aligned}
+% % \end{equation}
+% % independently.
+
+% \subsection{Recursion for $b_j$}
+
+% Note that as we already know the full $a_j$ expression, from \eqref{eq:full-exp-relation-a-b} and considering $a_j^i$ are independent coefficient solutions, we have the following equation for $b_j^i$
+% \begin{equation}\label{eq:genera-recursion-eq-b_j}
+% f^i(j) + b^i_{j-3}f_3(j) + b^i_{j-2}f_2(j) + b^i_{j-1}f_1(j) = 0,
+% \end{equation}
+% where
+% \begin{equation}
+% \begin{aligned}
+% f_3(j) &= 4 k^2-4 (j-4)^2\\
+% f_2(j) &= 2 i (j-3) (j (2 j-13)+19)\\
+% f_3(j) &= (j-4) (j-3) (j-2) (j-1)
+% \end{aligned}
+% \end{equation}
+% and
+% \begin{equation}
+% f^i(j) =
+% \begin{cases}
+%   a^i_{j-2}\qty[-8 i (j-2) + 8 i] + a^i_{j-1}\qty[4 (j-1)^3 - 18 (j-1)^2 + 22 (j-1) - 6] & \text{for } j \geq 2\\    
+%   0 & \text{for } j < 2
+% \end{cases}
+% \end{equation}
+% known.
+
+% Mathematica is able to \textit{solve} \eqref{eq:genera-recursion-eq-b_j} for an arbitrary $f^i(j)$ in function of integrals of it. What is left is to solve those summations in a closed form.
+
+% Nevertheless, let us stop for a moment to analyze \eqref{eq:genera-recursion-eq-b_j}. We can think about this recursion as a \textit{homogeneous} recursion
+% \begin{equation}\label{eq:homo-recursion-b}
+% b^h_{j-3}f_3(j) + b^h_{j-2}f_2(j) + b^h_{j-1}f_1(j) = 0,
+% \end{equation}
+% from where we know the solution, which is
+% \begin{equation}\label{eq:b_homogeneous}
+% \begin{aligned}
+% b^h_j &= - \tilde{c}_1\frac{i (-i)^j 2^{j-1} j (2 j k+j-2 k-2) (j-k-2)!}{9 (j!)^2 (-k)!}\\
+% &\quad + \tilde{c}_2\frac{i (-i)^j 2^{j-1} j (2 j k-j-2 k+2) (j+k-2)!}{9 (j!)^2 k!}\\
+% &\equiv \tilde{c}_1b^{h,1}_j + \tilde{c}_2b^{h,2}_j,
+% \end{aligned}
+% \end{equation}
+% with $\tilde{c}_1,\,\tilde{c}_2$ some kind of initial conditions (independent of $c_1$ and $c_2$ from \eqref{eq:full-exp-a_j}), and an \textit{inhomogeneous} recursion
+% \begin{equation}\label{eq:inhomo-bj}
+% f^i(j) + b^{p,i}_{j-3}f_3(j) + b^{p,i}_{j-2}f_2(j) + b^{p,i}_{j-1}f_1(j) = 0,
+% \end{equation}
+% whose solution is given by the \textit{particular} function $b_j^{p,i}$.
+
+% Although \eqref{eq:homo-recursion-b} is not the current problem we are trying to solve, Eq.~\eqref{eq:general-zeta-proposal}, it is actually the case when we take $a_j = 0$ $\forall j$ in \eqref{eq:general-zeta-proposal}. In other words, an anstaz like
+% \begin{equation}
+% \zeta(x) = \sum_{j=0}^{k+1}b^h_j x^{j-1},
+% \end{equation}
+% where $b^h_j$ are the homogeneous solutions.
+
+% Because $b^h$ solves exactly the recursion \eqref{eq:homo-recursion-b}, we know that
+% \begin{equation}\label{eq:proposal-zeta-11and22}
+% \begin{aligned}
+% \zeta_{1,1}(x,k) &\equiv \tilde{c}_1\sum_{j=0}^{k+1}b^{h,1}_j x^{j-1}\\
+% \zeta_{1,2}(x,k) &\equiv \tilde{c}_2\sum_{j=0}^{k+1}b^{h,2}_j x^{j-1}
+% \end{aligned}
+% \end{equation}
+% are \textbf{truly solutions} of \eqref{eq:zeta_1(x)}. 
+
+% Before starting solving these summations, we have to solve \eqref{eq:first-equations-b_j} for the highest values of $j$, where \eqref{eq:homo-recursion-b} is not valid anymore. First we have
+% \begin{equation}
+% b_{k + 1}\omega^{11} + b_k \omega^9 = 0,
+% \end{equation}
+% which yields
+% \begin{equation}
+% \Rightarrow b_{k+1} = b_k\qty[\frac{2i - 4ik}{2k + k^3 - 2k^3}].
+% \end{equation}
+% The second equation is
+% \begin{equation}
+% b_{k+1}\omega^{10} + b_k \omega^8 + \omega_k^3 = 0,
+% \end{equation}
+% which yields
+% \begin{equation}
+% \Rightarrow b_k = b_{k-1}\qty[\frac{4 i \left(2 k^2-k-2\right)}{(k-1) k \left(2 k^2-3 k-3\right)}].
+% \end{equation}
+% The third equation is
+% \begin{equation}
+% b_k\omega^7 + \omega^3_{k-1}+\omega_k^2 = 0,
+% \end{equation}
+% which yields
+% \begin{equation}
+% b_{k-1} = b_{k-2}\qty[\frac{6 i \left(2 k^2-3 k-3\right)}{2 k^4-11 k^3+15 k^2+2 k-8}].
+% \end{equation}
+% In conclusion,
+% \begin{equation}\label{eq:sol-b-mayores}
+% \begin{aligned}
+% b_{k+1} &= b_{k-2}\qty[\frac{6 i \left(2 k^2-3 k-3\right)}{2 k^4-11 k^3+15 k^2+2 k-8}]\qty[\frac{4 i \left(2 k^2-k-2\right)}{(k-1) k \left(2 k^2-3 k-3\right)}]\qty[\frac{2i - 4ik}{2k + k^3 - 2k^3}]\\
+% b_{k} &= b_{k-2}\qty[\frac{6 i \left(2 k^2-3 k-3\right)}{2 k^4-11 k^3+15 k^2+2 k-8}]\qty[\frac{4 i \left(2 k^2-k-2\right)}{(k-1) k \left(2 k^2-3 k-3\right)}]\\
+% b_{k-1} &= b_{k-2}\qty[\frac{6 i \left(2 k^2-3 k-3\right)}{2 k^4-11 k^3+15 k^2+2 k-8}]\\
+% b_{k-2} &= b_{k-2}^{h},
+% \end{aligned}
+% \end{equation}
+% where $b^{h}$ is the solution of \eqref{eq:homo-recursion-b}.
+
+% Having done this consideration, we can use Mathematica to solve \eqref{eq:proposal-zeta-11and22} changing summation indices where now $j \in \{0,k-2\}$. Let us start with $\zeta_{1,2}$
+% \begin{equation}
+% \frac{\zeta_{1,2}(x,k)}{\tilde{c}_2} = \sum_{j = 0}^{k-2} b^{h,2}_j x^{j-1} + b_{k-1}x^{k-2} + b_{k}x^{k-1} + b_{k+1}x^{k},
+% \end{equation}
+% where $b_{k-1},\, b_{k},\, b_{k+1}$ are given by \eqref{eq:sol-b-mayores}. Solving the summation
+% \begin{equation}\label{eq:zeta12-truncated}
+% \begin{aligned}
+% &\frac{\zeta_{1,2}(x,k)}{\tilde{c}_2}\\
+% &= \frac{1}{288 k}\Bigg[\frac{8^k e^{-\frac{1}{2} i \pi  k} x^{k-2} \Gamma \left(k-\frac{1}{2}\right)}{\sqrt{\pi }}\\
+% &\qquad \times \Big\{4 x \left(-i \left(4 k^2-6 k+3\right) \, _2\tilde{F}_2(2,2 k-1;k+1,k+1;-2 i x)-4 (1-2 k)^2 x \, _2\tilde{F}_2(3,2 k;k+2,k+2;-2 i x)\right)\\
+% &\qquad\qquad\qquad +(k-1) (2 k-3) \, _2\tilde{F}_2(1,2 k-2;k,k;-2 i x)\Big\}\\
+% &\qquad +32 (2 k-1) \, _1F_1(k;1;-2 i x)-64 (k-1) \, _1F_1(k;2;-2 i x)\Bigg]\\
+% &\quad + \frac{2^{k-2} e^{-\frac{1}{2} i \pi  k} k^2 (k (2 k-7)+4) \left((2 k-5) k^2+3\right) x^{k-2} \Gamma (2 k-3)}{3 (k (2 k-5)-4) \Gamma (k+1)^3}\\
+% &\quad + \frac{i 2^k e^{-\frac{1}{2} i \pi  k} k (k (2 k-7)+4) (k (2 k-1)-2) x^{k-1} \Gamma (2 k-3)}{3 (k (2 k-5)-4) \Gamma (k+1)^3}\\
+% &\quad + \frac{2^{k+1} e^{-\frac{1}{2} i \pi  k} (1-2 k) (k (2 k-7)+4) x^k \Gamma (2 k-3)}{3 (k (2 k-5)-4) \Gamma (k+1)^3},
+% \end{aligned}
+% \end{equation}
+% which is a solution for \textbf{only integer} values of $k$. We can check it in FIG.~\ref{fig:plotzeta_12-k-integer}.
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.5\linewidth]{img/plotzeta12.pdf}
+%     \caption{$\text{ODE}[\zeta_{1,2}(x,k)]$ with $k = 4$ from $x=1$ to $x = 100$}
+%     \label{fig:plotzeta_12-k-integer}
+% \end{figure}
+
+% And for the other $b^{h,1}_j$ solution
+% \begin{equation}\label{eq:zeta_11-new}
+% \begin{aligned}
+% \zeta_{1,1}(x,k) &= \tilde{c}_1\sum_{j = 0}^{k+1} b^{h,1}_j x^{j-1}\\
+% &= c_1\qty[(1 + 2 k) L_k(-2 i x) - (2 + 2k) \, _1F_1(-k;2;-2 i x)],
+% \end{aligned}
+% \end{equation}
+% where, for some reason I do not know yet, we are obligated to take the full sum and not to consider the distinction with $j\in\{k-1,k,k+1\}$ in order to obtain an analytical solution (if we try $j$ from $0$ to $k-2$ Mathematica does not give anything).
+
+% However, we can confirm this function is a full solution of \eqref{eq:zeta_1(x)} \textbf{valid for any} $k\in\mathbb{C}$. See FIG.~\ref{fig:plotzeta_11-k-arbitrary}.
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.5\linewidth]{img/zeta_11plot.pdf}
+%     \caption{$\text{ODE}[\zeta_{1,1}(x,k)]$ for $k = 4.9$}
+%     \label{fig:plotzeta_11-k-arbitrary}
+% \end{figure}
+
+% It is important to note that \eqref{eq:zeta_11-new} is exactly the same as \eqref{eq:sol-zeta1(x)_xpos} (we can check it plotting both solutions),
+% \begin{equation}
+% \zeta_{1,1}^{\rm old}(x) = f_0(\lambda) \left(  (1-\lambda i)  L_{i \lambda/2}(-2 i x)+ i \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \right),
+% \end{equation}
+% when $\lambda = -2ik$.
+
+
+% \subsection{Full series expansion solutions}
+
+% We have seen there are some problems using \eqref{eq:general-zeta-proposal}. For example, from FIG.~\ref{fig:plotzeta_12-k-integer} we know that \eqref{eq:zeta12-truncated} \textbf{is not a solution for an arbitrary value} of $k \in \mathbb{C}$, just for $k \in \mathbb{Z}$. And this is probably due to the fact we are considering a \textit{truncated} series expansion, ending at $k$.\\
+
+% However, we are not restricted to consider this truncated series expansion, but we can take an usual series expansion to use Frobenius method
+% \begin{equation}
+% \zeta(x) = \sum_{j = 0}^{\infty} c_j x^j
+% \end{equation}
+% Doing this, and using the same $b_j^{h,i}$ expressions but without considering \eqref{eq:sol-b-mayores}, we obtain two solutions:
+% \begin{align}\label{eq:new-zeta11-full-series}
+% \zeta_{1,1}(x,k) &= c_1 \sum_{j = 0}^{\infty} b_{j}^{h,1} x^{j-1} \notag\\
+% &= c_1[(1 + 2k) L_k(-2 i x) - (2 + 2k) \, _1F_1(-k; 2 ; -2 i x)]
+% \end{align}
+% and
+% \begin{align}\label{eq:new-zeta12-full-series}
+% \zeta_{1,2}(x,k) &= c_2 \sum_{j = 0}^{\infty} b_{j}^{h,2} x^{j-1} \notag\\
+% &= c_2\qty[(1 - 2k) L_{-k}(-2 i x) - (2 - 2k) \, _1F_1(k;2;-2 i x)]
+% \end{align}
+% which are the same solutions of \eqref{eq:sol-zeta1(x)_xpos} considering $\lambda = 2ik$, therefore, valid for any $k \in \mathbb{C}$.
+
+% From \eqref{eq:new-zeta11-full-series} and \eqref{eq:new-zeta12-full-series} we note that they are exactly the same solution under the change $k \to -k$,
+% \begin{equation}
+% \zeta_{1,1}(x,k) = \zeta_{1,2}(x,-k).
+% \end{equation}
+% This makes sense, because we know that $b^{h,1}$ and $b^{h,2}$ are exactly the same under the same change, see \eqref{eq:b_homogeneous},
+% \begin{equation}
+% b_j^{h,1}(j,k) = b_j^{h,2}(j,-k).
+% \end{equation}
+% Moreover, we know from \eqref{eq:inhomo-bj} that $b_j^{p,i}$ should take the form of
+% \begin{equation}
+% b_{j}^{p,i} = \sum_{n = 2}^{j-1} f^i(n,j,k) g(n,j,k),
+% \end{equation}
+% with $g(n,j,k)$ a function depending on $f_1,\,f_2,\,f_3$. Therefore, we are OK just finding, for example, $b_j^{p,1}$ and we will instantly obtain the other twin coefficient taking $k \to -k$. This is because
+% \begin{equation}
+% b_j^{p,1}(k) = \sum_{n = 2}^{j-1} f^1(n,j,k) g(n,j,k) = \sum_{n = 2}^{j-1} f^2(n,j,-k) g(n,j,k) = b_j^{p,2}(-k),
+% \end{equation}
+% where we used the fact that $g$ is even under $k\to-k$ permutation (just $f_3$ depends on $k$ and it is a $k^2$ dependence), and $f^1(n,j,k) = f^2(n,j,-k)$ because each $f^i$ just depends on $a^{i}$, and these coefficients fulfill $a^1(k) = a^2(-k)$.
+
+
+
+
+% \subsection{Particular solution $b_j$}
+
+% We know
+% \begin{equation}
+% \begin{aligned}
+% -\frac{i (-i)^j 2^{j-1} j}{9 (j!)^2 (-k)! k!} &\Bigg[(-k)! (-2 j k+j+2 k-2) \Gamma (j+k-1)\\
+% &\qquad \times \sum _{m=2}^{j-1} -\frac{9 i \pi  \csc (\pi  k) 2^{-m-2} e^{\frac{1}{2} i \pi  m} (m-1) (2 k m+m-1) \Gamma (m-1)^2 f(m+3)}{\left(4 k^2-1\right) \Gamma (1-k) \Gamma (k+m)}\\
+% &\quad +k! (2 (j-1) k+j-2) \Gamma (j-k-1)\\
+% &\qquad \times \sum _{m=2}^{j-1} -\frac{9 i \pi  \csc (\pi  k) 2^{-m-2} e^{\frac{1}{2} i \pi  m} (m-1) (2 k m-m+1) \Gamma (m-1)^2 f(m+3)}{\left(4 k^2-1\right) \Gamma (k+1) \Gamma (m-k)}\Bigg]
+% \end{aligned}
+% \end{equation}
+% }
+%%%%% ---------------------- Fin seccion comentada ------------------------------
+
+
+
+
+\nocite{*}
+\bibliography{bibmain}% Produces the bibliography via BibTeX.
+
+
+
+
+\end{document}
+

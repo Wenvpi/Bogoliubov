@@ -1,0 +1,1714 @@
+% ****** Start of file aipsamp.tex ******
+%
+%   This file is part of the AIP files in the AIP distribution for REVTeX 4.
+%   Version 4.2a of REVTeX, December 2014
+%
+%   Copyright (c) 2014 American Institute of Physics.
+%
+%   See the AIP README file for restrictions and more information.
+%
+% TeX'ing this file requires that you have AMS-LaTeX 2.0 installed
+% as well as the rest of the prerequisites for REVTeX 4.2
+%
+% It also requires running BibTeX. The commands are as follows:
+%
+%  1)  latex  aipsamp
+%  2)  bibtex aipsamp
+%  3)  latex  aipsamp
+%  4)  latex  aipsamp
+%
+% Use this file as a source of example code for your aip document.
+% Use the file aiptemplate.tex as a template for your document.
+\documentclass[%
+ aip,
+ jmp,%
+ amsmath,amssymb,
+%preprint,%
+ reprint,%
+%author-year,%
+%author-numerical,%
+]{revtex4-2}
+
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{amsthm}
+\usepackage{xcolor}
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+
+\begin{document}
+
+
+
+\preprint{AIP/123-QED}
+
+\title[Bogoliubov transformation]{Bogoliubov transformation:\\ Analytical solution on a multi-field inflation model}% Force line breaks with \\
+
+\author{Javier Huenupi}
+\homepage{https://www.cec.uchile.cl/~javier.huenupi/}
+\email{javier.huenupi@ug.uchile.cl}
+\author{Gonzalo Palma}
+\affiliation{ 
+Departamento de Física, FCFM, Universidad de Chile, Blanco Encalada 2008, Santiago, Chile%\\This line break forced with \textbackslash\textbackslash
+}%
+\author{Claudio Muñoz}%
+\affiliation{%
+Departamento de Ingeniería Matemática and Centro de Modelamiento Matemático (UMI
+2807 CNRS), Universidad de Chile, Casilla 170 Correo 3, Santiago, Chile.%\\This line break forced% with \\
+}%
+ %\email{Second.Author@institution.edu.}
+
+
+
+ %\homepage{http://www.Second.institution.edu/~Charlie.Author.}
+
+
+\date{\today}% It is always \today, today,
+             %  but any date may be explicitly specified
+
+\begin{abstract}
+%Queremos encontrar las soluciones analiticas de los coeficientes de Bogoliubov asociados a los campos primordiales de curvatura $\zeta$ y al campo de isocurvatura $\psi$, imponiendo condiciones iniciales correspondientes.
+%
+
+We are trying to obtain analytical solutions of Bogoliubov coefficients associated to the primordial curvature perturbation $\zeta$ and the isocurvature perturbation $\psi$, imposing corresponding initial conditions and considering a constant coupling $\lambda$.
+\end{abstract}
+
+\keywords{inflation, Bogoliubov, multi-field inflation}%Use showkeys class option if keyword
+                              %display desired
+\maketitle
+
+\newcommand{\z}{\zeta}
+\newcommand{\p}{\psi}
+\newcommand{\Pm}{\mathcal{P}}
+\newcommand{\Mm}{\mathcal{M}}
+\newcommand\myatop[2]{\left[{{#1}\atop#2}\right]}
+\newcommand{\mycomment}[1]{}
+\newcommand{\Le}{\mathcal{L}_\epsilon}
+
+
+
+%\section{\label{sec:Introduccion}Introducci\'on}
+
+%\subsection{Ecuaciones de movimiento de los campos}\label{subs1p1}
+
+%Sean $\psi=\psi(N)$ y $\zeta=\zeta(N)$, donde $N=\ln{(a(t))}=Ht$, con $H$ constante. Las ecuaciones (14) y (15) de Palma et al. \cite{Palma_2020} en estas nuevas variables se escriben
+%\begin{equation} \label{eq: or_psi}
+    %\psi''+3\psi'+(\sigma e^{-2N}-\lambda^2)\psi+\lambda \zeta'=0\,,
+%\end{equation}
+%y
+%\begin{equation} \label{eq: or_zeta}
+%    \zeta''+3\zeta'+\sigma e^{-2N}\zeta-\lambda \psi'-3\lambda\psi=0\,,
+%\end{equation}
+%donde definimos $\sigma=(k/H)^2$ constante. El tiempo en estas expresiones puede ser cualquier real, $t\in \mathbb R$.
+%Denotamos las derivadas son con respecto a e-folds $N$ como
+%\begin{equation*}
+%    \dv[n]{\zeta}{N}=\zeta^{(n)}\,,
+%\end{equation*}
+%donde $N=Ht\in \mathbb R$. Derivando las ecuaciones \eqref{eq: or_psi}-\eqref{eq: or_zeta} y reemplazando según corresponda para obtener EDOs desacopladas, pasamos de EDOs de segundo orden acopladas a EDOs de cuarto orden desacopladas para $\psi$ y $\zeta$:
+%\begin{equation*} %\label{eq: psi-descop}
+%    \begin{aligned}
+%        \psi^{(4)} & + 8\psi^{(3)}+ \left(2\sigma e^{-2N}+21\right)\psi''  +\left(18+4\sigma e^{-2N}\right)\psi' \\
+%        &~{} +\left(-\lambda^2\sigma e^{-2N}+\sigma^2 e^{-4N}\right)\psi=0\,,
+%\end{aligned}
+%\end{equation*}
+%y
+%\begin{equation*} %\label{eq: zeta-desacop}
+%    \begin{aligned}
+%        & \left(\lambda^2 e^{2N} -\sigma \right)e^{2N}\zeta^{(4)}  + \left(  -5 \sigma e^{2N} + 6\lambda^2 e^{4N}+-3\sigma^2 e^{2N}\right)\zeta^{(3)}\\
+%        & \quad + \left(-15\sigma e^{2N}+ 2\lambda^2\sigma e^{2N} + 9\lambda^2 e^{4N}  \right)\zeta'' + \left(6\sigma^2-6\lambda^2\sigma e^{2N} + 6\lambda^4 e^{4N}\right)\zeta'\\
+%        & \quad + \left(6\sigma^2+2\lambda^2\sigma^2-\sigma^3 e^{-2N}-2\lambda^2\sigma e^{2N}-\lambda^4\sigma e^{2N}\right)\zeta=0\,.
+%    \end{aligned}
+%\end{equation*}
+
+\section{Bogoliubov coefficients}
+
+Mode functions of the fields $\zeta$ and $\psi$ can be written in function of Bogoliubov coefficients. We define the independent variable $t$ in function of e-folds
+\begin{equation*}
+    t:=N-N_k,
+\end{equation*}
+with  $N_k=\ln{(k/H)}$ constant. The ODEs that describe the evolution of these coefficients are:
+\begin{equation}\label{Bogo}
+\begin{aligned}
+    \zeta_1'= &~{} \frac{\lambda}{2}\left(1+i e^{t}\right)\psi_1 + \frac{\lambda}{2}\left(1-i e^{t}\right)e^{-2i e^{-t}}\psi_2, \\
+    \zeta_2'= &~{}  \frac{\lambda}{2}\left(1+i e^{t}\right)e^{+2i e^{-t}}\psi_1 + \frac{\lambda}{2}\left(1-i e^{t}\right)\psi_2, \\
+    \psi_1'= &~{}  -\frac{\lambda}{2}\left(1-i e^{t}\right)\zeta_1 + \frac{\lambda}{2}\left(1-i e^{t}\right)e^{-2i e^{-t}}\zeta_2, \\
+    \psi_2'=&~{}  \frac{\lambda}{2}\left(1+i e^{t}\right)e^{+2i e^{-t}}\zeta_1 - \frac{\lambda}{2}\left(1+i e^{t}\right)\zeta_2.
+\end{aligned}
+\end{equation}
+where the derivatives $'$ are taken with respect to the time $t$.
+
+We can uncouple the equations of \eqref{Bogo} passing them to 4th order ODEs (check Appendix). Doing this we obtained
+\begin{equation} \label{eq: zeta_1-4order}
+    \begin{aligned}
+        \zeta_1^{(4)} & + \left(2-4i e^{-t}\right)\zeta_1^{(3)} + \left(-1-2i e^{-t} - 4 e^{-2t}\right)\zeta_1''\\
+        &\qquad  + \left(-2+4i e^{-t}\right)\zeta_1'  -\lambda^2 e^{-2t}\zeta_1=0\,,
+    \end{aligned}
+\end{equation}
+\begin{equation*} %\label{eq: zeta_2-4order}
+    \begin{aligned}
+        \zeta_2^{(4)} & + \left(2+4i e^{-t}\right)\zeta_2^{(3)}+ \left(-1+2i e^{-t} - 4 e^{-2t}\right)\zeta_2''\\
+        & \qquad + \left(-2-4i e^{-t}\right)\zeta_2' -\lambda^2 e^{-2t}\zeta_2=0\,,
+    \end{aligned}
+\end{equation*}
+\begin{equation*} 
+    \begin{aligned}
+        \left(i+ e^{t}\right)^3 e^{2t}\psi_1^{(4)} & + \left(i+e^t\right)\left(4i e^t + 6 e^{2t} - 4i e^{3t} - 2 e^{4t}\right)\psi_1^{(3)}\\
+        & + \left(i+e^t\right)\left(4-6i e^t - 11 e^{2t} + 2i e^{3t} + e^{4t}\right)\psi_1''\\
+        & + \left(-4 e^{t} + 2i e^{2t} + 6 e^{3t}\right)\psi_1' + \lambda^2\left(i+e^t\right)^3\psi_1=0\,,
+    \end{aligned}
+\end{equation*}
+and finally
+\begin{equation*} 
+    \begin{aligned}
+        \left(-i+ e^{t}\right)^3 e^{2t}\psi_2^{(4)} & + \left(-i+e^t\right)\left(-4i e^{t}+6e^{2t}+4i e^{3t} - 2 e^{4t}\right)\psi_2^{(3)}\\
+        & + \left(-i+e^t\right)\left(4 + 6i e^{t} - 11 e^{2t} - 2i e^{3t}+e^{4t}\right)\psi_2''\\
+        & + \left(-4 e^{t}-2i e^{2t}+6 e^{3t}\right)\psi_2'  +\lambda^2\left(-i+e^t\right)^3\psi_2=0\,.
+    \end{aligned}
+\end{equation*}
+%Recordar que estos tiempos son $t=N-N_k\in(-\infty,\infty)$.
+From the previous equations, apparently, the one related $\zeta_1$, Eq.~\eqref{eq: zeta_1-4order}, looks like the most manageable. We do the usual change of variable $x=e^{-t}>0$ in the 4th order ODE of the Bogoliubov coefficient $\zeta_1$, to obtain:
+%De las anteriores ecuaciones, la relacionada con $\zeta_1$ \eqref{eq: zeta_1-4order} parece ser la m\'as adecuada para empezar a trabajar. Hacemos el clásico cambio de variable\footnote{Para efectos de usar la transformada de Laplace, el cambio $x=e^t$ arroja un problema de sexto orden.} $x=e^{-t}>0$ en la EDO de cuarto orden del coeficiente de Bogoliubov $\zeta_1$ \eqref{eq: zeta_1-4order}, para obtener
+\begin{equation}\label{eq:zeta_1(x)}
+\boxed{\begin{aligned}
+& x^2\zeta_1^{(4)}(x) + 4x(1+ ix)\zeta_1^{(3)}(x) \\
+& \quad + 2x (5i-2x)\zeta_1''(x) - 2(i+2x)\zeta_1'(x) - \lambda^2\zeta_1(x)=0,
+\end{aligned}}
+\end{equation}
+If we assume that $\lim_{x\to 0}\zeta_1^{(k)}(x)$ exists for each value of $k=0,1,\ldots, 4$, then necessarily we would have the relation
+%Si asumimos que $\lim_{x\to 0}\zeta_1^{(k)}(x)$ existe\footnote{O sea, que el límite no es infinito} para cada $k=0,1,\ldots, 4$, entonces necesariamente tendremos la relaci\'on
+\begin{equation}\label{cond_imp}
+-2i \zeta_1'(0) = \lambda^2 \zeta_1(0).
+\end{equation}
+Is important to note that 
+\begin{enumerate}
+\item[(a)]  $t\to+\infty$ is equivalent to $x\to 0$ (unknown final behaviour), and
+
+\item[(b)]  $t\to-\infty$ is equivalent to $x\to +\infty$.% (known origin due to the initial conditions, Eq.~\eqref{CIs0}).
+\end{enumerate}
+In what follows, we will be assuming that  $\lambda>0$. % and $\lambda \in \mathbb{R}$. 
+
+%En lo que sigue, siempre asumiremos que $\lambda>0$ y $\lambda \in \mathbb{R}$. 
+
+
+%\section{Asint\'otica cuando $x\to +\infty$}
+%Notemos adicionalmente que para $x>0,$
+%\begin{equation}\label{simplificada}
+%\begin{aligned}
+%& \zeta_1^{(4)}(x) + 4 \left( \frac1x+ i\right)\zeta_1^{(3)}(x) \\
+%& \quad + 2 \left( \frac{5}x i-2 \right)\zeta_1''(x) - 2\left( \frac{i}{x^2}+ \frac{2}{x}\right)\zeta_1'(x) - \frac{\lambda^2}{x^2}\zeta_1(x)=0,
+%\end{aligned}
+%\end{equation}
+%Aqu\'i, con un ligero abuso de notación, $\zeta_1=\zeta_1(x)$. Cabe notar que
+%\begin{enumerate}
+%\item[(a)]  $t\to+\infty$ equivale a $x\to 0$ (comportamiento final desconocido a\'un), y
+%\item[(b)]  $t\to-\infty$ equivale a $x\to +\infty$ (origen conocido por las condiciones iniciales \eqref{CIs0}).
+%\end{enumerate}
+%En este sentido, podemos decir que nuestro problema \eqref{eq:zeta_1(x)} se convierte naturalmente en uno de valores finales prescritos, con el objetivo de obtener los valores todos los valores anteriores hasta tiempo $+\infty$, correspondiente a $x\to 0$. Si es el caso que las soluciones crecen arbitrariamente, esta condición en $x=0$ deberá reflejarlo.
+
+%\medskip
+
+%Cabe notar que de \eqref{simplificada} se deduce que cuando $x\to +\infty$, las soluciones se comportan como 
+%\[
+%\zeta_1(x)\sim a_0 +a_1 x+ a_2 e^{-2i x} +a_3 x e^{-2i x},
+%\]
+%m\'as t\'erminos de orden menor. Luego, para satisfacer la condici\'on (b) de arriba, es necesario que $a_0=1$, $a_1=a_2=a_3=0$[\textcolor{orange}{JH: creo que debemos darle otra vuelta a esto, no estoy seguro de su validez debido a lo discutido en la última reunión (19/04)}].
+
+%\medskip
+
+%En lo que sigue, siempre asumiremos que $\lambda>0$ y $\lambda \in \mathbb{R}$. 
+
+
+\section{\label{sec:Condiciones iniciales}Initial conditions and asymptotics}
+
+If we work with the $\zeta_1$'s 4th order ODE, we would need the initial conditions for $\zeta_1$ and its derivatives. A simple asymptotic analysis reveal that the linearly independent solutions $\zeta_{1,j}$, $j=1,2,3,4$,  have the following oscillatory behavior when $x\to +\infty$:
+\[
+\begin{aligned}
+\zeta_{1,1}(x,\lambda) =&~{} x^{ \frac12 i \lambda}+ \hbox{l.o.t.},\\
+\zeta_{1,2}(x,\lambda) =&~{} \zeta_{1,1}(x,-\lambda) = x^{- \frac12 i \lambda}+ \hbox{l.o.t.},\\
+\zeta_{1,3}(x,\lambda) =&~{} x^{-1+ \frac12 i \lambda}+ \hbox{l.o.t.},\\
+\zeta_{1,4}(x,\lambda) =&~{} \zeta_{1,3}(x,-\lambda) =x^{-1- \frac12 i \lambda}+ \hbox{l.o.t.}
+\end{aligned}
+\]
+Here, l.o.t. means terms decaying to zero as $x\to +\infty$, as fast as $x^{-1}$ in absolute value with respect to the previous member of the expansion. Additionally, $\zeta_{1,1}(x,0)=\zeta_{1,2}(x,0)$. Let $\zeta_{1,0}(x,\lambda)$ be the {\bf scattering or Jost} solution of \eqref{eq:zeta_1(x)} such that 
+\[
+\lim_{x\to +\infty} |\zeta_{1,0}(x,\lambda) - x^{ \frac12 i \lambda} | =0.
+\]
+Notice that $\zeta_{1,0}(x,\lambda) = \zeta_{1,1}(x,\lambda) + c_1 \zeta_{1,3}(x,\lambda) +c_2 \zeta_{1,4}(x,\lambda)$, and this solution has two free parameters coming from $\zeta_{1,3}(x,\lambda)$ and $\zeta_{1,4}(x,\lambda) $. We want to analyze the behavior of this solution as $x\to 0$. First of all, notice that the Wronskian $W(x,\lambda)$ of $\{\zeta_{1,j}(x,\lambda)\}_{j=1,\ldots,4}$ satisfies
+\[
+W(x,\lambda) = \frac{e^{-4ix}}{x^4}.
+\]
+Notice that $W$ does not depend on $\lambda$, but it does depend on $x$, natural from the singular behavior of the ODE at $x=0$. This also reveals that there exists unbounded solutions to \eqref{eq:zeta_1(x)} as $x\to 0$. The analysis around zero reveals the behavior of the four linearly independent solutions as follows:
+\[
+\begin{aligned}
+\zeta_{1,1}^0(x,\lambda) =&~{} \frac6x + 6i \log x -33i -3\lambda^2 x\log x+ \hbox{l.o.t.},\\
+\zeta_{1,2}^0(x,\lambda) =&~{} 2-4ix +\frac13 (4+\lambda^2) x^2 \log x+ \hbox{l.o.t.},\\
+\zeta_{1,3}^0(x,\lambda) =&~{} x +\frac13ix^2\log x + \hbox{l.o.t.},\\
+\zeta_{1,4}^0(x,\lambda) =&~{} x^2 + \hbox{l.o.t.}.
+\end{aligned}
+\]
+Notice that $\zeta_{1,1}$ not not be equal to $\zeta_{1,1}^0$ and so on. The purpose next is to find $\zeta_{1,1}$ and $\zeta_{1,2}$, which will be related to $\zeta_{1,2}^0$.
+
+%\medskip
+%
+%{\color{red}
+%Initially we just know that
+%%Si trabajamos con la EDO de cuarto orden de $\z_1$, necesitamos las condiciones iniciales para $\z_1$ y sus derivadas. Inicialmente solo sabemos que
+%\begin{equation}\label{CIs0}
+%    \z_1=1,\quad \z_2=\p_1=\p_2=0, \quad x\to +\infty.
+%\end{equation}
+%Therefore, to find the values of $\zeta_1$ and its derivatives at $x\to +\infty$, we need to use the complete ODEs system.
+%%Entonces para conocer los valores en $x\to +\infty$ para las derivadas de $\z_1$ necesitamos usar el sistema de EDOs completo. 
+%%\textbf{Ojo} que hay que tener cuidado con los límites.
+%%\subsection{Condiciones iniciales}
+%%Las condiciones iniciales, en $t=-\infty$, para estos coeficientes son:
+%%\begin{equation}\label{inicio}
+%%    \z_1=1\,,\quad \z_2=\p_1=\p_2=0\,.
+%%\end{equation}
+%In what follows, we will prove that at $x\to +\infty$, using the initial conditions Eq.~\eqref{CIs0} and the ODEs system Eq.~\eqref{Bogo}, we have
+%%En lo que sigue, probaremos que para $x\to +\infty$, y usando \eqref{CIs0} más las ecuaciones, tendremos
+%\begin{equation}\label{CIs}
+% \boxed{
+%    \z_1=1,\quad \z_1'=\z_1''=\z_1^{(3)}=0.
+%    }
+%\end{equation}
+%In fact, recalling that the system, with $x=e^{-t}$, is:
+%%En efecto, recordemos que el sistema, con $x=e^{-t}$, es:
+%\begin{equation}\label{eqCI:zeta'}
+%\begin{aligned}
+%    \zeta_1'= &~{} \frac{i\lambda }{2x^2} \left( \left(ix- 1\right)\psi_1 +\left(ix+ 1\right)e^{-2i x}\psi_2 \right), \\
+%    \zeta_2'=&~{}  \frac{i\lambda}{2x^2} \left( \left(ix-1\right)e^{2i x}\psi_1 + \left(ix+ 1\right)\psi_2 \right), \\
+%    \psi_1'= &~{}  \frac{i\lambda}{2x^2} \left(- \left(ix + 1\right)\zeta_1 +\left(ix + 1\right)e^{-2i x}\zeta_2 \right), \\
+%    \psi_2'=&~{}  \frac{i\lambda}{2x^2} \left( \left(ix - 1\right)e^{2i x}\zeta_1 - \left(ix - 1\right)\zeta_2 \right),
+%\end{aligned}
+%\end{equation}
+%where now the derivates are taken as $' = \dv{x}$.
+%
+%Entonces de \eqref{eqCI:zeta'} es fácil notar que tenemos la condición inicial
+%\begin{equation}\label{eq:CI-coeficientes-1-prima}
+%    \lim_{x\to +\infty} \z_1'(x) = \lim_{x\to +\infty} \z_2'(x)=  \lim_{x\to +\infty} \psi_1'(x)=  \lim_{x\to +\infty} \psi_2'(x)= 0.
+%\end{equation}
+%Para $\z_1''$ derivamos la primera ecuación de \eqref{eqCI:zeta'} una vez
+%\begin{equation}\label{eqCI:zeta_1''}
+%\begin{aligned}
+%    \zeta_1''(x) &= -\frac{\lambda}{2 x^2} (x+i) \psi_1'(x) - \frac{\lambda  e^{-2 i x}}{2 x^2} (x-i) \psi_2'(x)\\
+%    &\qquad + \frac{\lambda}{2 x^3} (x+2 i) \psi_1(x) + \frac{\lambda  e^{-2 i x}}{2 x^3} \left(2 i x^2+3 x-2 i\right) \psi_2(x)
+%\end{aligned}
+%\end{equation}
+%y por condiciones iniciales y \eqref{eq:CI-coeficientes-1-prima} sabemos que
+%\begin{equation}\label{eq:CIp1p2p1'p2'}
+%    \lim_{x \to +\infty} \qty(\psi_1(x), \psi_2(x), \psi_1'(x), \psi_2'(x)) = \qty(0,0,0,0)
+%\end{equation}
+%con lo que tenemos la condición inicial
+%\begin{equation}
+%   \lim_{x \to +\infty} \z_1''(x)=0\,.
+%\end{equation}
+%Nos faltaría la C.I. para $\z_1^{(3)}$, por lo que derivamos (\ref{eqCI:zeta_1''}) una vez
+%\begin{equation}
+%\begin{aligned}
+%    \zeta_1^{(3)}(x) &= -\frac{\lambda}{2 x^2} (x+i) \psi_1''(x) - \frac{\lambda  e^{-2 i x}}{2 x^2} (x-i) \psi_2''(x)\\
+%    &\qquad +\frac{\lambda}{x^3} (x+2 i) \psi_1'(x) - \frac{\lambda  e^{-2 i x}}{2 x^3} \left(-4 i x^2-6 x+4 i\right) \psi_2'(x)\\
+%    &\qquad -\frac{\lambda}{x^4} (x+3 i) \psi_1(x)- \frac{\lambda  e^{-2 i x}}{2 x^4} \left(-4 x^3+8 i x^2+10 x-6 i\right) \psi_2(x)
+%\end{aligned}
+%\end{equation}
+%donde por \eqref{eq:CIp1p2p1'p2'} vemos que de la segunda tiende a $0$ en $x \to +\infty$, así que nos falta conocer el límite de $\p_i''$ en $x\to+\infty$. Derivemos la ecuación de $\psi_1'(x)$ de \eqref{eqCI:zeta'}:
+%\begin{equation}
+%    \begin{aligned}
+%        \p_1''(x)=&\,-\frac{i \lambda  (-1+i x) }{2 x^2}\z_1'(x)+\frac{i \lambda  e^{-2 i x} (1+i x) }{2 x^2}\z_2'(x)\\
+%        &+\left(\frac{\lambda }{2 x^2}+\frac{i \lambda  (-1+i x)}{x^3}\right)\z_1(x) \\
+%        & + \left(-\frac{i \lambda  e^{-2 i x} (1+i x)}{x^3}+\frac{\lambda  e^{-2 i x} (1+i x)}{x^2}-\frac{\lambda  e^{-2 i x}}{2 x^2}\right)\z_2(x).
+%    \end{aligned}
+%\end{equation}
+%Por condiciones iniciales y \eqref{eq:CI-coeficientes-1-prima} sabemos que
+%\begin{equation}\label{eq:CIz1z2z1'z2'}
+%    \lim_{x \to +\infty}\qty(\zeta_1(x),\zeta_2(x),\zeta'_1(x),\zeta'_2(x)) = (1,0,0,0),
+%\end{equation}
+%por lo que tenemos que
+%\begin{equation}
+%    \lim_{x \to +\infty} \psi_1''(x) = 0.
+%\end{equation}
+%y para analizar el comportamiento de $\p_2''$ derivemos una vez la ecuación de $\psi_2'(x)$ de \eqref{eqCI:zeta'}:
+%\begin{equation}
+%    \begin{aligned}
+%        \p_2''(x)=&\,\frac{i \lambda  e^{2 i x} (-1+i x)}{2 x^2}\z_1'(x)-\frac{i \lambda  (-1+i x) }{2 x^2}\z_2'(x)\\
+%        &+\Bigg(-\frac{i \lambda  e^{2 i x} (-1+i x)}{x^3}-\frac{\lambda  e^{2 i x} (-1+i x)}{x^2}-\frac{\lambda  e^{2 i x}}{2 x^2}\Bigg)\z_1(x) \\
+%        & +\left(\frac{\lambda }{2 x^2}+\frac{i \lambda  (-1+i x)}{x^3}\right)\z_2(x)\,,
+%    \end{aligned}
+%\end{equation}
+%que por \eqref{eq:CIz1z2z1'z2'} tendríamos
+%\begin{equation}
+%   \lim_{x \to +\infty} \p_2''(x) = 0.
+%\end{equation}
+%Así que concluimos que la condición inicial restante es:
+%\begin{equation}
+% \lim_{x\to +\infty}   \z_1^{(3)}(x)=0\,,
+%\end{equation}
+%y juntando todo, nuestras condiciones iniciales para el coeficiente $\z_1$ son precisamente \eqref{CIs}.
+%
+%[\textcolor{orange}{JH: estos cálculos fueron comprobados el 20/04/2024}]
+%
+%}
+%
+
+
+
+%\mycomment{
+\section{Bounded solutions and the Laplace transform}
+
+In what follows, we will assume that both $\zeta_1$ and its derivatives until 4th order are functions that grow slower than the exponential, i.e. exist $C_k, b_k\geq 0$, $k=0,1,\ldots, 4$ such that
+\[
+|\zeta_1^{(k)}(x)| \le C_k e^{b_k x}, \quad x\ge 0, \quad k=0,1,2,\ldots, 4.
+\]
+%En lo que sigue, asumiremos que tanto $\zeta_1$ como sus derivadas hasta orden 4 son funciones de crecimiento a lo m\'as exponencial, es decir existen $C_k, b_k\geq 0$, $k=0,1,\ldots, 4$ tales que
+%\[
+%|\zeta_1^{(k)}(x)| \le C_k e^{b_k x}, \quad x\ge 0, \quad k=0,1,2,\ldots, 4.
+%\]
+
+Note that this condition implies that $\zeta_1$ and its derivatives are defined en $x = 0$ and they are finite\footnote{Finally, we obtain that $\zeta_1$ is divergent in $x = 0$, thus we had to do some changes}. In this case, is possible to apply Laplace Transform (LT) on Eq.~\eqref{eq:zeta_1(x)}. Recall that the definition of LT is the following:
+\begin{equation}\label{Laplace}
+    \mathcal{L}\left[f(x)\right](s)=\int_0^\infty f(x)e^{-sx}\dd{x}.
+\end{equation}
+\newtheorem*{remark}{Remark}
+\begin{remark}
+Note that in principle \eqref{Laplace} is defined for $f$ fulfilling for some $C,\eta>0$,
+\[
+|f(x)| \leq \frac{C}{x^{1-\eta}}, \quad x\to 0.
+\]
+Nevertheless, we will use this condition for the second part of this work.
+\end{remark}
+
+
+
+\medskip
+
+Computing the LT of Eq.~\eqref{eq:zeta_1(x)}, using Eq.~\eqref{Laplace} and basic properties (integration by parts), we obtain the following 2nd order ODE for the LT $L_1(s)$:
+%Calculando la transformada de Laplace en \eqref{eq:zeta_1(x)}, usando \eqref{Laplace} y propiedades b\'asicas, obtenemos la siguiente EDO de segundo orden para la transformada $L_1(s)$
+\begin{equation}\label{EDO2}
+\begin{aligned}
+& s^2 \left(s^2+4is -4\right)L_1'' + 2s \left(-6+7is+2s^2\right)L_1' + \left(-\lambda^2+2is-4\right)L_1+2\left(b+2ai+as\right)=0\,,
+\end{aligned}
+\end{equation}
+where 
+\[
+L_1(s)\equiv\mathcal{L}_{x\to s}\left[\zeta_1(x)\right](s)
+\]
+represents the $\zeta_1(x)$ LT and
+%representa la transformada de $\zeta_1(x)$ y
+\begin{equation}\label{def_a_y_b}
+    a:=\zeta_1(0)\quad \textnormal{y}\quad b:=\zeta_1'(0).
+\end{equation}
+Due to Eq.~\eqref{cond_imp}, there is a relation between the constants defined in Eq.~\eqref{def_a_y_b}
+\begin{equation*}
+    a= -\frac{2i}{\lambda^2} b,
+\end{equation*}
+thus Eq.~\eqref{EDO2} changes to
+\begin{equation}\label{EDO3}
+\begin{aligned}
+& s^2 \left(s^2+4is -4\right)L_1''(s) + 2s \left(2s^2+7is-6\right)L_1'(s) \\
+& \quad - \left(\lambda^2+4 -2is\right)L_1(s)+ \frac{2b}{\lambda^2} \left( \lambda^2 +4  -2i s\right)=0\,.
+\end{aligned}
+\end{equation}
+%Gracias a \eqref{cond_imp}, \eqref{def_a_y_b} deviene en $a= -\frac{2i}{\lambda^2} b$, por lo que \eqref{EDO2} se convierte en 
+%\begin{equation}\label{EDO3}
+%\begin{aligned}
+%& s^2 \left(s^2+4is -4\right)L_1''(s) + 2s \left(2s^2+7is-6\right)L_1'(s) \\
+%& \quad - \left(\lambda^2+4 -2is\right)L_1(s)+ \frac{2b}{\lambda^2} \left( %\lambda^2 +4  -2i s\right)=0\,.
+%\end{aligned}
+%\end{equation}
+%\textbf{Importante} notar que estas \textit{condiciones iniciales} son para $t=+\infty$
+Defining
+\[
+\widetilde L_1(s):=   L_1(s) -  \frac{2b}{\lambda^2},
+\]
+from Eq.~\eqref{EDO3} we obtain the following ODE for the new variable $\widetilde L_1$:
+\begin{equation}\label{EDO4}
+\begin{aligned}
+& s^2 \left(s^2+4is -4\right) \widetilde L_1''(s) + 2s \left(2s^2+7is-6\right) \widetilde L_1'(s) - \left(\lambda^2+4 -2is\right)\widetilde L_1(s)=0\,.
+\end{aligned}
+\end{equation}
+%obtenemos de \eqref{EDO3} la siguiente EDO para la nueva variable $\widetilde L_1$:
+%\begin{equation}\label{EDO4}
+%\begin{aligned}
+%& s^2 \left(s^2+4is -4\right) \widetilde L_1''(s) + 2s \left(2s^2+7is-6\right) \widetilde L_1'(s) - \left(\lambda^2+4 -2is\right)\widetilde L_1(s)=0\,.
+%\end{aligned}
+%\end{equation}
+The solution of Eq.~\eqref{EDO4} is explicit. It is given by
+%La soluci\'on a \eqref{EDO4} es expl\'icita. Est\'a dada por %Resolviendo la parte homogénea y expresando la particular con variación de parámetros, obtenemos:
+\begin{equation}\label{eq:L1}
+    \begin{aligned}
+        	\widetilde L_1(s)=& \frac{c_1}{s}P_1^{i \lambda }(1-i s) + \frac{c_2}{s} Q_1^{i \lambda }(1-i s)\\
+    %&-\frac{1}{s}P_1^{i \lambda }(1-i s)\int \frac{1}{sW_1}Q_1^{i \lambda }(1-i s)2(b+2ai+as)\dd{s}\\
+    %&+ \frac{1}{s}Q_1^{i \lambda }(1-i s)\int\frac{1}{sW_1} P_1^{i \lambda }(1-i s)2(b+2ai+as)\dd{s}\\
+   % \equiv&\frac{c_1}{s} P_1^{i \lambda }(1-i s) + \frac{c_2}{s} Q_1^{i \lambda }(1-i s) + L_{1p}(\lambda,s)\,,
+    \end{aligned}
+\end{equation}
+where $P^\alpha_\beta(x)$ and $Q^\alpha_\beta(x)$ represent the Legendre polynomials of first and second kind, respectively.
+%donde $P^\alpha_\beta(x)$ y $Q^\alpha_\beta(x)$ representan polinomios de Legendre de \href{https://reference.wolfram.com/language/ref/LegendreP.html}{primera} y \href{https://reference.wolfram.com/language/ref/LegendreQ.html}{segunda} especie, respectivamente. 
+Is not difficult to note that for $\lambda >0$
+%No es dif\'icil notar que para $\lambda >0$ %Evaluando para distintos valores de $\lambda$ encontramos que los polinomios siguen la forma
+\begin{equation}\label{eq: P_1ilambda}
+    P_1^{i\lambda}(1-is)=\frac{1}{ \Gamma (2-\lambda i)} (1-\lambda i-i s) (2-i s)^{i\frac{\lambda}{2} } (i s)^{-i\frac{\lambda}{2}},%\qquad \forall \lambda,
+\end{equation}
+while $Q_1^{i\lambda}(1-is)$ can be written in function of the previous result for $P_1^{i\lambda}$, Eq.~\eqref{eq: P_1ilambda}, as follows:
+%mientras que $Q_1^{i\lambda}(1-is)$ puede ser escrito en función del resultado anterior para $P$ \eqref{eq: P_1ilambda} como sigue:
+%$P_n^m$ (según Mathematica con \texttt{FunctionExpand})
+\begin{equation} \label{eq: Q_1ilambda}
+    \begin{aligned}
+    Q_1^{i\lambda}(1-is)= &~{} f_1(\lambda)P_1^{-i \lambda }(1-i s) + g_1(\lambda) P_1^{i \lambda }(1-i s), \quad \lambda>0. % \qquad \forall \lambda\,,
+    \end{aligned}
+\end{equation}
+Here,
+\[
+f_1(\lambda):= \frac{ \Gamma (2+i \lambda)}{2 \Gamma (2-i \lambda )}i \pi  \text{cosech}(\pi  \lambda ), \quad g_1(\lambda) := -\frac{i \pi}{2}   \text{cotanh} (\pi  \lambda ).
+\]
+$\Gamma$ is the classic Gamma function, that is meromorphe except in non positives integers. Note that to compute the inverse LT, we are interested just in the terms depending on $s$, the rest is constant. That is why we can conclude from \eqref{eq:L1}, \eqref{eq: P_1ilambda} and \eqref{eq: Q_1ilambda}, that
+\begin{equation}\label{L1_final}
+\begin{aligned}
+\widetilde L_1(s)= &~{} f_0(\lambda) (1-\lambda i-i s) (2-i s)^{i\frac{\lambda}{2} } (i s)^{-i\frac{\lambda}{2}-1} \\
+&~{} + g_0(\lambda) (1+ \lambda i-i s) (2-i s)^{-i\frac{\lambda}{2} } (i s)^{i\frac{\lambda}{2}-1} \\
+= : &~{} f_0(\lambda) \widetilde L_{1,\lambda}(s) +  g_0(\lambda) \widetilde L_{1,-\lambda}(s),
+\end{aligned}
+\end{equation}
+is the general solution of Eq.~\eqref{EDO4}, where
+\begin{equation*}
+    \widetilde{L}_{1,\pm\lambda} = (1 \mp \lambda i-i s) (2-i s)^{\pm i\frac{\lambda}{2} } (i s)^{\mp i\frac{\lambda}{2}-1}.
+\end{equation*}
+%$\Gamma$ es la funci\'on cl\'asica Gamma, que es meromorfa excepto en los enteros no positivos.  Notar que para calcular la inversa de la transformada, solo nos importan los términos que contienen $s$, el resto son \textit{constantes} (por eso se definió $f_1(\lambda)$ y $g_1(\lambda)$). Es por ello que podemos concluir desde \eqref{eq:L1}, \eqref{eq: P_1ilambda} y \eqref{eq: Q_1ilambda} que 
+%\begin{equation}\label{L1_final}
+%\begin{aligned}
+%\widetilde L_1(s)= &~{} f_0(\lambda) (1-\lambda i-i s) (2-i s)^{i\frac{\lambda}{2} } (i s)^{-i\frac{\lambda}{2}-1} \\
+%&~{} + g_0(\lambda) (1+ \lambda i-i s) (2-i s)^{-i\frac{\lambda}{2} } (i s)^{i\frac{\lambda}{2}-1} \\
+%= : &~{} f_0(\lambda) \widetilde L_{1,\lambda}(s) +  g_0(\lambda) \widetilde L_{1,-\lambda}(s),
+%\end{aligned}
+%\end{equation}
+%es la soluci\'on general a \eqref{EDO4}. 
+
+
+\subsection{Inverse Laplace transform}
+
+We need to find the inverse LT of Eq,~\eqref{L1_final}. Important to emphasize that we have a integrand with complex values but well defined and of exponential type for any $s > 0$.
+%Queremos encontrar la funci\'on que realiza \eqref{L1_final}. Para ello, usaremos la Transformada de Laplace Inversa, recalcando que tenemos un integrando a valores complejos pero bien definido y de tipo exponencial para cualquier $s>0$.
+From Eq.~\eqref{L1_final} we have
+\begin{equation}\label{eq:L1_final-2}
+    (1-\lambda i-i s) (2-i s)^{i\frac{\lambda}{2} } (i s)^{-i\frac{\lambda}{2}-1} = (1-\lambda i) (2-i s)^{i\frac{\lambda}{2} } (i s)^{-i\frac{\lambda}{2}-1} -i  (2-i s)^{i\frac{\lambda}{2} } (i s)^{-i\frac{\lambda}{2}}.
+\end{equation}
+Then
+\[
+\boxed{\begin{aligned}
+& \mathcal L^{-1}\left(\widetilde L_{1,\lambda} (s) \right)(x)\\
+& \quad =  -i e^{\frac{\pi  \lambda}{2}}  \left( (1-\lambda i)  L_{i \lambda/2}(-2 i x)  - \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \right),
+\end{aligned}}
+\]
+%Luego,
+%\[
+%\begin{aligned}
+%& \mathcal L^{-1}\left(\widetilde L_{1,\lambda} (s) \right)(x)\\
+%&\quad =  (1-\lambda i)i^{-\frac{i\lambda}{2}} \, _1\widetilde{F}_1\left(-\frac{i\lambda}{2};\,1;\,-2x i\right)  - \frac{i^{-\frac{i\lambda}{2}+1}}{x} \, _1\widetilde{F}_1\left(-\frac{i\lambda}{2};\,0;\,-2xi\right),
+%\end{aligned}
+%\]
+where $L_\lambda$ denotes the Laguerre function, and $\,_1F_1$ is the confluent Kummer hypergeometric function. Similarly, 
+%donde $L_\lambda$ denota la funci\'on de Laguerre, y $F$ es la funci\'on hipergeom\'etrica confluente de Kummer. Similarmente,
+\[
+\boxed{\begin{aligned}
+& \mathcal L^{-1}\left(\widetilde L_{1,-\lambda} (s) \right)(x)\\
+& \quad = -i  e^{-\frac{\pi  \lambda}{2}}   \left( (1+ \lambda i)L_{-i \lambda/2}(-2 i x) + \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x \right) \right),
+\end{aligned}}
+\]
+%[\textcolor{orange}{JH: revisar este cálculo en el apéndice, no estoy del todo seguro que podamos obtener estas trasformadas inversas}]
+%\[
+%\begin{aligned}
+%& \mathcal L^{-1}\left(\widetilde L_{1,-\lambda} (s) \right)(x)\\
+%&\quad =  (1+\lambda i)i^{\frac{i\lambda}{2}} \, _1\widetilde{F}_1\left(\frac{i\lambda}{2};\,1;\,-2x i\right)  - \frac{i^{\frac{i\lambda}{2}+1}}{x} \, _1\widetilde{F}_1\left(\frac{i\lambda}{2};\,0;\,-2xi\right). 
+%\end{aligned}
+%\]
+Finally, note that $\mathcal L[\delta] =1$, where $\delta$ is the Dirac delta centered at the origin. We conclude, then, redefining $f_0$ and $g_0$, and using Eq.~\eqref{cond_imp},
+%Finalmente, notemos que $\mathcal L[\delta] =1$, donde $\delta$ es la Delta de Dirac centrada en el origen. Concluimos pues, redefiniendo $f_0$ y $g_0$, y usando \eqref{cond_imp},
+%\begin{equation}\label{cond_imp}
+%-2i \zeta_1'(0) = \lambda^2 \zeta_1(0).
+%\end{equation}
+\[
+\begin{aligned}
+\zeta_1(x)= &~{}i \zeta_1(0)\delta(x) \\%  \frac{2\zeta_1'(0)}{\lambda^2}\delta(x) \\% i \zeta_1(0)\delta(x) \\ %\frac{2\zeta_1'(0)}{\lambda^2}\delta(x)
+&~{} + f_0(\lambda) \left(  (1-\lambda i)  L_{i \lambda/2}(-2 i x)  + \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \right)\\
+&~{} + g_0(\lambda) \left( (1+ \lambda i)L_{-i \lambda/2}(-2 i x) - \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x \right)\right).
+\end{aligned}
+\]
+Therefore, since $g_0(\lambda)=f_0(-\lambda)$,
+%In the following sections, we will analyze this solution, together with the Laguerre and hypergeometric functions that we found, in the limits $x\to0$ and $x\to\infty$.
+%En las siguientes secciones analizaremos esta solución, junto con las funciones Laguerre e hipergeométrica que encontramos, en los límites $x\to0$ y $x\to\infty$.
+\begin{equation}\label{eq:sol-zeta1(x)}
+\begin{aligned}
+\zeta_1(x)= &~{}i \zeta_1(0)\delta(x) \\%  \frac{2\zeta_1'(0)}{\lambda^2}\delta(x) \\% i \zeta_1(0)\delta(x) \\ %\frac{2\zeta_1'(0)}{\lambda^2}\delta(x)
+&~{} + f_0(\lambda) \left(  (1-\lambda i)  L_{i \lambda/2}(-2 i x)  +\lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \right)\\
+&~{} + f_0(-\lambda) \left( (1+ \lambda i)L_{-i \lambda/2}(-2 i x) - \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x \right)\right).
+\end{aligned}
+\end{equation}
+Assume $x>0$. We get that if $f_0(\lambda):= \Gamma(1+\frac12i\lambda)  (1-\lambda i)^{-1}(2i)^{-i\lambda/2}$, then
+\begin{equation}\label{eq:sol-zeta1(x)_xpos}
+\begin{aligned}
+\zeta_{1,1}(x)= &~{} f_0(\lambda) \left(  (1-\lambda i)  L_{i \lambda/2}(-2 i x)+  \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \right),\\
+\zeta_{1,2}(x)=  &~{}  f_0(-\lambda) \left( (1+ \lambda i)L_{-i \lambda/2}(-2 i x) - \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x \right)\right),
+\end{aligned}
+\end{equation}
+are linearly independent solutions of the ODE. We know that
+\begin{equation*}
+    \lim_{x\to 0}\,_1F_1\qty(1-\frac{\lambda}{2}i;2;-2ix)=1, \quad  \lim_{x\to\infty}\,_1F_1\qty(1-\frac{\lambda}{2}i;2;-2ix)=0\,, \quad \forall \lambda,
+\end{equation*}
+and
+\begin{equation*}
+    \lim_{x\to 0}L_{i\lambda/2}(-2ix)=1,\quad   \lim_{x\to\infty} \Gamma(1+\frac12i\lambda) (2i)^{-i\lambda/2} L_{i\lambda/2}(-2ix) x^{-\frac12i\lambda}=1,\quad \lambda>0\,.
+\end{equation*}
+Since \eqref{cond_imp} holds, one needs to check that $-2i \zeta_1'(0^+) = \lambda^2 \zeta_1(0^+)$. This is indeed satisfied for $\zeta_{1,1}$ and $\zeta_{1,2}$.
+
+%\medskip
+%
+%Where the latest limit means that the Laguerre function has a oscillatory behavior in $x \to \infty$ (also you can see this in Fig.~\eqref{fig:zeta1-sol-numerica}), and this prevent us to impose initial conditions at $x = \infty$.
+
+%
+%% ---- Inicio seccion comentada ---------------------
+%\mycomment{
+%\subsubsection{\label{subsec:Funcion-Laguerre}Laguerre function}
+%
+%Sabemos por Ref.~\onlinecite{Laguerrez0} que la función de Laguerre primaria $L_\nu(z)$ evaluada en $z=0$ $\forall \nu$ es
+%\begin{equation}
+%    L_\nu(0)=1\,.
+%\end{equation}
+%Mientras que, usando \texttt{Mathematica}, obtenemos que en el límite $x\to \infty$ esta función es
+%\begin{equation}
+%    \lim_{x\to\infty}L_{i\lambda/2}(-2ix)=\frac{(2i)^{i\lambda/2}e^{2i\text{Interval}[\{0,\pi\}]}}{\Gamma(1+i\lambda/2)}\,,\quad \lambda>0\,,
+%\end{equation}
+%mientras que para $\lambda\to-\lambda$ solo obtenemos una recurrencia para ciertos valores de $\lambda$.
+%
+%Podría ser de utilidad la propiedad
+%\begin{equation}
+%    L_{i\lambda/2}(-2ix)=\,_1F_1\qty(i\lambda/2,1,-2ix)\,.
+%\end{equation}
+%
+%\subsubsection{\label{subsec:Funcion-hipergeometrica}Hypergeomtric function}
+%
+%Sabemos por Ref.~\onlinecite{hiper1F1z0} que la función hipergeométrica confluente de Kummer $\,_1F_1(a;b;z)$ en $z=0$ $\forall a,b$ es
+%\begin{equation}
+%    \,_1F_1(a;b;0)=1\,.
+%\end{equation}
+%Haciendo el mismo procedimiento que para la función Laguerre, de encontrar una recurrencia para distintos valores de $\lambda$, notamos que
+%\begin{equation}
+%    \lim_{x\to\infty}\,_1F_1\qty(1-\frac{\lambda}{2}i;2;-2ix)=0\,, \quad \forall \lambda
+%\end{equation}
+
+%Uno tiene $\lim_{x\to 0}  {}_1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) =1$ y $\lim_{x\to 0}L_{i \lambda/2}(-2 i x) =1$ y tal vez
+%\[
+%\lim_{x\to +\infty}  {}_1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) = 0.
+%\]
+%
+%Recordemos que una de las soluciones homogéneas de $L_1(s)$ es
+%\begin{equation}
+%\begin{aligned}
+%    \frac{1}{s}P_1^{i\lambda}(1-is)&=\frac{1}{ s\Gamma (2-\lambda i)} (1-\lambda i-i s) (2-i s)^{i\frac{\lambda}{2} } (i s)^{-i\frac{\lambda}{2}}\\
+%    &\equiv f_{\textnormal{inv}1}(\lambda)(2-i s)^{i\frac{\lambda}{2} } s^{-i\frac{\lambda}{2}-1}+g_{\textnormal{inv}1}(\lambda)(2-i s)^{i\frac{\lambda}{2} } s^{-i\frac{\lambda}{2}}\,,
+%\end{aligned}
+%\end{equation}
+%donde su inversa está dada por:
+%\begin{equation}\label{eq:inv-P1lambda}
+%    \boxed{\begin{aligned}
+%        \mathcal{L}^{-1}\left\{\frac{1}{s}P_1^{i\lambda}(1-is)\right\}(x)=&\,f_{\textnormal{inv}1}(\lambda) i^{-\frac{i\lambda}{2}} \, _1\tilde{F}_1\left(-\frac{i\lambda}{2};\,1;\,-i2x\right)\\
+%        &+g_{\textnormal{inv}1}(\lambda)\frac{i^{-\frac{i\lambda}{2}}}{x} \, _1\tilde{F}_1\left(-\frac{i\lambda}{2};\,0;\,-i2x\right)\,.
+%    \end{aligned}}
+%\end{equation}
+%La otra solución homogénea es
+%\begin{equation}
+%    \frac{Q_1^{i\lambda}(1-is)}{s}=\frac{f_1(\lambda)}{s}P_1^{-i \lambda }(1-i s) + \frac{g_1(\lambda)}{s} P_1^{i \lambda }(1-i s)\,,
+%\end{equation}
+%así que usando lo anterior
+%\begin{equation}\label{eq:inv-Q1lambda}
+%    \boxed{\begin{aligned}
+%        \mathcal{L}^{-1}\left\{\frac{1}{s}Q_1^{i\lambda}(1-is)\right\}(x)=&\,f_1(\lambda)\Bigg[
+%        f_{\textnormal{inv}1}(-\lambda)i^{\frac{i\lambda}{2}} \, _1\tilde{F}_1\left(\frac{i\lambda}{2};\,1;\,-i2x\right)\\
+%        &\qquad \quad +g_{\textnormal{inv}1}(-\lambda)\frac{i^{\frac{i\lambda}{2}}}{x} \, _1\tilde{F}_1\left(\frac{i\lambda}{2};\,0;\,-i2x\right)\Bigg]\\
+%        &+g_1(\lambda)\Bigg[f_{\textnormal{inv}1}(\lambda)i^{-\frac{i\lambda}{2}} \, _1\tilde{F}_1\left(-\frac{i\lambda}{2};\,1;\,-i2x\right)\\
+%        &\qquad \qquad +g_{\textnormal{inv}1}(\lambda)\frac{i^{-\frac{i\lambda}{2}}}{x} \, _1\tilde{F}_1\left(-\frac{i\lambda}{2};\,0;\,-i2x\right)\Bigg]\,,
+%    \end{aligned}}
+%\end{equation}
+%Así que ya tenemos \textbf{todas} las inversas de las soluciones homogéneas.
+
+%
+%\subsubsection{\label{subsec:condiciones-iniciales-x}Initial conditions for $x$}
+%
+%Notamos que si tomamos el límite $x\to0$ en \eqref{eq:sol-zeta1(x)} y utilizando las propiedades de \ref{subsec:Funcion-Laguerre} y \ref{subsec:Funcion-hipergeometrica} obtenemos
+%\begin{equation}
+%\begin{aligned}
+%    \lim_{x\to 0}\zeta_1(x)&=i\zeta_1(0)\delta(0)+f_0(\lambda)\qty[1-(1+i)\lambda] + g_0(\lambda)\qty[1+(1+i)\lambda]\\
+%    &=\zeta_1(0)\,,
+%\end{aligned}
+%\end{equation}
+%lo que aparentemente es una contradicción a menos que $\lim_{x\to0}\zeta_1=0$, si ese es el caso entonces tenemos una ecuación algebraica que relaciona $f_0$ y $g_0$
+%\begin{equation}
+%    f_0(\lambda)\qty[1-(1+i)\lambda] + g_0(\lambda)\qty[1+(1+i)\lambda]=0\Rightarrow g_0=\frac{1-(1+i)\lambda}{1+(1+i)\lambda}f_0(\lambda)\,.
+%\end{equation}
+%Reemplazando estas dos condiciones en la solución \eqref{eq:sol-zeta1(x)} nos queda una única constante por definir,
+%\begin{equation}
+%\begin{aligned}
+%    \zeta_1(x)=f_0(\lambda)\Bigg[&(1-\lambda i)L_{i\lambda/2}(-2ix)-\lambda \,_1F_1\qty(1-\frac{\lambda}{2}i;2;-2ix)\\
+%    &\quad +\frac{1+i\lambda-\lambda}{1+i\lambda+\lambda}\qty((1+i\lambda)L_{-i\lambda/2}(-2ix)+\lambda \,_1F_1\qty(1+\frac{\lambda}{2}i;2;-2ix))\Bigg]\,.
+%\end{aligned}
+%\end{equation}
+%Para la derivada de $\zeta_1$, y utilizando $-2i\zeta_1'(0) = \lambda^2 \zeta_1(0) \Rightarrow \zeta_1'(0) = 0$, obtendremos
+%\[
+%0= \lim_{x\to 0}    \zeta_1'(x)=f_0(\lambda)\lambda^2  \frac{(4i-1) +(i-2) \lambda}{1+(1+ i)\lambda},%  (((-1 + 4 I) - (2 - I) ell) ell^2)/(1 + (1 + I) ell)
+%\]
+%cuyo lado derecho no se anula para $\lambda\geq 0$ a menos que $\lambda=0$. Concluimos pues que tal $\zeta_1$ \textbf{no puede existir}.
+%
+%\subsubsection{\label{subsec:condiciones-finales}Final conditions for $x$}
+%
+%Sabemos que en $t=-\infty$, que es equivalente a $x=\infty$, el coeficiente de Bogoliubov $\zeta_1$ vale $\zeta_1(\infty)=1$. Debemos obtener esto mismo al tomar el límite $x\to\infty$ en \eqref{eq:sol-zeta1(x)}, o sea
+%\begin{equation}
+%    \lim_{x\to\infty}\zeta_1(x)=f_0(\lambda)(1-i\lambda)L_{i\lambda/2}(-i\infty) + g_0(\lambda)(1+i\lambda)L_{-i\lambda/2}(-i\infty)=1\,,
+%\end{equation}
+%y utilizando la relación entre $f_0$ y $g_0$ encontrada en \ref{subsec:condiciones-iniciales-x} tenemos la ecuación algebraica para $f_0(\lambda)$
+%\begin{equation}\label{eq:ec-f_0}
+%    f_0(\lambda)\qty[(1-i\lambda)L_{i\lambda/2}(-i\infty) +\frac{1+i\lambda-\lambda}{1+i\lambda+\lambda}(1+i\lambda)L_{-i\lambda/2}(-i\infty)]=1\,,
+%\end{equation}
+%donde por lo que hemos estado viendo en \texttt{Mathematica}, la expresión dentro del paréntesis no converge a un valor en específico en $x=\infty$.
+%
+%Por lo tanto \eqref{eq:ec-f_0} no sería una ecuación válida y habríamos encontrado una segunda razón por la cuál $\zeta_1$ no puede existir tal que $\lim_{x \to 0}\zeta_1^{(k)}$ existan.
+%%}
+%%----- aquí termina la comentación de la sección Transformada de Laplace --------------
+%}
+%
+%\mycomment{
+%\section{Variación de la transformada de Laplace}
+%
+%Debido que \textbf{no} podemos considerar la hipótesis que $\zeta_1$ y sus derivadas son \textbf{finitas} en $x=0$, no podemos ocupar la definición usual de la transformada de Laplace. Ahora ocuparemos la siguiente definición
+%\begin{equation}
+%    \mathcal{L}_\epsilon\qty[f(x)](s)\coloneq \int_\epsilon^\infty e^{-sx}f(x)\dd{x},
+%\end{equation}
+%donde tomaremos el límite $\epsilon\to0^+$ en el momento adecuado del cálculo.
+%
+%Por inducción se puede demostrar que esta TL$_\epsilon$\footnote{También funciona para la usual, con $\epsilon=0$} de una función derivada $n$ veces se calcula como
+%\begin{equation}
+%    \begin{aligned}
+%        \Le\qty[f^{(n)}(x)](s)&=\int_\epsilon^\infty e^{-sx}f^{(n)}(x)\dd{x}\\
+%        &=f^{(n-1)}(x)e^{-sx}\Big|_{\epsilon}^\infty+sf^{(n-2)}(x)e^{-sx}\Big|_{\epsilon}^\infty+\dotso+s^{n-1}f^{(0)}(x)e^{-sx}\Big|_{\epsilon}^\infty\\
+%        &\quad +s^n\int_\epsilon^\infty e^{-sx}f(x)\dd{x}\\
+%        &=\sum_{i=1}^n s^{i-1}f^{(n-i)}(x)e^{-sx}\Big|_\epsilon^\infty + s^n\Le\qty[f(x)](s),
+%    \end{aligned}
+%\end{equation}
+%donde los límites de evaluación son con respecto a $x$,
+%\begin{equation}
+%    f(x)g(x)\Big|_{\epsilon}^\infty=f(\infty)g(\infty)-f(\epsilon)g(\epsilon)
+%\end{equation}
+%y debido a que posiblemente estas funciones exploten en $x=0$, los mantendremos todos.
+%
+%Y para calcular la TL$_\epsilon$ de una función $f^{(n)}(x)$ multiplicada por una potencia $x^m$, usamos
+%\begin{equation}
+%    \begin{aligned}
+%        \Le\qty[x^mf^{(n)}(x)](s)&=\int_\epsilon^\infty e^{-sx}x^mf^{(n)}(x)\dd{x}\\
+%        &=(-1)^m\pdv[m]{s}\int_\epsilon^\infty e^{-sx}f^{(n)}(x)\dd{x}\\
+%        &=(-1)^m\pdv[m]{s}\qty[\sum_{i=1}^n s^{i-1}f^{(n-i)}(x)e^{-sx}\Big|_\epsilon^\infty + s^n\Le\qty[f(x)](s)].
+%    \end{aligned}
+%\end{equation}
+%Calculemos esta TL$_\epsilon$ de cada término de la EDO \eqref{eq:zeta_1(x)} ocupando la notación $L_\epsilon(s)\coloneq\Le\qty[\zeta_1(x)](s)$: el primero es
+%\begin{equation}
+%    \begin{aligned}
+%        \Le\qty[x^2\z_1^{(4)}(x)]=&\,s^4 L_\epsilon''(s)+8 s^3 L_\epsilon'(s)+12 s^2 L_\epsilon(s)\\
+%        &+\zeta^{(0)}_1(x) \left(s^3 x^2-6 s^2 x+6 s\right)e^{-sx}\Big|_\epsilon^\infty\\
+%        &+\zeta^{(1)}_1(x) \left(s^2 x^2-4 s x+2\right)e^{-sx}\Big|_\epsilon^\infty\\
+%        &+\zeta^{(2)}_1(x) \left(s x^2-2 x\right)e^{-sx}\Big|_\epsilon^\infty\\
+%        &+\zeta^{(3)}_1(x) x^2 e^{-s x}e^{-sx}\Big|_\epsilon^\infty\,,
+%    \end{aligned}
+%\end{equation}
+%para el segundo
+%\begin{equation}
+%    \begin{aligned}
+%        \Le\qty[(4x+4ix^2)\z_1^{(3)}(x)]=&\, 4 i s^3 L_\epsilon''(s) + (24 i s^2 - 4 s^3)L_\epsilon'(s) + (24 i s-12 s^2)L_\epsilon(s)\\
+%        &+\zeta^{(0)}_1(x)\left(4is^2x^2-16isx+8i +4 s^2 x  -8 s  \right)e^{-sx}\Big|_\epsilon^\infty\\
+%        &+\zeta^{(1)}_1(x) \left(4isx^2-8ix  +4 s x  -4  \right)e^{-sx}\Big|_\epsilon^\infty\\
+%        &+\zeta^{(2)}_1(x) \left(4 x  +4 i x^2  \right)e^{-sx}\Big|_\epsilon^\infty\,,
+%    \end{aligned}
+%\end{equation}
+%para el tercero
+%\begin{equation}
+%    \begin{aligned}
+%        \Le\qty[(10ix-4x^2)\z_1''(x)]=&\, -4 s^2 L_\epsilon''(s) + (-10 i s^2-16 s)L_\epsilon'(s) + (-20is-8)L_\epsilon(s)\\
+%        &+\zeta^{(0)}(x) \left(-4sx^2 + 8x -10 i  +10 i s x  \right)e^{-sx}\Big|_\epsilon^\infty\\
+%        &+\zeta^{(1)}(x) \left(-4 x^2  +10 i x  \right)e^{-sx}\Big|_\epsilon^\infty\,,
+%    \end{aligned}
+%\end{equation}
+%para el cuarto
+%\begin{equation}
+%    \begin{aligned}
+%        \Le\qty[(-2i-4x)\zeta_1'(x)]=&\,4 s L_\epsilon'(s) + (4-2is)L_\epsilon(s)\\
+%        &+\zeta^{(0)} \left(-4 x-2 i\right)e^{-sx}\Big|_\epsilon^\infty\,,
+%    \end{aligned}
+%\end{equation}
+%y para el quinto
+%\begin{equation}
+%    \Le\qty[-\lambda^2\z_1(x)]=-\lambda^2L_\epsilon(s).
+%\end{equation}
+%Finalmente, juntando todo conseguimos:
+%\begin{equation}
+%\begin{aligned}
+%0=&\left(s^4+4 i s^3-4 s^2\right) L_\epsilon''(s)+\left(4 s^3+14 i s^2-12 s\right) L_\epsilon'(s)+ \left(-\lambda ^2+2 i s-4\right)L_\epsilon(s)\\
+%&+\zeta^{(0)}(x) \left(s^3 x^2+4 i s^2 x^2-2 s^2 x-4 s x^2-6 i s x-2 s+4 x-4 i\right)e^{-sx}\Big|_\epsilon^\infty\\
+%&+\zeta^{(1)}(x) \left(s^2 x^2+4 i s x^2-4 x^2+2 i x-2\right)e^{-sx}\Big|_\epsilon^\infty\\
+%&+\zeta^{(2)}(x) \left(s x^2+4 i x^2+2 x\right)e^{-sx}\Big|_\epsilon^\infty\\
+%&+\zeta^{(3)}(x) x^2 e^{-s x}\Big|_\epsilon^\infty,
+%\end{aligned}
+%\end{equation}
+%pero sabemos que $\zeta_1(x)$ y sus derivadas son \textbf{finitas} en $x=\infty$, en particular sabemos que
+%\begin{equation}
+%    \lim_{x\to\infty}\qty(\zeta_1(x),\zeta_1'(x),\zeta_1''(x),\zeta_1^{(3)}(x))=(1,0,0,0),
+%\end{equation}
+%y como $\lim_{x\to\infty}x^m e^{-sx}=0$ $\forall m\in \mathbb{Z}$ podemos despreciar los términos evaluados en $x=\infty$, por lo que nos quedaría
+%\begin{equation}\label{eq:EDOL-TLepsilon}
+%\begin{aligned}
+%0=&\left(s^4+4 i s^3-4 s^2\right) L_\epsilon''(s)+\left(4 s^3+14 i s^2-12 s\right) L_\epsilon'(s)+ \left(-\lambda ^2+2 i s-4\right)L_\epsilon(s)\\
+%&-\zeta_1(\epsilon) \left(s^3 \epsilon^2+4 i s^2 \epsilon^2-2 s^2 \epsilon-4 s \epsilon^2-6 i s \epsilon-2 s+4 \epsilon-4 i\right)e^{-s\epsilon}\\
+%&-\zeta_1^{(1)}(\epsilon) \left(s^2 \epsilon^2+4 i s \epsilon^2-4 \epsilon^2+2 i \epsilon-2\right)e^{-s\epsilon}\\
+%&-\zeta_1^{(2)}(\epsilon) \left(s \epsilon^2+4 i \epsilon^2+2 \epsilon\right)e^{-s\epsilon}\\
+%&-\zeta_1^{(3)}(\epsilon) \epsilon^2e^{-s\epsilon}.
+%\end{aligned}
+%\end{equation}
+%Por un momento enfoquémonos en la parte inhomogénea de \eqref{eq:EDOL-TLepsilon}.
+%}
+%%------------ Fin de la seccion comentada [Variacion TL] ---------
+%
+%% ------ Inicia seccion comentada [Anstaz 1] -------
+%\mycomment{
+%\subsection{Ansatz 1}
+%
+%Consideremos que en $x\to\epsilon$ la función $\zeta_1(x)$ va como
+%\begin{equation}\label{eq:zeta_1(e)}
+%    \zeta_1(x) \approx \frac{b_0}{x^{a_0}}\Rightarrow \zeta_1(\epsilon)\approx \frac{b_0}{\epsilon^{a_0}},\quad \text{Re}\qty(a_0)>0,
+%\end{equation}
+%por lo que sus derivadas van como
+%\begin{equation}\label{eq:zeta_1(e)-and-derivadas}
+%    \zeta_1'(\epsilon)\approx\frac{b_1}{\epsilon^{a_0+1}},\quad \zeta_1''(\epsilon)\approx\frac{b_2}{\epsilon^{a_0+2}},\quad \zeta_1^{(3)}(\epsilon)\approx\frac{b_3}{\epsilon^{a_0+3}},
+%\end{equation}
+%donde
+%\begin{equation}\label{eq:b1,b2,b3}
+%    b_1=-a_0b_0,\quad b_2 = a_0(a_0 + 1)b_0,\quad b_3 = -a_0(a_0 + 1)(a_0 + 2)b_0.
+%\end{equation}
+%Definamos la función $f(s,\epsilon)$ como la parte inhomogénea de \eqref{eq:EDOL-TLepsilon} y expandamos las exponenciales $e^{-s\epsilon}$ hasta primer orden
+%\begin{equation}
+%\begin{aligned}
+%    f(s,\epsilon)&\coloneq\zeta_1(\epsilon) \left(s^3 \epsilon^2+4 i s^2 \epsilon^2-2 s^2 \epsilon-4 s \epsilon^2-6 i s \epsilon-2 s+4 \epsilon-4 i\right)(1-s\epsilon)\\
+%    &\quad +\zeta_1^{(1)}(\epsilon) \left(s^2 \epsilon^2+4 i s \epsilon^2-4 \epsilon^2+2 i \epsilon-2\right)(1-s\epsilon)\\
+%    &\quad +\zeta_1^{(2)}(\epsilon) \left(s \epsilon^2+4 i \epsilon^2+2 \epsilon\right)(1-s\epsilon)\\
+%    &\quad +\zeta_1^{(3)}(\epsilon) \epsilon^2(1-s\epsilon)
+%\end{aligned}
+%\end{equation}
+%trabajando esto un poco y factorizando por potencias de $\epsilon$ obtenemos
+%\begin{equation}
+%\begin{aligned}
+%    f(s,\epsilon)&=\zeta_1(\epsilon) \qty(-4i - 2s + (4-2is)\epsilon + (-8s + 10is^2 + 3s^3)\epsilon^2 + (4s^2 - 4is^3 - s^4)\epsilon^3)\\
+%    &\quad +\zeta_1^{(1)}\qty(-2 + (2i + 2s)\epsilon + (-4 + 2is + s^2)\epsilon^2 + (4s - 4is^2 - s^3)\epsilon^3)\\
+%    &\quad +\zeta_1^{(2)}(\epsilon) \qty(2\epsilon + (4i - s)\epsilon^2 + (-4is - s^2)\epsilon^3)\\
+%    &\quad +\zeta_1^{(3)}(\epsilon) \qty(\epsilon^2 - s\epsilon^3).
+%\end{aligned}
+%\end{equation}
+%Utilizando \eqref{eq:zeta_1(e)} y \eqref{eq:zeta_1(e)-and-derivadas} agrupamos según órdenes de $\epsilon$. La ecuación que va con $\epsilon^{-1}$ en $f(s,\epsilon)$ sería
+%\begin{equation}\label{eq:epsilon^-1}
+%    b_3 + 2b_2 - 2b_1 \stackrel{!}{=} 0,
+%\end{equation}
+%donde imponemos que sea igual a $0$ ya que es el término más divergente en $\epsilon \to 0$, y queremos deshacernos de él. Reemplazando en \eqref{eq:epsilon^-1} con los valores de \eqref{eq:b1,b2,b3} conseguimos 
+%\begin{equation}
+%    a_0 \stackrel{!}{=} 1.
+%\end{equation}
+%Mientras que la ecuación de $f(s,\epsilon)$ que va con $\epsilon^0$ es
+%\begin{equation}
+%    -4ib_0 + 2ib_1 - 2b_0s + 2b_1s - 2b_2s - b_3s + b_2(4i + s) = \qty[2i + 9s]b_0,
+%\end{equation}
+%por lo que este término divergente \textbf{no se anula}, por lo que el ansatz escogido, ecuación \eqref{eq:zeta_1(e)}, no es el ideal.
+%}
+%% ------------- Termino de la seccion comentada ------------
+%
+%\section{\label{subsec:Ansatz 2}Using the asymptotic solution}
+%
+%Using the ODE \eqref{eq:zeta_1(x)} and the function \texttt{AsymptoticDSolveValue} from \texttt{Mathematica} we obtain a \textit{solution} for $\zeta_1(x)$ in the limit $x \to 0$, up to 4th order in $x$,
+%%Utilizando la EDO \eqref{eq:zeta_1(x)} y la funci\'on \texttt{AsymptoticDSolveValue} de \texttt{Mathematica} obtenemos una \textit{soluci\'on} de $\zeta_1(x)$ en el l\'imite $x \to 0$ hasta cuarto orden en $x$,
+%\begin{equation}
+%\begin{aligned}
+%    \zeta_{1A}(x) &\coloneq c_{1A} \left[\frac{6}{x} + 6 i \log (x) - 33 i - 3 \lambda ^2 x\log (x) + x \left(\frac{3 \lambda ^2}{2}-36\right)\right]\\
+%    &\quad + c_{2A} \left[2 - 4 i x + \frac{\left(\lambda ^2+4\right)}{3}x^2\log (x) + x^2 \left(-\frac{11 \lambda ^2}{18}-\frac{46}{9}\right) \right]\\
+%    &\quad + c_{3A} \left[x + \frac{x^2}{3} i \log (x) - x^2\frac{23 i}{18} + \frac{2x^3 \log (x)}{9} + x^3 \left(\frac{\lambda ^2}{24}-\frac{35}{54}\right)\right]\\
+%    &\quad +c_{4A} \left[x^2 - \frac{2 i}{3} x^3 + x^4\left(\frac{\lambda ^2}{120}-\frac{3}{10}\right)\right] + \mathcal{O}(x^5),
+%\end{aligned}
+%\end{equation}
+%that replacing it in Eq.~\eqref{eq:zeta_1(x)} we obtain
+%%que al reemplazar en \eqref{eq:zeta_1(x)} obtenemos
+%\begin{equation}
+%    \text{EDO}_{\zeta_1}\qty[\zeta_{1A}(x)] = \mathcal{O}(x^0).
+%\end{equation}
+%In this way, if we define $\zeta_1(x)$ as
+%%De esta forma, si definimos $\zeta_1(x)$ como
+%\begin{equation}\label{eqAsymp:zeta_1(x)}
+%    \zeta_1(x) = \bar{\zeta}_1(x) + \zeta_{1A}(x),
+%\end{equation}
+%we obtain a \textit{well behaved} ODE for $\bar{\zeta}_1(x)$, thus later we can take its LT and consider \textbf{finite values} of $\lim_{x \to 0}\bar{\zeta}_1^{(k)}$ for $k=0,1,\dotso,4$.
+%%obtenemos una EDO bien comportada para $\bar{\zeta}_1(x)$, con lo que posteriormente podemos tomar su TL y considerar valores finitos de $\lim_{x \to 0}\bar{\zeta}_1^{(k)}$ para $k=0,1,\dotso,4$.
+%
+%Nevertheless, we can define a shorter expression of $\zeta_{1A}$. Note that if we re-define this function as
+%%Sin embargo, podemos definir una $\zeta_{1A}$ mucho más acotada. Notemos que si re-definimos esta función como
+%\begin{equation}
+%    \boxed{\zeta_{1A}(x) \coloneq \frac{6c_{1A}}{x} + 6ic_{1A}\log(x) - 3\lambda^2c_{1A}x\log(x) - 12ic_{1A},}
+%\end{equation}
+%replacing it in the ODE we obtain that
+%%reemplazando en la EDO obtenemos que
+%\begin{equation}
+%    \text{EDO}_{\zeta_1}\qty[\zeta_{1A}(x)] = 3x \left(8 + \lambda ^2 \log (x) + 4 \log (x)\right)\lambda^2 c_{1A},
+%\end{equation}
+%that, if $c_{1A}$ is a finite constant, it goes to $0$ in the limit $x \to 0$.
+%%que, siempre y cuando $c_{1A}$ sea una constante finita, tiende a $0$ en el l\'imite $x \to 0$.
+%
+%Thus, using the \eqref{eqAsymp:zeta_1(x)} definition and \eqref{eq:zeta_1(x)} ODE, we obtain an ODE for $\bar{\zeta}_1$
+%%As\'i que usando la definici\'on de \eqref{eqAsymp:zeta_1(x)} y la EDO \eqref{eq:zeta_1(x)} obtenemos una EDO para $\bar{\zeta}_1$
+%\begin{equation}\label{eq:EDO4orden-tilde-zeta_1}
+%\boxed{\begin{aligned}
+%& x^2\bar{\zeta}_1^{(4)}(x) + 4x(1+ ix)\bar{\zeta}_1^{(3)}(x) + 2x (5i-2x)\bar{\zeta}_1''(x) \\
+%& \qquad\qquad - 2(i+2x)\bar{\zeta}_1'(x) - \lambda^2\bar{\zeta}_1(x)=-3x \left(8 + \lambda^2 \log (x) + 4 \log (x)\right)\lambda^2c_{1A},
+%\end{aligned}}
+%\end{equation}
+%where $\bar{\zeta}_1$ is regular in $x \to 0$, and due to the homogeneous part goes to $0$ in this limit, we obtain the relation (the same as before)
+%%donde $\bar{\zeta}_1$ es regular en $x \to 0$, as\'i que como la parte homog\'enea tiende a $0$ en este l\'imite tenemos la relaci\'on
+%\begin{equation}\label{eq:rel-zeta1-zeta1'-bar}
+%\begin{gathered}
+%    -2i\bar{\zeta}_1'(0) - \lambda^2\bar{\zeta}_1(0) = 0\\
+%    \Leftrightarrow \bar{\zeta}_1(0) = -\frac{2i}{\lambda^2}\bar{\zeta}_1'(0).
+%\end{gathered}
+%\end{equation}
+%Computing the LT of the Eq.~\eqref{eq:EDO4orden-tilde-zeta_1} RHS, we obtain
+%%Calculando la TL del lado derecho de \eqref{eq:EDO4orden-tilde-zeta_1} tenemos
+%\begin{equation}
+%    \mathcal{L}\qty[-x \left(24+3 \lambda^2 \log (x)+12 \log (x)\right)\lambda^2c_{1A}] = \frac{3c_{1A}\lambda^2}{s^2}\qty[-12 - \lambda^2 + \qty(\gamma + \log(s))(4 + \lambda^2)],
+%\end{equation}
+%where $\gamma$ is the Euler constant, $\gamma \approx 0.577$. Gathering this LT and the LT of the Eq.~\eqref{eq:EDO4orden-tilde-zeta_1} homogeneous part, and defining
+%%donde $\gamma$ es la constante de Euler, $\gamma \approx 0.577$. Juntando esta TL con la TL de la parte homog\'enea de \eqref{eq:EDO4orden-tilde-zeta_1} y definiendo
+%\begin{equation}
+%    \bar{L}_1(s) \coloneq \mathcal{L}\qty[\bar{\zeta}_{1}(x)](s),
+%\end{equation}
+%we obtain a 2nd order inhomogeneous ODE
+%%obtenemos una EDO de segundo orden
+%\begin{equation}
+%\boxed{\begin{aligned}
+%& s^2 \left(s^2+4is -4\right)\bar{L}_1'' + 2s \left(-6+7is+2s^2\right)\bar{L}_1' \\
+%& \quad + \left(-\lambda^2+2is-4\right)\bar{L}_1+2\left(\bar{b}+2\bar{a}i+\bar{a}s\right) = \frac{3c_{1A}\lambda^2}{s^2}\qty[-12 - \lambda^2 + \qty(\gamma + \log(s))(4 + \lambda^2)],
+%\end{aligned}}
+%\end{equation}
+%where we have defined
+%\begin{equation}
+%    \bar{a} \coloneq \bar{\zeta}_1(0)\quad \textnormal{y}\quad \bar{b} \coloneq \bar{\zeta}_1'(0).
+%\end{equation}
+%Using the relation of Eq.~\eqref{eq:rel-zeta1-zeta1'-bar} we obtain
+%%Usando la relaci\'on \eqref{eq:rel-zeta1-zeta1'-bar} obtenemos
+%\begin{equation}\label{eq:EDO-L1hat}
+%\begin{aligned}
+%& s^2 \left(s^2+4is -4\right){\widehat{L}}_1'' + 2s \left(-6+7is+2s^2\right){\widehat{L}}_1' \\
+%& \quad + \left(-\lambda^2+2is-4\right){\widehat{L}}_1 = \frac{3c_{1A}\lambda^2}{s^2}\qty[-12 - \lambda^2 + \qty(\gamma + \log(s))(4 + \lambda^2)],
+%\end{aligned}
+%\end{equation}
+%where we define
+%\begin{equation}
+%    {\widehat{L}}_1(s) := \bar{L}_1(s) -  \frac{2\bar{b}}{\lambda^2}.
+%\end{equation}
+%From Eq.~\eqref{L1_final} we know that the homogeneous solution of \eqref{eq:EDO-L1hat} is
+%%De \eqref{L1_final} sabemos que la soluci\'on homog\'enea de \eqref{eq:EDO-L1hat} es
+%\begin{equation}
+%\boxed{\begin{aligned}
+%\widehat L_{1h}(s)= &~{} f_0(\lambda) (1 - i\lambda - i s) (2-i s)^{i\frac{\lambda}{2} } (i s)^{-i\frac{\lambda}{2}-1} \\
+%&~{} + g_0(\lambda) (1 + i\lambda - i s) (2-i s)^{-i\frac{\lambda}{2} } (i s)^{i\frac{\lambda}{2}-1} \\
+%= : &~{} f_0(\lambda) \widehat L_{1h,\lambda}(s) +  g_0(\lambda) \widehat L_{1h,-\lambda}(s),
+%\end{aligned}}
+%\end{equation}
+%where we had defined
+%%donde definimos
+%\begin{equation}
+%    f_0(\lambda) \coloneq \frac{i}{\Gamma(2 - i\lambda)}\qty[c_1 - \frac{i\pi}{2}c_2\coth(\pi\lambda)],\qquad g_0(\lambda) \coloneq \frac{i}{\Gamma(2 - i\lambda)}\frac{i\pi}{2}c_2\csch(\pi\lambda)
+%\end{equation}
+%and
+%\begin{equation}
+%    \widehat{L}_{1h,\pm\lambda}(s) \coloneq (1 \mp\ i\lambda - i s) (2 - i s)^{\pm i\frac{\lambda}{2} } (i s)^{\mp i\frac{\lambda}{2}-1},
+%\end{equation}
+%with $c_1,c_2$ the homogeneous solution integration constants.
+%
+%We notice from Eq.~\eqref{eq:zeta_1(x)} that the solutions must be symmetric under $\lambda \to -\lambda$, for either the homogeneous solution and the particular solution (independently), thus we must impose
+%%Notamos que las soluciones de \eqref{eq:zeta_1(x)} deben ser simétricas ante el cambio $\lambda \to -\lambda$, tanto para la solución homogénea como para la solución particular (cada una por separado), por lo que debemos imponer
+%\begin{equation}
+%    f_0(\lambda) \stackrel{!}{=} g_0(\lambda)\qquad \text{or} \qquad f_0(\lambda) \stackrel{!}{=} g_0(-\lambda).
+%\end{equation}
+%Taking the first option, we obtain the relation
+%%Tomando la primera opción obtenemos la relación
+%\begin{equation}
+%    c_2 \stackrel{!}{=} -c_1\frac{2i}{\pi}\tanh(\frac{\pi\lambda}{2}),
+%\end{equation}
+%that replacing it in the $\widehat{L}_{1h}$ expression
+%%que reemplazando en la expresión de $\widehat{L}_{1h}$ nos queda
+%\begin{equation}
+%\begin{aligned}
+%    \widehat{L}_{1h}(s) &= \frac{ic_1}{2\Gamma(2-i\lambda)}{\sech(\frac{\pi\lambda}{2})}^2\qty[\widehat{L}_{1h,\lambda}(s) + \widehat{L}_{1h,-\lambda}(s)]\\
+%    &= \hat{c}_1\qty[\widehat{L}_{1h,\lambda}(s) + \widehat{L}_{1h,-\lambda}(s)]
+%\end{aligned}
+%\end{equation}
+%with
+%\begin{equation}
+%    \hat{c}_1 \coloneq \frac{ic_1}{2\Gamma(2-i\lambda)}{\sech(\frac{\pi\lambda}{2})}^2.
+%\end{equation}
+%To compute the particular solution of \eqref{eq:EDO-L1hat} we use the variation of parameters method. Due to the $\zeta_1$'s ODE symmetry, is enough to compute just one particular solution.
+%%Para calcular la soluci\'on particular de \eqref{eq:EDO-L1hat} ocupamos el m\'etodo de variaci\'on de par\'ametros. Debido a la simetr\'ia de la EDO de $\zeta_1$, nos basta con calcular una soluci\'on particular, que ser\'a:
+%\begin{equation}\label{eq:formula-variation-parameters-L1hat}
+%    \widehat{L}_{1p,\lambda}(s) = \hat{c}_1\int^s\frac{\widehat{L}_{1h,\lambda}(x)h(x)}{W(x)}\dd{x}
+%\end{equation}
+%where $h$ is the source given by the inhomogeneous part of Eq.~\eqref{eq:EDO-L1hat},
+%\begin{equation}
+%    h(x) \coloneq \frac{3c_{1A}\lambda^2}{x^2}\qty[-12 - \lambda^2 + \qty(\gamma + \log(x))(4 + \lambda^2)],
+%\end{equation}
+%and $W(x)$ is the Wronskian, that in our case is
+%\begin{equation}
+%\begin{aligned}
+%    W(x) &= \hat{c}_1^2 \qty(\widehat{L}_{1h,\lambda}(x)\dv{x}\widehat{L}_{1h,-\lambda}(x) - \widehat{L}_{1h,-\lambda}(x)\dv{x}\widehat{L}_{1h,\lambda}(x))\\
+%    &=2{\hat{c}_1}^2\frac{\lambda + \lambda^3}{x^3(2i + x)}.
+%\end{aligned}
+%\end{equation}
+%Replacing it in the $\widehat{L}_{1p,\lambda}$ expression, Eq.~\eqref{eq:formula-variation-parameters-L1hat}, we obtain an expression in function of Hypergeometric and logarithms functions. The complete explicit expression is in the \texttt{Mathematica} archive (is too long to write it here)
+%%Reemplazando en la expresi\'on de $\widehat{L}_{1p,\lambda}$ obtenemos su expresión en función de funciones hipergeométricas y logaritmos. La expresi\'on expl\'icita est\'a en el documento de Mathematica (es muy larga para ponerla aqu\'i).
+%
+%Using the Mellin transform we know how to compute the inverse LT of one part of the particular solution. What we have left to compute is the inverse TL of the following function:
+%%Utilizando la transformada de Mellin sabemos cómo calcular la inversa TL de una parte de la solución particular, $\widehat{L}_{1p,\lambda}$. Lo que nos queda por calcular su inversa es la siguiente función:
+%\begin{equation*}
+%    \boxed{\begin{aligned}
+%        r(s) &=  s^{1-\frac{i \lambda }{2}}\log (s) \\
+%        &\quad \times\Bigg[ f_1(\lambda)\, _2F_1\left(1-\frac{i \lambda }{2},-\frac{i \lambda}{2} ;2-\frac{i \lambda }{2};\frac{i s}{2}\right)\\
+%        &\qquad\quad + f_2(\lambda) s  \, _2F_1\left(2-\frac{i \lambda }{2},-\frac{i \lambda}{2};3-\frac{i \lambda }{2};\frac{i s}{2}\right)+f_3(\lambda) s^2 \, _2F_1\left(3-\frac{i \lambda }{2},-\frac{i \lambda }{2} ;4-\frac{i \lambda }{2};\frac{i s}{2}\right)\Bigg],
+%    \end{aligned}}
+%\end{equation*}
+%that is just schematically, because there are some relations between those $f_i$ that allow us to do some simplifications when we take derivatives of this function $r$.
+%
+%\mycomment{
+%\section{Definiendo un tiempo inicial finito $t_0$}
+%
+%Según lo conversado con Gonzalo (09/04/24), en vez de definir las condiciones iniciales en $t = -\infty$, podemos usar un tiempo inicial $t = t_0$ para imponer condiciones iniciales.
+%
+%Siguiendo esto, podemos intentar ocupar la Ec.~\eqref{eq:sol-zeta1(x)},
+%\begin{equation}\label{eq:sol-zeta1-f0=g0}
+%\begin{aligned}
+%\zeta_1(x)= &~{}i \zeta_1(0)\delta(x) \\%  \frac{2\zeta_1'(0)}{\lambda^2}\delta(x) \\% i \zeta_1(0)\delta(x) \\ %\frac{2\zeta_1'(0)}{\lambda^2}\delta(x)
+%&~{} + f_0(\lambda) \Bigg[  (1-\lambda i)  L_{i \lambda/2}(-2 i x)  - \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \\
+%&~{} \qquad\qquad +  (1+ \lambda i)L_{-i \lambda/2}(-2 i x) + \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x \right)\Bigg],
+%\end{aligned}
+%\end{equation}
+%haciendo expl\'icita la relaci\'ion entre $f_0(\lambda)$ y $g_0(\lambda)$. Definamos
+%\begin{equation}
+%    x_0 := e^{-t_0}
+%\end{equation}
+%con $t_0$ el momento donde imponemos las condiciones iniciales.
+%
+%Para poder utilizar TL, debemos imponer $\zeta_1(0) = 0$ para no tener la delta de Dirac. Impongamos la primera condici\'on inicial evaluando Ec.~\eqref{eq:sol-zeta1-f0=g0},
+%\begin{equation}
+%\begin{aligned}
+%1 = &~{} f_0(\lambda) \Bigg[  (1-\lambda i)  L_{i \lambda/2}(-2 i x_0)  - \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x_0 \right) \\
+%&~{} \qquad\qquad +  (1+ \lambda i)L_{-i \lambda/2}(-2 i x_0) + \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x_0 \right)\Bigg],
+%\end{aligned}
+%\end{equation}
+%lo que nos entrega el valor de $f_0$
+%\begin{equation}
+%\begin{aligned}
+%    f_0(\lambda) &= \Bigg[  (1-\lambda i)  L_{i \lambda/2}(-2 i x_0)  - \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x_0 \right) \\
+%    &~{} \qquad\qquad +  (1+ \lambda i)L_{-i \lambda/2}(-2 i x_0) + \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x_0 \right)\Bigg]^{-1}.
+%\end{aligned}
+%\end{equation}
+%Finalmente, la solución para el coeficiente $\zeta_1$ es
+%\begin{equation}
+%\begin{aligned}
+%    \zeta_1(x)= &~{} \Bigg[  (1-\lambda i)  L_{i \lambda/2}(-2 i x_0)  - \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x_0 \right) \\
+%    &~{} \qquad\qquad +  (1+ \lambda i)L_{-i \lambda/2}(-2 i x_0) + \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x_0 \right)\Bigg]^{-1}\\
+%    &\times\Bigg[  (1-\lambda i)  L_{i \lambda/2}(-2 i x)  - \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \\
+%    &~{} \qquad\qquad +  (1+ \lambda i)L_{-i \lambda/2}(-2 i x) + \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x \right)\Bigg].
+%\end{aligned}
+%\end{equation}
+%En la Figura~\ref{fig:comp-real-zeta1} podemos ver la comparación de la parte real de $\zeta_1$ calculado numéricamente y con nuestra solución analítica y en Figura~\ref{fig:comp-im-zeta1} la parte imaginaria de lo mismo. En ambos casos se impuso la condición inicial en $x_0 = 10^6$
+%\begin{figure}[h]
+%    \centering
+%    \includegraphics[width=0.8\linewidth]{img/real-part-zeta1.pdf}
+%    \caption{Parte real de $\zeta_1(x)$. La línea azul es la solución analítica y la amarilla la solución numérica.}
+%    \label{fig:comp-real-zeta1}
+%\end{figure}
+%
+%\begin{figure}[h]
+%    \centering
+%    \includegraphics[width=0.8\linewidth]{img/imaginary-part-zeta1.pdf}
+%    \caption{Parte imaginaria de $\zeta_1(x)$. La línea azul es la solución analítica y la amarilla la solución numérica.}
+%    \label{fig:comp-im-zeta1}
+%\end{figure}
+%Aunque la Figura~\ref{fig:comp-real-zeta1} se ve que ambas soluciones son similares, las diferencias se comienzan a notar en puntos cercanos a $x = 0$, o sea en $t = \infty$, como se muestra en la Figura~
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=0.8\linewidth]{img/real-parte2-zeta1.pdf}
+%    \caption{Parte real de $\zeta_1(x)$ en un dominio más acotado y cercano a $x=0$. La línea azul es la solución analítica y la amarilla la solución numérica.}
+%    \label{fig:enter-label}
+%\end{figure}
+%
+%
+%
+%\section{Coeficiente $\zeta_2$}
+%
+%Para el coeficiente $\zeta_2$ tenemos la siguiente EDO de cuarto orden, con $x:=e^{-t}$ igual que antes,
+%\begin{equation}
+%    x^2\zeta_2 ^{(4)}(x) +(-4ix^2+4x) \zeta_2 ^{(3)}(x)+ (-4x^2-10ix) \zeta_2 ''(x)+(-4 x+2 i) \zeta_2 '(x)-\lambda ^2 \zeta_2 (x)=0,
+%\end{equation}
+%de donde obtenemos la relación
+%\begin{equation}
+%    \zeta_2(0) = \frac{2i}{\lambda^2}\zeta_2'(0)
+%\end{equation}
+%
+%cuya TL es
+%\begin{equation*}
+%\begin{aligned}
+%    & s^2 (s-2 i)^2 L_2''(s)+2 s \left(2 s^2-7 i s-6\right)L_2'(s)\\
+%    &\quad +\qty(-\lambda^2 - 2is - 4)L_2(s)+\qty(2s - 4i)\zeta_2(0) + 2\zeta_2'(0) = 0
+%\end{aligned}
+%\end{equation*}
+%y ocupando la relación
+%\begin{equation}
+%\begin{aligned}
+%    & s^2 (s-2 i)^2 L_2''(s)+2 s \left(2 s^2-7 i s-6\right)L_2'(s)\\
+%    &\quad +\qty(-\lambda^2 - 2is - 4)L_2(s) - \qty(- \lambda^2 -2is - 4)\frac{2b_2}{\lambda^2} = 0
+%\end{aligned}
+%\end{equation}
+%así que podemos hacer el mismo truco de definir
+%\begin{equation}
+%    \widetilde{L}_2(s) := L_2(s) - \frac{2b_2}{\lambda^2}
+%\end{equation}
+%entonces
+%\begin{equation}
+%s^2 (s-2 i)^2 \widetilde{L}_2''(s)+2 s \left(2 s^2-7 i s-6\right)\widetilde{L}_2'(s)+\qty(-\lambda^2 - 2is - 4)\widetilde{L}_2(s) = 0
+%\end{equation}
+%que tiene como solución
+%\begin{equation}
+%    \widetilde{L}_2(s) = c_1\frac{P^{i\lambda}_1(-1-is)}{s} + c_2\frac{P^{-i\lambda}_1(-1-is)}{s}
+%\end{equation}
+%donde
+%\begin{equation}\label{eq:P_1-zeta2}
+%    P_1^{i\lambda}(-1 - is) = \frac{1}{\Gamma(2 - \lambda i)}(- 1 - i\lambda - is)(2 + is)^{-i\frac{\lambda}{2}}(-is)^{i\frac{\lambda}{2}}.
+%\end{equation}
+%Así que debemos calcular la inversa de la siguiente función:
+%\begin{equation*}
+%    (-1-i\lambda)(-i)^{i\frac{\lambda}{2}}(2 + is)^{-i\frac{\lambda}{2}}s^{i\frac{\lambda}{2} - 1}  + (-i)^{i\frac{\lambda}{2} + 1}(2 + is)^{-i\frac{\lambda}{2}}s^{i\frac{\lambda}{2}}
+%\end{equation*}
+%Calculamos su inversa usando que sabemos
+%\begin{equation*}
+%\begin{aligned}
+%    \mathcal{L}\qty[L_{-i\lambda/2}(2ix)] = i^{i\frac{\lambda}{2}}\qty(2 + is)^{-i\frac{\lambda}{2}}s^{-1 + i\lambda/2}
+%\end{aligned}
+%\end{equation*}
+%y
+%\begin{equation*}
+%\begin{aligned}
+%    \mathcal{L}\qty[\,_1F_1\qty(1+i\frac{\lambda}{2}; 2; 2ix)] &= \frac{1}{\lambda} - \frac{1}{\lambda}s^{i\frac{\lambda}{2}}\qty(-2i + s)^{-i\frac{\lambda}{2}}\\
+%    &= \frac{1}{\lambda} - \frac{i^{i\frac{\lambda}{2}}}{\lambda}\qty(2 + is)^{-i\frac{\lambda}{2}}s^{i\frac{\lambda}{2}}
+%\end{aligned}
+%\end{equation*}
+%bla bla... obtenemos algo muy similar.
+%
+%
+%
+%\newpage
+%
+%\section{Transformada de Fourier}
+%
+%Probaremos c\'omo queda la EDO \eqref{eq:zeta_1(x)} cuando aplicamos transformada de Fourier, definida como:
+%\begin{equation}
+%    F(k) := \int_{-\infty}^{\infty}\dd{x}f(x)e^{ikx}
+%\end{equation}
+%y la inversa la definiremos como
+%\begin{equation}
+%    f(x) := \int_{-\infty}^{\infty}\frac{\dd{k}}{2\pi}F(k)e^{-ikx}.
+%\end{equation}
+%Ocupando estas definiciones tenemos una expresi\'on para la derivada $n$-\'esima $f^{(n)}$ ocupando integraci\'on por partes, por ejemplo para $n=1$
+%\begin{equation*}
+%\begin{aligned}
+%    \mathcal{F}\qty[f'(x)] &= \int_{-\infty}^{\infty} \dd{x} f'(x)e^{ikx}\\
+%    &= f(x)e^{ikx}\Bigg|_{-\infty}^\infty - ik\int_{-\infty}^{\infty} \dd{x} f(x)e^{ikx},
+%\end{aligned}
+%\end{equation*}
+%donde si asumimos que $f(x)$ es una funci\'on par o impar y que tienda a $0$ en $x\to\pm\infty$, podemos cancelar el t\'ermino de borde
+%\begin{equation*}
+%    \Rightarrow \mathcal{F}\qty[f'(x)](k) = -ikF(k).
+%\end{equation*}
+%Entonces, mientras asumamos que $f^{(n)}$ tiende a 0 en $x = \infty$, tendremos la siguiente relaci\'on
+%\begin{center}
+%    {\large \textcolor{red}{Esto está malo, debería quedar un término de borde que no consideré. En la próxima sección lo hago bien, pero no lo he podido terminar...}}
+%\end{center}
+%\begin{equation}
+%    \mathcal{F}\qty[f^{(n)}(x)] = \qty(-ik)^nF(k).
+%\end{equation}
+%Tambi\'en podemos encontrar una relaci\'on para potencias de $x$
+%\begin{equation*}
+%\begin{aligned}
+%    \mathcal{F}\qty[x^mf^{(n)}(x)] &= \int_{-\infty}^\infty \dd{x} x^mf^{(n)}(x)e^{ikx}\\
+%    &= (-i)^m\pdv[m]{k}\int_{-\infty}^\infty \dd{x} f^{(n)}(x)e^{ikx}\\
+%    &= (-i)^{m+n}\pdv[m]{k} \qty(k^n F(k)).
+%\end{aligned}
+%\end{equation*}
+%Ocupando estas relaciones y asumiendo\footnote{Ya demostr\'e que $\lim_{x\to\infty}\zeta_1^{(4)}=0$}
+%\begin{equation}
+%    \lim_{x\to\pm\infty}\qty(\zeta_1',\zeta_1'',\zeta_1^{(3)},\zeta_1^{(4)}) = (0,0,0,0)
+%\end{equation}
+%para eliminar los t\'erminos de borde, conseguimos una EDO homog\'enea de segundo orden
+%\begin{equation}
+%    \left(-k^4+4 k^3-4 k^2\right) F''(k)+\left(-4 k^3+14 k^2-12 k\right) F'(k)+F(k) \left(-\lambda ^2+2 k-4\right) = 0,
+%\end{equation}
+%que tiene como soluci\'on
+%\begin{equation}
+%    F(k) = \frac{c_1 P_1^{i \lambda }(k-1)}{k}+\frac{c_2 Q_1^{i \lambda }(k-1)}{k}.
+%\end{equation}
+%Siguiendo la expansi\'on hecha en \eqref{eq:P_1-zeta2} de los polinomios de Legendre (tomando $-is \to k$), tenemos que para el de primera especie
+%\begin{equation}
+%    P_1^{i\lambda}(-1 + k) = \frac{1}{\Gamma(2 - i\lambda)}(- 1 - i\lambda + k)(2 - k)^{-i\frac{\lambda}{2}}k^{i\frac{\lambda}{2}}
+%\end{equation}
+%y como $Q_1^{i\lambda}$ es una funci\'on de $P_1^{i\lambda}$ y $P_1^{-i\lambda}$, la soluci\'on de $F(k)$ puede ser escrita como
+%\begin{equation}\label{eq:sol-F(k)-sin-CI-v1}
+%    F(k) = c_1 (- 1 - i\lambda + k)(2 - k)^{-i\frac{\lambda}{2}}k^{i\frac{\lambda}{2} - 1} + c_2 (- 1 + i\lambda + k)(2 - k)^{i\frac{\lambda}{2}}k^{-i\frac{\lambda}{2} - 1}.
+%\end{equation}
+%Cabe notar que ya ocupamos 3 condiciones iniciales:
+%\begin{equation*}
+%    \zeta_1'(\infty)=\zeta_1''(\infty)=\zeta_1^{(3)}(\infty)=0,
+%\end{equation*}
+%por lo que en \eqref{eq:sol-F(k)-sin-CI-v1} solo deber\'ia haber una constante de integraci\'on. Esto se cumple, ya que viendo la EDO de $F(k)$, la soluci\'on debe ser sim\'etrica ante $\lambda\to-\lambda$ y esto se cumple en \eqref{eq:sol-F(k)-sin-CI-v1} si tenemos 
+%\begin{equation*}
+%    c_1 = c_2.
+%\end{equation*}
+%De esta forma, nuestra soluci\'on es simplemente
+%\begin{equation}\label{eq:sol-F(k)-sin-CI}
+%    F(k) = c_1 \qty[(- 1 - i\lambda + k)(2 - k)^{-i\frac{\lambda}{2}}k^{i\frac{\lambda}{2} - 1} + (- 1 + i\lambda + k)(2 - k)^{i\frac{\lambda}{2}}k^{-i\frac{\lambda}{2} - 1}].
+%\end{equation}
+%Solo faltar\'ia calcular la inversa de la transformada de Fourier e imponer la condici\'on inicial restante, $\zeta_1(\infty)=1$.
+%
+%En una primera instancia pareciera que Mathematica no la puede calcular, pero podr\'iamos ocupar trucos como los que hemos estado haciendo para la inversa de la transformada de Laplace: primero utilizar otra transformada (de Mellin por ejemplo) y a esta funci\'on transformada calcular su inversa de Fourier. Estamos trabajando para usted.
+%
+%\newpage
+%
+%\section{Transformada de Fourier v2}
+%
+%Probaremos c\'omo queda la EDO \eqref{eq:zeta_1(x)} cuando aplicamos transformada de Fourier, definida como:
+%\begin{equation}
+%    F(k) := \mathcal{F}\qty[f(x)] = \int_{-\infty}^{\infty}\dd{x}f(x)e^{ikx}
+%\end{equation}
+%y la inversa la definiremos como
+%\begin{equation}
+%    f(x) := \int_{-\infty}^{\infty}\frac{\dd{k}}{2\pi}F(k)e^{-ikx}.
+%\end{equation}
+%Ocupando estas definiciones tenemos una expresi\'on para la derivada $n$-\'esima, $f^{(n)}$, ocupando integraci\'on por partes, por ejemplo para $n=1$
+%\begin{equation*}
+%\begin{aligned}
+%    \mathcal{F}\qty[f'(x)] &= \int_{-\infty}^{\infty} \dd{x} f'(x)e^{ikx}\\
+%    &= f(x)e^{ikx}\Bigg|_{-\infty}^\infty - ik\int_{-\infty}^{\infty} \dd{x} f(x)e^{ikx},
+%\end{aligned}
+%\end{equation*}
+%donde asumiremos que $f(x)$ es una funci\'on par o impar. Sin embargo, nosotros tomaremos $f(x) = \zeta_1(x)$ y por condiciones iniciales tenemos que $\zeta_1(\infty) = 1$, as\'i que siempre tendremos un t\'ermino de borde. Consideremos que este t\'ermino de borde es constante y lo denominaremos como
+%\begin{equation*}
+%    \alpha := f(x)e^{ikx}\Bigg|_{-\infty}^\infty,
+%\end{equation*}
+%que puede no ser del todo correcto, ya que la exponencial imaginaria no tiende a un valor en particular en $x=\pm\infty$. Por el momento ignoremos ese problema.
+%
+%As\'i que
+%\begin{equation*}
+%     \mathcal{F}\qty[f'(x)] = \alpha - ikF(k).
+%\end{equation*}
+%Por inducci\'on se puede demostrar que para la $n$-\'esima derivada de $f$, tenemos que su transformada de Fourier es
+%\begin{equation*}
+%\begin{aligned}
+%    \mathcal{F}\qty[f^{(n)}(x)] &= \int_{-\infty}^\infty f^{(n)}(x)e^{ikx}\dd{x}\\
+%    &= (-ik)^{n-1}\alpha + (-ik)^{n}F(k).
+%\end{aligned}
+%\end{equation*}
+%Tambi\'en podemos encontrar una relaci\'on para potencias de $x$
+%\begin{equation*}
+%\begin{aligned}
+%    \mathcal{F}\qty[x^mf^{(n)}(x)] &= \int_{-\infty}^\infty \dd{x} x^mf^{(n)}(x)e^{ikx}\\
+%    &= (-i)^m\pdv[m]{k}\int_{-\infty}^\infty \dd{x} f^{(n)}(x)e^{ikx}\\
+%    &= (-i)^{m}\pdv[m]{k}\qty[(-ik)^{n-1}\alpha + (-ik)^{n}F(k)].
+%\end{aligned}
+%\end{equation*}
+%Ahora nuestra EDO de segundo orden ser\'ia una EDO no homogénea
+%\begin{equation}
+%     \left(-k^4+4 k^3-4 k^2\right) F''(k)+\left(-4 k^3+14 k^2-12 k\right) F'(k)+ \left(-\lambda ^2+2 k-4\right)F(k) +i\alpha\qty(2k - 4) =0
+%\end{equation}
+%que podemos reescribir como
+%\begin{equation}
+%     \left(-k^4+4 k^3-4 k^2\right) \widetilde{F}''(k)+\left(-4 k^3+14 k^2-12 k\right)\widetilde{F}'(k)+ \left(-\lambda ^2+2 k-4\right)\widetilde{F}(k)= - i\alpha\lambda^2 ,
+%\end{equation}
+%donde definimos
+%\begin{equation*}
+%    \widetilde{F}(k) := F(k) + i\alpha.
+%\end{equation*}
+%Sin embargo, Mathematica solo puede calcular la soluci\'on particular de esta EDO...
+%
+%}
+%% ---- fin de la seccion comentada --------------
+%
+%\section{Numerical solution}
+%
+%To check the intial conditions found in \ref{sec:Condiciones iniciales}, and analyze the behaviour of the solution $\zeta_1(x)$, let us solve the system of Eq.~\eqref{eqCI:zeta'} numerically. Using \texttt{NDSolve} from \texttt{Mathematica}, and the well known initial conditions
+%\begin{equation}
+%    \qty(\zeta_1,\zeta_2,\psi_1,\psi_2)(x_0) = (1,0,0,0)
+%\end{equation}
+%with these functions evaluated at\footnote{Recall that the initial conditions are impose in $t = -\infty$, that is $x = +\infty$. Thus we need to impose initial conditions at a large value of $x$} $x_0 = 10^6$. Integrating numerically between the range $x \in \{10^{-3},10^6\}$ we obtain the function plotted in Fig.~\ref{fig:zeta1-sol-numerica}
+%%Para comprobar las condiciones iniciales encontradas en \ref{sec:Condiciones iniciales} y analizar el comportamiento de la solución en $x \to 0$, resolvamos numéricamente el sistema de \eqref{eqCI:zeta'}. Utilizamos \texttt{NDSolve} de \texttt{Mathematica}, las condiciones iniciales
+%%\begin{equation}
+%%    \qty(\zeta_1,\zeta_2,\psi_1,\psi_2)(x_f) = (1,0,0,0)
+%%\end{equation}
+%%con las funciones evaluadas en $x_f = 10^6$ y $\lambda = 10$. Integrando numéricamente en el rango $x \in \{10^{-3},10^6\}$ obtenemos la función graficada en Fig.~\ref{fig:zeta1-sol-numerica}
+%\begin{figure}[h!]
+%\includegraphics[width=0.8\linewidth]{img/zeta1-numerico.pdf}
+%\caption{\label{fig:zeta1-sol-numerica} Numerical solution of the coefficient $\zeta_1$. Solid line indicates the real part of the function and the dotted line indicates the imaginary part. Two relevant values of this curve are: $\zeta_1(x_f) \approx 8\times10^7 + 3\times10^8 i$, and $\zeta_1(x_0) = 1$, where $x_f = 10^{-3}$.}
+%\end{figure}
+%
+%With respect to the initial conditions, if we plot $\zeta_1$ in a range close to $x_0 = 10^6$, we obtain the plot of Fig.~\ref{fig:zeta1-sol-numerica-xf}, that is in agreement with the initial conditions computed in \ref{sec:Condiciones iniciales},
+%\begin{equation}
+%    \lim_{x \to +\infty}\qty(\zeta_1(x),\zeta_1'(x),\zeta_1''(x),\zeta_1^{(3)}(x)) = (1,0,0,0).
+%\end{equation}
+%%Con respecto a las condiciones iniciales, si graficamos $\zeta_1$ en un rango cercano a $x_f = 10^6$ obtenemos el gráfico de Fig.~\ref{fig:zeta1-sol-numerica-xf},
+%
+%\begin{figure}[h!]
+%\includegraphics[width=0.8\linewidth]{img/zeta1-numerico-xf2.pdf}
+%\caption{\label{fig:zeta1-sol-numerica-xf} Numerical solution of the coefficient $\zeta_1$ in the range $\qty[9\times10^{5},10^6]$.}
+%\end{figure}
+%
+%%donde vemos que calza con las condiciones iniciales que habíamos calculado en \ref{sec:Condiciones iniciales}, o sea
+%%\begin{equation}
+%%    \lim_{x \to +\infty}\qty(\zeta_1(x),\zeta_1'(x),\zeta_1''(x),\zeta_1^{(3)}(x)) = (1,0,0,0).
+%%\end{equation}
+%Note that $\zeta_1$ goes to infinity in $x \to 0$, thus the ansatz defined in \ref{subsec:Ansatz 2} for the asymptotic solution,
+%\begin{equation}
+%    \zeta_{1A}(x) \propto \frac{6}{x} + 6i\log(x) - 3\lambda^2x\log(x),
+%\end{equation}
+%is congruent with the numerical solution.
+%%También apreciamos que $\zeta_1(x)$ tiende a infinito en $x \to 0$, por lo que el ansatz definido en \ref{subsec:Ansatz 2},
+%%\begin{equation}
+%%    \zeta_{1A}(x) \propto \frac{6}{x} + 6i\log(x) - 3\lambda^2x\log(x),
+%%\end{equation}
+%%es congruente con la solución numérica.
+%
+%
+%% ------------- Inicio seccion comentada (Power spectrum) -------------
+%\mycomment{
+%\section{Power spectrum}
+%
+%Una de las utilidades de los coeficientes de Bogoliubov es poder calcular el \textit{power spectrum} de los campos $\zeta$ o $\psi$, de la siguiente forma:
+%\begin{equation}
+%\begin{aligned}
+%    \mathcal{P}_\zeta &= \frac{H^2}{4\epsilon k^3}\qty(\abs{\alpha_{\zeta 1} - \beta_{\zeta 1}}^2 + \abs{\alpha_{\zeta 2} - \beta_{\zeta 2}}^2)\\
+%    \mathcal{P}_\psi &= \frac{H^2}{2 k^3}\qty(\abs{\alpha_{\psi 1} - \beta_{\psi 1}}^2 + \abs{\alpha_{\psi 2} - \beta_{\psi 2}}^2)
+%\end{aligned}
+%\end{equation}
+%donde $\alpha_\zeta$ y $\beta_\zeta$ son los coeficientes de Bogoliubov $\zeta_1$ y $\zeta_2$ respectivamente y el sub-\'indice $1$ o $2$ representan los dos sets de condiciones iniciales que se tienen
+%\begin{equation}
+%\begin{aligned}
+%    (\alpha_{\zeta1},\beta_{\zeta1},\alpha_{\psi1},\beta_{\psi1}) &= (1,0,0,0),\\
+%    (\alpha_{\zeta2},\beta_{\zeta2},\alpha_{\psi2},\beta_{\psi2}) &= (0,0,1,0),
+%\end{aligned}
+%\end{equation}
+%evaluados en $x = \infty \Leftrightarrow t = -\infty$.
+%
+%}
+%% ----------- fin seccion comentada -----------
+%
+%\section{Approximated solution for large $x$}
+%
+%We have already conclude that $\zeta_1$ diverges at $x = 0$, thus, a priori, we can not use LT to its ODE and the result of Eq.~\eqref{eq:sol-zeta1(x)} is formally incorrect. However, there is a Dirac delta function in this solution, and to eliminate it we need to impose $\zeta_1(0) = 0$, that implies $a = 0 = b$. Let us do this.
+%
+%Now, our \textit{solution}, imposing the symmetry condition $f_0(\lambda) = g_0(\lambda)$, would be
+%\begin{equation}\label{eq:approx-sol-zeta1-largex}
+%\begin{aligned}
+%    \zeta_1(x)= &~{} f_0(\lambda)\Bigg[  (1-\lambda i)  L_{i \lambda/2}(-2 i x)  - \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \\
+%    &~{} \qquad\qquad +  (1+ \lambda i)L_{-i \lambda/2}(-2 i x) + \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x \right)\Bigg].
+%\end{aligned}
+%\end{equation}
+%The initial conditions are imposed in $t = -\infty$ that is $x = +\infty$, and we know that
+%\begin{equation*}
+%    \lim_{x\to\infty}\,_1F_1\qty(1-\frac{\lambda}{2}i;2;-2ix)=0\,, \quad \forall \lambda,
+%\end{equation*}
+%and
+%\begin{equation*}
+%    \lim_{x\to\infty}L_{i\lambda/2}(-2ix)=\frac{(2i)^{i\lambda/2}e^{2i\text{Interval}[\{0,\pi\}]}}{\Gamma(1+i\lambda/2)}\,,\quad \lambda>0\,.
+%\end{equation*}
+%Where the latest limit means that the Laguerre function has a oscillatory behavior in $x \to \infty$ (also you can see this in Fig.~\eqref{fig:zeta1-sol-numerica}), and this prevent us to impose initial conditions at $x = \infty$.
+%
+%In conclusion, instead imposing initial conditions at $t = -\infty$, let us consider a finite, but large in magnitude, initial value $t = t_0$. Thus, now we need to evaluate Eq.~\eqref{eq:approx-sol-zeta1-largex} at
+%\begin{equation*}
+%    x_0 := e^{-t_0},\quad \text{where}\quad x_0 \gg 1.
+%\end{equation*}
+%Evaluating Eq.~\eqref{eq:approx-sol-zeta1-largex} at this point and considering $\zeta_1(x_0) = 1$, we obtain
+%\begin{equation}
+%\begin{aligned}
+%1 = &~{} f_0(\lambda) \Bigg[  (1-\lambda i)  L_{i \lambda/2}(-2 i x_0)  - \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x_0 \right) \\
+%&~{} \qquad\qquad +  (1+ \lambda i)L_{-i \lambda/2}(-2 i x_0) + \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x_0 \right)\Bigg],
+%\end{aligned}
+%\end{equation}
+%thus the expression of $f_0$ is given by
+%\begin{equation}
+%\begin{aligned}
+%    f_0(\lambda) &= \Bigg[  (1-\lambda i)  L_{i \lambda/2}(-2 i x_0)  - \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x_0 \right) \\
+%    &~{} \qquad\qquad +  (1+ \lambda i)L_{-i \lambda/2}(-2 i x_0) + \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x_0 \right)\Bigg]^{-1}.
+%\end{aligned}
+%\end{equation}
+%Finally, our \textit{approximated solution} for $\zeta_1$ is
+%\begin{equation}
+%\begin{aligned}
+%    \zeta_1(x)= &~{} \Bigg[  (1-\lambda i)  L_{i \lambda/2}(-2 i x_0)  - \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x_0 \right) \\
+%    &~{} \qquad\qquad +  (1+ \lambda i)L_{-i \lambda/2}(-2 i x_0) + \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x_0 \right)\Bigg]^{-1}\\
+%    &\times\Bigg[  (1-\lambda i)  L_{i \lambda/2}(-2 i x)  - \lambda \, _1F_1\left(1- \frac{\lambda}2 i ;2;-2 i x \right) \\
+%    &~{} \qquad\qquad +  (1+ \lambda i)L_{-i \lambda/2}(-2 i x) + \lambda \, _1F_1\left(1+  \frac{\lambda}2i ;2;-2 i x \right)\Bigg].
+%\end{aligned}
+%\end{equation}
+%In Fig.~\ref{fig:comp-real-zeta1} we can see the comparison between the real part of $\zeta_1$, computed numerically, with our approximated analytical solution. In Fig.~\ref{fig:comp-im-zeta1} you can see the same for the imaginary part.
+%
+%%En la Figura~\ref{fig:comp-real-zeta1} podemos ver la comparación de la parte real de $\zeta_1$ calculado numéricamente y con nuestra solución analítica y en Figura~\ref{fig:comp-im-zeta1} la parte imaginaria de lo mismo. En ambos casos se impuso la condición inicial en $x_0 = 10^6$
+%\begin{figure}[h]
+%    \centering
+%    \includegraphics[width=0.8\linewidth]{img/real-part-zeta1.pdf}
+%    \caption{Real part of $\zeta_1(x)$. Blue line represents the analytical solution and the yellow line represents the numerical solution.}
+%    \label{fig:comp-real-zeta1}
+%\end{figure}
+%
+%\begin{figure}[h]
+%    \centering
+%    \includegraphics[width=0.8\linewidth]{img/imaginary-part-zeta1.pdf}
+%    \caption{Imaginary part of $\zeta_1(x)$. Blue line represents the analytical solution and the yellow line represents the numerical solution.}
+%    \label{fig:comp-im-zeta1}
+%\end{figure}
+%
+%Although in Fig.~\ref{fig:comp-real-zeta1} both solutions look similar, a considerable difference starts at points close to $x = 0$, as you can see in Fig.~\ref{fig:difference}
+%%Aunque la Figura~\ref{fig:comp-real-zeta1} se ve que ambas soluciones son similares, las diferencias se comienzan a notar en puntos cercanos a $x = 0$, o sea en $t = \infty$, como se muestra en la Figura~
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=0.8\linewidth]{img/real-parte2-zeta1.pdf}
+%    \caption{Real part of $\zeta_1(x)$ in a narrow domain around $x = 0$. Blue line represents the analytical solution and the yellow line represents the numerical solution.}
+%    \label{fig:difference}
+%\end{figure}
+%
+%\section{Coeficiente $\zeta_2$}
+%
+%Para el coeficiente $\zeta_2$ tenemos la siguiente EDO de cuarto orden, con $x:=e^{-t}$ igual que antes,
+%\begin{equation}
+%    x^2\zeta_2 ^{(4)}(x) +(-4ix^2+4x) \zeta_2 ^{(3)}(x)+ (-4x^2-10ix) \zeta_2 ''(x)+(-4 x+2 i) \zeta_2 '(x)-\lambda ^2 \zeta_2 (x)=0,
+%\end{equation}
+%de donde obtenemos la relación
+%\begin{equation}
+%    \zeta_2(0) = \frac{2i}{\lambda^2}\zeta_2'(0)
+%\end{equation}
+%
+%cuya TL es
+%\begin{equation*}
+%\begin{aligned}
+%    & s^2 (s-2 i)^2 L_2''(s)+2 s \left(2 s^2-7 i s-6\right)L_2'(s)\\
+%    &\quad +\qty(-\lambda^2 - 2is - 4)L_2(s)+\qty(2s - 4i)\zeta_2(0) + 2\zeta_2'(0) = 0
+%\end{aligned}
+%\end{equation*}
+%y ocupando la relación
+%\begin{equation}
+%\begin{aligned}
+%    & s^2 (s-2 i)^2 L_2''(s)+2 s \left(2 s^2-7 i s-6\right)L_2'(s)\\
+%    &\quad +\qty(-\lambda^2 - 2is - 4)L_2(s) - \qty(- \lambda^2 -2is - 4)\frac{2b_2}{\lambda^2} = 0
+%\end{aligned}
+%\end{equation}
+%así que podemos hacer el mismo truco de definir
+%\begin{equation}
+%    \widetilde{L}_2(s) := L_2(s) - \frac{2b_2}{\lambda^2}
+%\end{equation}
+%entonces
+%\begin{equation}
+%s^2 (s-2 i)^2 \widetilde{L}_2''(s)+2 s \left(2 s^2-7 i s-6\right)\widetilde{L}_2'(s)+\qty(-\lambda^2 - 2is - 4)\widetilde{L}_2(s) = 0
+%\end{equation}
+%que tiene como solución
+%\begin{equation}
+%    \widetilde{L}_2(s) = c_1\frac{P^{i\lambda}_1(-1-is)}{s} + c_2\frac{P^{-i\lambda}_1(-1-is)}{s}
+%\end{equation}
+%donde
+%\begin{equation}\label{eq:P_1-zeta2}
+%    P_1^{i\lambda}(-1 - is) = \frac{1}{\Gamma(2 - \lambda i)}(- 1 - i\lambda - is)(2 + is)^{-i\frac{\lambda}{2}}(-is)^{i\frac{\lambda}{2}}.
+%\end{equation}
+%Así que debemos calcular la inversa de la siguiente función:
+%\begin{equation*}
+%    (-1-i\lambda)(-i)^{i\frac{\lambda}{2}}(2 + is)^{-i\frac{\lambda}{2}}s^{i\frac{\lambda}{2} - 1}  + (-i)^{i\frac{\lambda}{2} + 1}(2 + is)^{-i\frac{\lambda}{2}}s^{i\frac{\lambda}{2}}
+%\end{equation*}
+%Calculamos su inversa usando que sabemos
+%\begin{equation*}
+%\begin{aligned}
+%    \mathcal{L}\qty[L_{-i\lambda/2}(2ix)] = i^{i\frac{\lambda}{2}}\qty(2 + is)^{-i\frac{\lambda}{2}}s^{-1 + i\lambda/2}
+%\end{aligned}
+%\end{equation*}
+%y
+%\begin{equation*}
+%\begin{aligned}
+%    \mathcal{L}\qty[\,_1F_1\qty(1+i\frac{\lambda}{2}; 2; 2ix)] &= \frac{1}{\lambda} - \frac{1}{\lambda}s^{i\frac{\lambda}{2}}\qty(-2i + s)^{-i\frac{\lambda}{2}}\\
+%    &= \frac{1}{\lambda} - \frac{i^{i\frac{\lambda}{2}}}{\lambda}\qty(2 + is)^{-i\frac{\lambda}{2}}s^{i\frac{\lambda}{2}}
+%\end{aligned}
+%\end{equation*}
+%bla bla... obtenemos algo muy similar.
+
+\section{Unbounded solutions}
+
+
+
+
+\section{Conclusiones}
+
+Lo único certero es la muerte...
+
+%------ Apéndice comentado ---------------------------
+\mycomment{
+\appendix
+
+\section{EDO $\z_1$ desacoplada}
+
+Las ecuaciones diferenciales de primer orden de los coeficientes de Bogoliubov y sus derivadas podemos resumirlas según sus dependencias en los otros coeficientes, como
+\begin{equation}\label{eq:apendice-1}
+    \begin{aligned}
+        \z_1'&=\z_1'(\p_1,\p_2)\\
+        \z_2'&=\z_2'(\p_1,\p_2)\\
+        \p_1'&=\p_1'(\z_1,\z_2)\\
+        \p_2'&=\p_2'(\z_1,\z_2)
+    \end{aligned}
+\end{equation}
+y sus segundas derivadas
+\begin{equation}\label{eq:apendice-2}
+    \begin{aligned}
+        \z_1''&=\z_1''(\p_1,\p_1',\p_2,\p_2')\\
+        \z_2''&=\z_2''(\p_1,\p_1',\p_2,\p_2')\\
+        \p_1''&=\p_1''(\z_1,\z_1',\z_2,\z_2')\\
+        \p_2''&=\p_2''(\z_1,\z_1',\z_2,\z_2')
+    \end{aligned}
+\end{equation}
+y sus terceras derivadas
+\begin{equation}\label{eq:apendice-3}
+    \begin{aligned}
+        \z_1^{(3)}&=\z_1^{(3)}(\p_1,\p_1',\p_1'',\p_2,\p_2',\p_2'')\\
+        \z_2^{(3)}&=\z_2^{(3)}(\p_1,\p_1',\p_1'',\p_2,\p_2',\p_2'')\\
+        \p_1^{(3)}&=\p_1^{(3)}(\z_1,\z_1',\z_1'',\z_2,\z_2',\z_2'')\\
+        \p_2^{(3)}&=\p_2^{(3)}(\z_1,\z_1',\z_1'',\z_2,\z_2',\z_2'')
+    \end{aligned}
+\end{equation}
+y sus cuartas derivadas
+\begin{equation}\label{eq:apendice-4}
+    \begin{aligned}
+        \z_1^{(4)}&=\z_1^{(4)}(\p_1,\p_1',\p_1'',\p_1^{(3)},\p_2,\p_2',\p_2'',\p_2^{(3)})\\
+        \z_2^{(4)}&=\z_2^{(4)}(\p_1,\p_1',\p_1'',\p_1^{(3)},\p_2,\p_2',\p_2'',\p_2^{(3)})\\
+        \p_1^{(4)}&=\p_1^{(4)}(\z_1,\z_1',\z_1'',\z_1^{(3)},\z_2,\z_2',\z_2'',\z_2^{(3)})\\
+        \p_2^{(4)}&=\p_2^{(4)}(\z_1,\z_1',\z_1'',\z_1^{(3)},\z_2,\z_2',\z_2'',\z_2^{(3)})
+    \end{aligned}
+\end{equation}
+Ocupémonos de $\z_1$. 
+
+\subsection{Primer paso}
+Notemos que los términos $\p_i'\,,\p_i''\,,\p_i^{(3)}$ podemos reemplazarlos con sus expresiones respectivas que están en función de $\z_1$ y $\z_2$ y sus derivadas (ecuaciones (\ref{eq:apendice-1}), (\ref{eq:apendice-2}), (\ref{eq:apendice-3}) respectivamente), además podemos ocupar la primera ecuación de (\ref{eq:apendice-1}) para pasar $\p_1\rightarrow (\p_2,\z_1')$, con lo que obtenemos
+\begin{equation}
+     \z_1^{(4)}=\z_1^{(4)}(\z_2,\z_2',\z_2'';\p_2,\z_1^{(m)})
+\end{equation}
+donde $\z_1^{(m)}$ representa las distintas derivadas de $\z_1$ y usaremos $\p_2$ como \textit{pivote}.
+
+Ahora, usando la cuarta ecuación de (\ref{eq:apendice-1}) para pasar $\z_2\rightarrow (\p_2',\zeta_1)$, la segunda ecuación de (\ref{eq:apendice-1}) para pasar $\z_2'\rightarrow (\p_1,\p_2)$ y la segunda ecuación de (\ref{eq:apendice-2}) para pasar $\z_2''\rightarrow (\p_1,\p_1',\p_2,\p_2')$
+\begin{equation}
+    \z_1^{(4)}=\z_1^{(4)}(\p_1,\p_1',\p_2';\p_2,\z_1^{(m)})
+\end{equation}
+usamos la primera ecuación de (\ref{eq:apendice-2}) para pasar $\p_1'\rightarrow (\p_1,\p_2,\p_2',\z_1'')$
+\begin{equation}
+    \z_1^{(4)}=\z_1^{(4)}(\p_1,\p_2';\p_2,\z_1^{(m)})
+\end{equation}
+y usamos la primera ecuación de (\ref{eq:apendice-1}) para pasar $\p_1\rightarrow (\p_2,\z_1')$
+\begin{equation}\label{eq:z_1^4}
+    \z_1^{(4)}=\z_1^{(4)}(\p_2,\p_2',\z_1^{(m)})\,.
+\end{equation}
+
+\subsection{Segundo paso}
+Tenemos $\z_1$ en función de $\p_2$ y $\p_2'$, así que primero encontraremos una expresión de $\p_2$ en función de $\p_2'$ (y las derivadas de $\z_1$) y luego encontraremos una expresión de $\p_2'$ en función de únicamente derivadas de $\z_1$.
+
+La tercera derivada de $\z_1$ es de la forma
+\begin{equation}
+    \z_1^{(3)}=\z_1^{(3)}(\p_1,\p_1',\p_1'',\p_2,\p_2',\p_2'')\,,
+\end{equation}
+nuevamente usaremos $\p_2$ como pivote. Usando la tercera y cuarta ecuación de (\ref{eq:apendice-1}) y (\ref{eq:apendice-2}) para pasar $\p_i'\rightarrow (\z_1,\z_2)$ y $\p_i''\rightarrow (\z_1,\z_1',\z_2,\z_2')$
+\begin{equation}
+     \z_1^{(3)}=\z_1^{(3)}(\p_1,\z_2,\zeta_2';\p_2,\z_1^{(m)})
+\end{equation}
+usamos la primera ecuación de (\ref{eq:apendice-1}) para pasar $\p_1\rightarrow (\p_2,\z_1')$
+\begin{equation}
+     \z_1^{(3)}=\z_1^{(3)}(\z_2,\zeta_2';\p_2,\z_1^{(m)})
+\end{equation}
+usamos la cuarta ecuación de (\ref{eq:apendice-1}) para pasar $\zeta_2\rightarrow (\p_2',\z_1)$ y la segunda ecuación de (\ref{eq:apendice-1}) para pasar $\z_2'\rightarrow (\p_1,\p_2)$
+\begin{equation}
+     \z_1^{(3)}=\z_1^{(3)}(\p_1,\p_2';\p_2,\z_1^{(m)})
+\end{equation}
+nuevamente pasamos $\p_1\rightarrow (\p_2,\z_1')$ de la primera ecuación de (\ref{eq:apendice-1})
+\begin{equation}
+     \z_1^{(3)}=\z_1^{(3)}(\p_2,\p_2',\z_1^{(m)})
+\end{equation}
+con lo que despejando $\p_2$ obtenemos
+\begin{equation}\label{eq:p_2-despejada}
+    \p_2=\p_2(\p_2',\zeta_1^{(m)})\,.
+\end{equation}
+
+\subsection{Tercer paso}
+Para encontrar una expresión de $\p_2'$ usamos la segunda derivada de $\z_1$ expresada como
+\begin{equation}
+    \z_1''=\z_1''(\p_1,\p_1',\p_2,\p_2')
+\end{equation}
+donde solo nos preocupamos de $\p_1$ y $\p_1'$. Usamos la primera ecuación de (\ref{eq:apendice-1}) para pasar $\p_1\rightarrow (\p_2,\z_1')$ y con la tercera ecuación de (\ref{eq:apendice-1}) pasamos $\p_1'\rightarrow (\z_1,\z_2)$
+\begin{equation}
+    \z_1''=\z_1''(\z_2,\p_2,\p_2';\z_1^{(m)})
+\end{equation}
+y usamos la cuarta ecuación de (\ref{eq:apendice-1}) para pasar $\z_2\rightarrow (\p_2',\z_1)$
+\begin{equation}
+    \z_1''=\z_1''(\p_2,\p_2';\z_1^{(m)})
+\end{equation}
+así que en esta ecuación usando (\ref{eq:p_2-despejada}) para pasar $\p_2\rightarrow (\p_2';\z_1^{(m)})$
+\begin{equation}
+    \z_1''=\z_1''(\p_2';\z_1^{(m)})
+\end{equation}
+así que finalmente obtenemos expresiones como
+\begin{equation}
+    \begin{aligned}
+        \p_2&=\p_2(\z_1^{(m)})\\
+        \p_2'&=\p_2'(\z_1^{(n)})
+    \end{aligned}
+\end{equation}
+que podemos reemplazar en (\ref{eq:z_1^4}) y obtenemos
+\begin{equation}
+    \z_1^{(4)}=\z_1^{(4)}(\z_1^{(m)})\,.
+\end{equation}
+Aquí se mostraron los pasos de una forma general, pero debido a las expresiones de los coeficientes, hubieron términos que se iban cancelando en el proceso, por lo que no se usaron todos los pasos. Por ejemplo, no fue necesario el Segundo paso, ya que con el Tercer paso se consiguió una expresión de $\psi_2$ en función únicamente de $\z_1^{(m)}$, por lo que este término y su derivada se reemplazaban directamente en el resultado del Primer paso.
+
+Para $\z_2$ se hacen los mismos pasos (cambiando $\z_1\rightarrow \z_2$) y para $\p_i$ es la misma idea (cambiando $\p_1\rightarrow\z_1$ y $\p_2\rightarrow \z_2$).
+
+Para realizar este procedimiento se utilizó Mathematica y de esta forma se consiguieron las expresiones de las EDOs de cuarto orden desacopladas.
+
+
+
+
+\section{Transformada Laplace inversa función Beta}
+%\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+%\definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
+
+La función Beta incompleta se define como
+\begin{equation}\label{eqAp:beta-as-integral}
+    B(z;b,c)=\int_0^{z}(1-u)^{c-1}u^{b-1}\dd{u}
+\end{equation}
+y si encontramos una función $f(x)$ tal que
+\begin{equation}
+    \mathcal{L}\{f(x)\}(s)=B(as;b,c)\,,
+\end{equation}
+tenemos que $f(x)$ sería la transformada de Laplace inversa
+\begin{equation}
+    f(x)=\mathcal{L}^{-1}\{B(as;b,c)\}\,.
+\end{equation}
+Notemos que conocemos la derivada de la Beta incompleta
+\begin{equation}
+    \pdv{s}B(as;b,c)=\pdv{s}\mathcal{L}\{f(x)\}(s)=(1-as)^{c-1}(as)^{b-1}
+\end{equation}
+y se tiene la propiedad (5.18 apunte de EDO) $\pdv{s}\mathcal{L}\{x(t)\}(s)=-\mathcal{L}\{t\cdot x(t)\}$
+\begin{equation}
+    \Rightarrow \mathcal{L}\{xf(x)\}(s)=-(1-s)^{c-1}s^{b-1}
+\end{equation}
+donde la transformada inversa del lado derecho está dado por
+\begin{equation}
+    \mathcal{L}^{-1}\{-(1-as)^{c-1}(as)^{b-1}\}(x)=(-1)^{-c} a^{b+c-2} x^{1 - b-c} \,_1 \tilde{F}_1\left(1 - c;-b - c + 2;\frac{x}{a}\right)\,,
+\end{equation}
+por lo tanto
+\begin{gather}
+    xf(x)=(-1)^{-c} a^{b+c-2} x^{1 - b-c} \,_1 \tilde{F}_1\left(1 - c;-b - c + 2;\frac{x}{a}\right)\\
+    \therefore f(x)=\mathcal{L}^{-1}\{B(as;b,c)\}=(-1)^{-c} a^{b+c-2} x^{- b - c} \,_1 \tilde{F}_1\left(1 - c;-b - c + 2;\frac{x}{a}\right)\label{eq:beta-incomplete-inverse}
+\end{gather}
+
+\section{Transformada de Laplace función Laguerre}
+
+De Ref.~\onlinecite{bateman_bateman_manuscript_project_1953} tenemos la siguiente trasnformada de Laplace
+\begin{equation}
+\mathcal{L}\qty[t^\alpha L_n^\alpha(t)](s)=\int_0^{\infty}e^{-st}t^\alpha L_n^\alpha(t)\dd{t}=\frac{\Gamma(\alpha+n+1)}{n!}(s-1)^ns^{-(\alpha+n+1)}
+\end{equation}
+donde si elegimos $n=i\lambda/2$ y $\alpha=0$ nos queda
+\begin{equation}
+    \mathcal{L}\qty[L_{i\lambda/2}(t)](s)=\int_0^\infty e^{-st}L_{i\lambda/2}(t)\dd{t}=\frac{\Gamma(i\lambda/2+1)}{(i\lambda/2)!}(-1)^{i\lambda/2}(1-s)^{i\lambda/2}s^{-i\lambda/2-1},
+\end{equation}
+además, si hacemos el reemplazo $s\to is/2$ a ambos lados obtenemos
+\begin{equation}
+\begin{aligned}
+    \int_0^\infty e^{-(is/2)t}L_{i\lambda/2}(t)\dd{t}&=\frac{\Gamma(i\lambda/2+1)}{(i\lambda/2)!}(-1)^{i\lambda/2}(1-(is/2))^{i\lambda/2}(is/2)^{-i\lambda/2-1}\\
+    &=2\frac{\Gamma(i\lambda/2+1)}{(i\lambda/2)!}(-1)^{i\lambda/2}(2-is)^{i\lambda/2}(is)^{-i\lambda/2-1}\,.
+\end{aligned}
+\end{equation}
+Como la variable de integración es muda, el reemplazo que hicimos es equivalente a hacer el cambio de variable
+\begin{equation}
+    x\coloneq i\frac{t}{2} \Rightarrow \dd{t}=-2i\dd{x}
+\end{equation}
+de esta forma
+\begin{equation}
+    \int_0^\infty e^{-(is/2)t}L_{i\lambda/2}\dd{t}=-2i\int_0^{-i\infty}e^{-sx}L_{i\lambda/2}(-2ix)\dd{x},
+\end{equation}
+así que concluimos\footnote{No me convence del todo esta conclusión, ya que están mal los límites de integración de la transformada de Laplace} que la inversa de la TL del primer término de \eqref{eq:L1_final-2} es
+\begin{equation}
+    \mathcal{L}^{-1}\qty[(1-\lambda i)(2-is)^{i\lambda/2}(is)^{-i\lambda/2-1}](x)=\frac{(i\lambda/2)!}{2\Gamma(i\lambda/2+1)(-1)^{i\lambda/2}}(1-i\lambda)L_{i\lambda/2}(-2ix).
+\end{equation}
+
+\section{Transformada de Laplace función hipergeométrica}
+
+%La función hipergeométrica Kummer confluente está dada por la integral
+%\begin{equation}
+%    \,_1F_1\qty(a;b;z)=\frac{\Gamma(b)}{\Gamma(a)\Gamma(b-a)}\int_0^1 e^{zt}t^{a-1}(1-t)^{-a+b-1}\dd{t},\quad \text{Re}(b)>\text{Re}(a)>0
+%\end{equation}
+Gracias a Wolfram research sabemos que la transformada de Laplace de la funci\'on hipergométrica $\,_1F_1$ es
+\begin{equation}
+    \mathcal{L}\qty[\,_1F_1(a;b;-t)](z)=\frac{1}{z}\,_2F_1\qty(1,a;b;-\frac{1}{z}),\quad \text{Re}(z)>0
+\end{equation}
+y nosotros queremos considerar los parámetros como:
+\begin{equation}
+    a=1-i\frac{\lambda}{2},\quad b=2,\quad t=2ix.
+\end{equation}
+También sabemos que la función $\,_2F_1$ puede ser escrita en función de la Beta incompleta,
+\begin{equation}
+    \,_2F_1(1,b;c;z)=(c-1)z^{1-c}(1-z)^{-b+c-1}B_z(c-1,b-c+1),
+\end{equation}
+en nuestro caso tendríamos
+\begin{equation}
+\begin{aligned}
+    \frac{1}{z}\,_2F_1\qty(1,1-i\frac{\lambda}{2};2;-\frac{1}{z})&=-\qty(1+\frac{1}{z})^{i\lambda/2}B_{-1/z}\qty(1,-i\frac{\lambda}{2})\\
+    &=-z^{-i\lambda/2}(1+z)^{i\lambda/2}B_{-1/z}\qty(1,-i\frac{\lambda}{2})
+\end{aligned}
+\end{equation}
+y gracias a $\eqref{eqAp:beta-as-integral}$ podemos escribir la función Beta como una integral,
+\begin{equation}
+\begin{aligned}
+    B_{-1/z}\qty(1,-i\frac{\lambda}{2})&=\int_0^{-1/z}(1-u)^{-i\lambda/2-1}\dd{u}\\
+    &=\qty[\frac{(1-u)^{-i\lambda/2}}{i\lambda/2}]_0^{-1/z}\\
+    &=i\frac{2}{\lambda}\qty[1-\qty(1+\frac{1}{z})^{-i\lambda/2}]\\
+    &=i\frac{2}{\lambda}\qty[1-z^{i\lambda/2}\qty(1+z)^{-i\lambda/2}].
+\end{aligned}
+\end{equation}
+Juntando todo obtenemos
+\begin{equation}
+\begin{aligned}
+    \mathcal{L}\qty[\lambda\,_1F_1\qty(1-i\frac{\lambda}{2};2;-t)](z)&=\lambda\int_0^\infty \,_1F_1\qty(1-i\frac{\lambda}{2};2;-t)\dd{t}\\
+    &=-2iz^{-i\lambda/2}(1+z)^{i\lambda/2}\qty[1-z^{i\lambda/2}\qty(1+z)^{-i\lambda/2}]\\
+    &=-2iz^{-i\lambda/2}(1+z)^{i\lambda/2}+2i,
+\end{aligned}
+\end{equation}
+y haciendo el mismo cambio que para la TL de la Laguerre, $z\to -iz/2$,
+\begin{equation}
+\begin{aligned}
+    \lambda\int_0^\infty e^{-(iz/2)t}\,_1F_1\qty(1-i\frac{\lambda}{2};2;-t)\dd{t}&=-2i\qty(-i\frac{z}{2})^{-i\lambda/2}\qty(1-i\frac{z}{2})^{i\lambda/2}+2i\\
+    &=-2i^{1+i\lambda} \qty(2-iz)^{i\lambda/2}\qty(iz)^{-i\lambda/2}+2i,
+\end{aligned}
+\end{equation}
+con lo que concluimos que
+\begin{equation}
+    [\text{tomar transformada inversa haciendo el cambio de variable de } t]
+\end{equation}
+}
+%------ Final de apéndice comentado ---------------------------
+
+\nocite{*}
+\bibliography{bibmain}% Produces the bibliography via BibTeX.
+
+\end{document}
+%
+% ****** End of file aipsamp.tex ******
