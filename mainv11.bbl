@@ -6,7 +6,7 @@
 %Control: page (1) range
 %Control: year (1) truncated
 %Control: production of eprint (0) enabled
-\begin{thebibliography}{9}%
+\begin{thebibliography}{7}%
 \makeatletter
 \providecommand \@ifxundefined [1]{%
  \@ifx{#1\undefined}
@@ -49,24 +49,18 @@
 \providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
 \let\auto@bib@innerbib\@empty
 %</preamble>
-\bibitem [{Note1()}]{Note1}%
+\bibitem [{\citenamefont {Fumagalli}\ \emph {et~al.}(2022)\citenamefont {Fumagalli}, \citenamefont {Palma}, \citenamefont {Renaux-Petel}, \citenamefont {Sypsas}, \citenamefont {Witkowski},\ and\ \citenamefont {Zenteno}}]{Fumagalli_2022}%
   \BibitemOpen
-  \bibinfo {note} {We had to try different values of $\lambda $ and use \protect \texttt {Mathematica}'s functions to find this expression.}\BibitemShut {Stop}%
-\bibitem [{Note2()}]{Note2}%
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Fumagalli}}, \bibinfo {author} {\bibfnamefont {G.~A.}\ \bibnamefont {Palma}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Renaux-Petel}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Sypsas}}, \bibinfo {author} {\bibfnamefont {L.~T.}\ \bibnamefont {Witkowski}},\ and\ \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {Zenteno}},\ }\bibfield  {title} {\enquote {\bibinfo {title} {Primordial gravitational waves from excited states},}\ }\href {https://doi.org/10.1007/jhep03(2022)196} {\bibfield  {journal} {\bibinfo  {journal} {Journal of High Energy Physics}\ }\textbf {\bibinfo {volume} {2022}} (\bibinfo {year} {2022}),\ 10.1007/jhep03(2022)196}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Palma}, \citenamefont {Sypsas},\ and\ \citenamefont {Zenteno}(2020)}]{Palma_2020}%
   \BibitemOpen
-  \bibinfo {note} {We still have the freedom to choose $a$ in order to match with the constant value $- 33 i$.}\BibitemShut {Stop}%
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.~A.}\ \bibnamefont {Palma}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Sypsas}},\ and\ \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {Zenteno}},\ }\bibfield  {title} {\enquote {\bibinfo {title} {Seeding primordial black holes in multifield inflation},}\ }\href {https://doi.org/10.1103/physrevlett.125.121301} {\bibfield  {journal} {\bibinfo  {journal} {Physical Review Letters}\ }\textbf {\bibinfo {volume} {125}} (\bibinfo {year} {2020}),\ 10.1103/physrevlett.125.121301}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {research}(2001{\natexlab{a}})}]{hiper1F1z0}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {W.}~\bibnamefont {research}},\ }\href {https://functions.wolfram.com/HypergeometricFunctions/Hypergeometric1F1/03/01/01/} {\enquote {\bibinfo {title} {Kummer confluent hypergeometric function 1f1: Specific values},}\ } (\bibinfo {year} {2001}{\natexlab{a}})\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {research}(2001{\natexlab{b}})}]{Laguerrez0}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {W.}~\bibnamefont {research}},\ }\href {https://functions.wolfram.com/HypergeometricFunctions/LaguerreLGeneral/03/01/01/} {\enquote {\bibinfo {title} {Laguerre function: Specific values},}\ } (\bibinfo {year} {2001}{\natexlab{b}})\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Palma}, \citenamefont {Sypsas},\ and\ \citenamefont {Zenteno}(2020)}]{Palma_2020}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.~A.}\ \bibnamefont {Palma}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Sypsas}},\ and\ \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {Zenteno}},\ }\bibfield  {title} {\enquote {\bibinfo {title} {Seeding primordial black holes in multifield inflation},}\ }\href {https://doi.org/10.1103/physrevlett.125.121301} {\bibfield  {journal} {\bibinfo  {journal} {Physical Review Letters}\ }\textbf {\bibinfo {volume} {125}} (\bibinfo {year} {2020}),\ 10.1103/physrevlett.125.121301}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Fumagalli}\ \emph {et~al.}(2022)\citenamefont {Fumagalli}, \citenamefont {Palma}, \citenamefont {Renaux-Petel}, \citenamefont {Sypsas}, \citenamefont {Witkowski},\ and\ \citenamefont {Zenteno}}]{Fumagalli_2022}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Fumagalli}}, \bibinfo {author} {\bibfnamefont {G.~A.}\ \bibnamefont {Palma}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Renaux-Petel}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Sypsas}}, \bibinfo {author} {\bibfnamefont {L.~T.}\ \bibnamefont {Witkowski}},\ and\ \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {Zenteno}},\ }\bibfield  {title} {\enquote {\bibinfo {title} {Primordial gravitational waves from excited states},}\ }\href {https://doi.org/10.1007/jhep03(2022)196} {\bibfield  {journal} {\bibinfo  {journal} {Journal of High Energy Physics}\ }\textbf {\bibinfo {volume} {2022}} (\bibinfo {year} {2022}),\ 10.1007/jhep03(2022)196}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Bateman}\ and\ \citenamefont {Project}(1953)}]{bateman_bateman_manuscript_project_1953}%
   \BibitemOpen
   \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Bateman}}\ and\ \bibinfo {author} {\bibfnamefont {B.~M.}\ \bibnamefont {Project}},\ }\href@noop {} {\emph {\bibinfo {title} {Higher Transcendental Functions [Volumes I-III]}}}\ (\bibinfo  {publisher} {McGraw-Hill Book Company},\ \bibinfo {year} {1953})\ \bibinfo {note} {funding by Office of Naval Research (ONR)}\BibitemShut {NoStop}%
